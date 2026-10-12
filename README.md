@@ -52,10 +52,10 @@ Type these in the shop search box, alone or together with words. Every filter wo
 <!-- screenshot to add: ![Shop filtered with fendt hp>300 $<400k](docs/images/shop-hp-price.png) -->
 
 ### 🏗️ Construction
-- Type to filter the buildings in **every category and tab** at once: `silo`, `greenhouse`, `fence`, `cow`.
+- Type to filter the buildings in **every category and tab** at once: `house`, `silo`, `greenhouse`, `fence`, `cow`.
 - Add a price: `silo $<100k`, or `affordable`.
 
-<!-- screenshot to add: ![Construction screen filtered to silos](docs/images/construction.png) -->
+<img src="docs/images/construction.png" alt="Construction screen searching house: 61 of 930 buildings" width="360">
 
 ### 🗺️ Map: Where's My Stuff
 - Type in the box at the top of the map, or press **Ctrl+F**, to find **vehicles, bales, pallets, big bags, buildings and fields**.
@@ -64,7 +64,7 @@ Type these in the shop search box, alone or together with words. Every filter wo
 - Press **Enter** to centre the map on the nearest match.
 - Search by fill type too: `wool`, `round bale`, `wheat`, `field 12`, `owned`.
 
-<!-- screenshot to add: ![Map search with arrows on every match](docs/images/map.png) -->
+![Map search for tractor: 3 found, each with an arrow](docs/images/map.png)
 
 ## How to use it
 
