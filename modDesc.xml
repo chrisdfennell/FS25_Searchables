@@ -5,6 +5,7 @@
     <title>
         <en>Searchables</en>
         <de>Searchables</de>
+        <fr>Searchables</fr>
     </title>
     <description>
         <en><![CDATA[Search boxes right on the shop, construction and map screens. Click the box and type: the list updates as you type.
@@ -39,6 +40,22 @@ Karte:
 - Jeder Treffer bekommt einen Pfeil, der auf ihn zuläuft. Enter zentriert die Karte auf den nächsten Treffer.
 
 Enter behält die Suche, Esc löscht sie.]]></de>
+        <fr><![CDATA[Des champs de recherche directement dans le magasin, le menu de construction et sur la carte. Cliquez dans le champ et tapez : la liste se met à jour au fur et à mesure.
+
+Magasin :
+- Dans une catégorie ou une marque, la saisie filtre la liste.
+- Sur les pages des catégories, marques, packs et DLC, la saisie cherche dans tout le magasin.
+- Cherche dans le nom, la marque, la catégorie, le DLC, le nom et l'auteur du mod. Chaque mot doit correspondre, par ex. « fendt 700 ».
+- Filtres : prix ($<50k, $100k-200k, € fonctionne aussi), puissance (hp>200), largeur de travail (width>9, 6-9m), capacité (l>30000), poids (t<10), vitesse (kph>50), puissance requise (needhp<150) et « abordable ». À combiner avec des mots : « fendt hp>300 $<400k ».
+
+Construction :
+- La saisie filtre les bâtiments de toutes les catégories et de tous les onglets. Les filtres de prix et « abordable » fonctionnent aussi ici.
+
+Carte :
+- Tapez dans le champ en haut de la carte (ou appuyez sur Ctrl+F) pour trouver vos véhicules, balles, palettes, big bags, bâtiments et champs. Les véhicules se trouvent aussi par leur plaque d'immatriculation.
+- Chaque résultat reçoit une flèche qui se resserre sur lui. Entrée centre la carte sur le plus proche.
+
+Entrée conserve la recherche, Échap l'efface.]]></fr>
     </description>
 
     <iconFilename>icon_searchables.dds</iconFilename>
