@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<modDesc descVersion="99" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs25/modDesc.xsd">
+    <author>Fennell</author>
+    <version>0.3.0.0</version>
+    <title>
+        <en>Searchables</en>
+    </title>
+    <description>
+        <en><![CDATA[Search boxes right on the shop, construction and map screens. Click the box and type: results update as you type, no pop-up needed. Includes Where's My Stuff.
+
+Shop:
+- In a category or brand list, typing filters that list.
+- On the category, brand, pack and DLC tiles, typing searches the whole shop and lists every match.
+- Searches name, brand, category, DLC, mod name and mod author. Every word must match: "fendt 700", "john deere tedder".
+- Horsepower and price: hp>200, 200-300hp, 250hp, $<50k, $100k-200k, $144,500. Mix with words: "fendt hp>300 $<400k".
+
+Construction:
+- Typing filters the buildings in every category and tab.
+
+Map (Where's My Stuff):
+- Type in the box at the top of the map (or press Ctrl+F) to find vehicles, bales, pallets, big bags, buildings and fields. Vehicles are also found by license plate.
+- Every match gets a big arrow that shrinks down onto it. Enter centers the map on the nearest one.
+
+Enter or clicking elsewhere keeps the search, Esc clears it. In the shop and construction screens going back, switching tabs or closing the screen clears it too.
+
+Console commands (development build):
+wmsSummary - totals per fill type
+wmsList <fillType> - every item of that fill type and where it is
+wmsLeftovers - bales and pallets lying on fields
+wmsShow <fillType|ALL|LEFTOVERS|EMPTY> - mark items on the in-game map (map filter "Other")
+wmsGoto <fillType|ALL|LEFTOVERS|EMPTY> - mark items and set the nearest one as your map target
+wmsHide - remove the map markers
+wmsFind <text> - same search as the map, listed nearest first
+wmsTarget <number> - navigate to that numbered marker
+searchablesDumpUi - print the element tree of the open screen
+searchablesMove shop|construction dx dy - nudge a search box by some pixels]]></en>
+    </description>
+
+    <iconFilename>icon_searchables.png</iconFilename>
+    <multiplayer supported="true"/>
+
+    <extraSourceFiles>
+        <sourceFile filename="scripts/Searchables.lua"/>
+        <sourceFile filename="scripts/SearchablesSearchBox.lua"/>
+        <sourceFile filename="scripts/SearchablesShop.lua"/>
+        <sourceFile filename="scripts/SearchablesConstruction.lua"/>
+        <sourceFile filename="scripts/WheresMyStuffHotspot.lua"/>
+        <sourceFile filename="scripts/WheresMyStuff.lua"/>
+        <sourceFile filename="scripts/WheresMyStuffMapSearch.lua"/>
+    </extraSourceFiles>
+
+    <actions>
+        <action name="WMS_MAP_SEARCH"/>
+    </actions>
+
+    <inputBinding>
+        <actionBinding action="WMS_MAP_SEARCH">
+            <binding device="KB_MOUSE_DEFAULT" input="KEY_lctrl KEY_f"/>
+        </actionBinding>
+    </inputBinding>
+
+    <l10n>
+        <text name="input_WMS_MAP_SEARCH">
+            <en>Search the map</en>
+        </text>
+    </l10n>
+</modDesc>

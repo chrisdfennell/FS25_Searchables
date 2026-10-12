@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- One search box. Loaded into the shop and construction screens by SearchablesSearchBox.new -->
+<GUI>
+    <GuiElement profile="searchablesBox" id="searchablesBox">
+        <TextInput profile="searchablesInput" id="searchablesInput" enterWhenClickOutside="true" applyProfanityFilter="false" maxCharacters="40">
+            <ThreePartBitmap profile="fs25_textInputBg"/>
+            <Bitmap profile="fs25_textInputIconBox">
+                <Bitmap profile="fs25_textInputIcon"/>
+            </Bitmap>
+        </TextInput>
+        <Text profile="searchablesPlaceholder" id="searchablesPlaceholder" text="Search..."/>
+        <Text profile="searchablesCount" id="searchablesCount" text=""/>
+    </GuiElement>
+</GUI>

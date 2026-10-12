@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<GUIProfiles>
+    <!-- Container for one search box; the scripts position it absolutely next to the screen's own panels -->
+    <Profile name="searchablesBox" extends="emptyPanel" with="anchorBottomLeft">
+        <size value="320px 31px"/>
+    </Profile>
+
+    <!-- The text box itself. Height matches fs25_textInput so the stock background and icon children fit -->
+    <Profile name="searchablesInput" extends="fs25_textInput" with="anchorBottomLeft">
+        <size value="320px 31px"/>
+        <textSize value="16px"/>
+        <textAlignment value="left"/>
+        <!-- text starts 10px in and stops before the match count: (320 - 200) / 2 - 50 = 10 -->
+        <maxInputTextWidth value="200px"/>
+        <textOffset value="-50px 0px"/>
+        <maxCharacters value="40"/>
+        <applyProfanityFilter value="false"/>
+    </Profile>
+
+    <!-- "Search..." hint shown while the box is empty and not being typed in -->
+    <Profile name="searchablesPlaceholder" extends="fs25_textDefault" with="anchorMiddleLeft">
+        <size value="200px 20px"/>
+        <position value="10px 0px"/>
+        <textSize value="16px"/>
+        <textColor value="0.55 0.55 0.55 1"/>
+    </Profile>
+
+    <!-- Match count, right-aligned at the right end of the box (left of the typed text's limit) -->
+    <Profile name="searchablesCount" extends="fs25_textDefault" with="anchorMiddleRight">
+        <size value="95px 20px"/>
+        <position value="-8px 0px"/>
+        <textSize value="14px"/>
+        <textAlignment value="right"/>
+        <textColor value="0.55 0.55 0.55 1"/>
+    </Profile>
+</GUIProfiles>
