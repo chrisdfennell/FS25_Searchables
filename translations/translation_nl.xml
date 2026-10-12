@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Zoeken..."/>
+        <text name="searchables_shopPlaceholder" text="Zoeken in de winkel..."/>
+        <text name="searchables_constructionPlaceholder" text="Gebouwen zoeken..."/>
+        <text name="searchables_mapPlaceholder" text="Zoeken op de kaart..."/>
+        <text name="searchables_resultsTitle" text="Zoekresultaten"/>
+        <text name="searchables_countFound" text="%d gevonden"/>
+        <text name="searchables_countOf" text="%d van %d"/>
+        <text name="searchables_countNone" text="niets gevonden"/>
+        <text name="searchables_kind_pallet" text="Pallet"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Baal"/>
+        <text name="searchables_kind_vehicle" text="Voertuig"/>
+        <text name="searchables_kind_building" text="Gebouw"/>
+        <text name="searchables_kind_field" text="Veld"/>
+        <text name="searchables_fieldName" text="Veld %s"/>
+        <text name="searchables_ownedField" text="Eigen veld"/>
+        <text name="searchables_owned" text="eigen"/>
+        <text name="searchables_empty" text="Leeg"/>
+        <text name="searchables_unknown" text="Onbekend"/>
+        <text name="input_WMS_MAP_SEARCH" text="Zoeken op de kaart"/>
+    </texts>
+</l10n>

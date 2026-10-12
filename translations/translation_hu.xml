@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Keresés..."/>
+        <text name="searchables_shopPlaceholder" text="Keresés a boltban..."/>
+        <text name="searchables_constructionPlaceholder" text="Épületek keresése..."/>
+        <text name="searchables_mapPlaceholder" text="Keresés a térképen..."/>
+        <text name="searchables_resultsTitle" text="Keresési eredmények"/>
+        <text name="searchables_countFound" text="%d találat"/>
+        <text name="searchables_countOf" text="%d / %d"/>
+        <text name="searchables_countNone" text="nincs találat"/>
+        <text name="searchables_kind_pallet" text="Raklap"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Bála"/>
+        <text name="searchables_kind_vehicle" text="Jármű"/>
+        <text name="searchables_kind_building" text="Épület"/>
+        <text name="searchables_kind_field" text="Föld"/>
+        <text name="searchables_fieldName" text="Föld %s"/>
+        <text name="searchables_ownedField" text="Saját föld"/>
+        <text name="searchables_owned" text="saját sajat"/>
+        <text name="searchables_empty" text="Üres"/>
+        <text name="searchables_unknown" text="Ismeretlen"/>
+        <text name="input_WMS_MAP_SEARCH" text="Keresés a térképen"/>
+    </texts>
+</l10n>

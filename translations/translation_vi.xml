@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Tìm kiếm..."/>
+        <text name="searchables_shopPlaceholder" text="Tìm trong cửa hàng..."/>
+        <text name="searchables_constructionPlaceholder" text="Tìm công trình..."/>
+        <text name="searchables_mapPlaceholder" text="Tìm trên bản đồ..."/>
+        <text name="searchables_resultsTitle" text="Kết quả tìm kiếm"/>
+        <text name="searchables_countFound" text="Tìm thấy %d"/>
+        <text name="searchables_countOf" text="%d / %d"/>
+        <text name="searchables_countNone" text="không tìm thấy"/>
+        <text name="searchables_kind_pallet" text="Pallet"/>
+        <text name="searchables_kind_bigBag" text="Bao lớn"/>
+        <text name="searchables_kind_bale" text="Kiện"/>
+        <text name="searchables_kind_vehicle" text="Phương tiện"/>
+        <text name="searchables_kind_building" text="Công trình"/>
+        <text name="searchables_kind_field" text="Cánh đồng"/>
+        <text name="searchables_fieldName" text="Cánh đồng %s"/>
+        <text name="searchables_ownedField" text="Cánh đồng sở hữu"/>
+        <text name="searchables_owned" text="sở hữu"/>
+        <text name="searchables_empty" text="Trống"/>
+        <text name="searchables_unknown" text="Không rõ"/>
+        <text name="input_WMS_MAP_SEARCH" text="Tìm trên bản đồ"/>
+    </texts>
+</l10n>

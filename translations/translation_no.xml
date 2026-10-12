@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Søk..."/>
+        <text name="searchables_shopPlaceholder" text="Søk i butikken..."/>
+        <text name="searchables_constructionPlaceholder" text="Søk etter bygninger..."/>
+        <text name="searchables_mapPlaceholder" text="Søk på kartet..."/>
+        <text name="searchables_resultsTitle" text="Søkeresultater"/>
+        <text name="searchables_countFound" text="%d funnet"/>
+        <text name="searchables_countOf" text="%d av %d"/>
+        <text name="searchables_countNone" text="ingenting funnet"/>
+        <text name="searchables_kind_pallet" text="Pall"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Ball"/>
+        <text name="searchables_kind_vehicle" text="Kjøretøy"/>
+        <text name="searchables_kind_building" text="Bygning"/>
+        <text name="searchables_kind_field" text="Jorde"/>
+        <text name="searchables_fieldName" text="Jorde %s"/>
+        <text name="searchables_ownedField" text="Eget jorde"/>
+        <text name="searchables_owned" text="eget egen"/>
+        <text name="searchables_empty" text="Tom"/>
+        <text name="searchables_unknown" text="Ukjent"/>
+        <text name="input_WMS_MAP_SEARCH" text="Søk på kartet"/>
+    </texts>
+</l10n>

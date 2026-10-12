@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="搜索..."/>
+        <text name="searchables_shopPlaceholder" text="搜索商店..."/>
+        <text name="searchables_constructionPlaceholder" text="搜索建筑..."/>
+        <text name="searchables_mapPlaceholder" text="搜索地图..."/>
+        <text name="searchables_resultsTitle" text="搜索结果"/>
+        <text name="searchables_countFound" text="找到 %d 个"/>
+        <text name="searchables_countOf" text="%d / %d"/>
+        <text name="searchables_countNone" text="未找到"/>
+        <text name="searchables_kind_pallet" text="托盘"/>
+        <text name="searchables_kind_bigBag" text="吨袋"/>
+        <text name="searchables_kind_bale" text="草捆"/>
+        <text name="searchables_kind_vehicle" text="车辆"/>
+        <text name="searchables_kind_building" text="建筑"/>
+        <text name="searchables_kind_field" text="田地"/>
+        <text name="searchables_fieldName" text="田地 %s"/>
+        <text name="searchables_ownedField" text="自有田地"/>
+        <text name="searchables_owned" text="自有"/>
+        <text name="searchables_empty" text="空"/>
+        <text name="searchables_unknown" text="未知"/>
+        <text name="input_WMS_MAP_SEARCH" text="搜索地图"/>
+    </texts>
+</l10n>

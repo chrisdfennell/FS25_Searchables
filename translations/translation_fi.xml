@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Hae..."/>
+        <text name="searchables_shopPlaceholder" text="Hae kaupasta..."/>
+        <text name="searchables_constructionPlaceholder" text="Hae rakennuksia..."/>
+        <text name="searchables_mapPlaceholder" text="Hae kartalta..."/>
+        <text name="searchables_resultsTitle" text="Hakutulokset"/>
+        <text name="searchables_countFound" text="%d löytyi"/>
+        <text name="searchables_countOf" text="%d / %d"/>
+        <text name="searchables_countNone" text="ei tuloksia"/>
+        <text name="searchables_kind_pallet" text="Lava"/>
+        <text name="searchables_kind_bigBag" text="Suursäkki"/>
+        <text name="searchables_kind_bale" text="Paali"/>
+        <text name="searchables_kind_vehicle" text="Ajoneuvo"/>
+        <text name="searchables_kind_building" text="Rakennus"/>
+        <text name="searchables_kind_field" text="Pelto"/>
+        <text name="searchables_fieldName" text="Pelto %s"/>
+        <text name="searchables_ownedField" text="Oma pelto"/>
+        <text name="searchables_owned" text="oma"/>
+        <text name="searchables_empty" text="Tyhjä"/>
+        <text name="searchables_unknown" text="Tuntematon"/>
+        <text name="input_WMS_MAP_SEARCH" text="Hae kartalta"/>
+    </texts>
+</l10n>

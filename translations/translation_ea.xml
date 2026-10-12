@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Buscar..."/>
+        <text name="searchables_shopPlaceholder" text="Buscar en la tienda..."/>
+        <text name="searchables_constructionPlaceholder" text="Buscar edificios..."/>
+        <text name="searchables_mapPlaceholder" text="Buscar en el mapa..."/>
+        <text name="searchables_resultsTitle" text="Resultados de búsqueda"/>
+        <text name="searchables_countFound" text="%d encontrados"/>
+        <text name="searchables_countOf" text="%d de %d"/>
+        <text name="searchables_countNone" text="sin resultados"/>
+        <text name="searchables_kind_pallet" text="Tarima"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Paca"/>
+        <text name="searchables_kind_vehicle" text="Vehículo"/>
+        <text name="searchables_kind_building" text="Edificio"/>
+        <text name="searchables_kind_field" text="Campo"/>
+        <text name="searchables_fieldName" text="Campo %s"/>
+        <text name="searchables_ownedField" text="Campo propio"/>
+        <text name="searchables_owned" text="propio"/>
+        <text name="searchables_empty" text="Vacío"/>
+        <text name="searchables_unknown" text="Desconocido"/>
+        <text name="input_WMS_MAP_SEARCH" text="Buscar en el mapa"/>
+    </texts>
+</l10n>

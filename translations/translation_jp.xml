@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="検索..."/>
+        <text name="searchables_shopPlaceholder" text="ショップを検索..."/>
+        <text name="searchables_constructionPlaceholder" text="建物を検索..."/>
+        <text name="searchables_mapPlaceholder" text="マップを検索..."/>
+        <text name="searchables_resultsTitle" text="検索結果"/>
+        <text name="searchables_countFound" text="%d件"/>
+        <text name="searchables_countOf" text="%d / %d件"/>
+        <text name="searchables_countNone" text="見つかりません"/>
+        <text name="searchables_kind_pallet" text="パレット"/>
+        <text name="searchables_kind_bigBag" text="ビッグバッグ"/>
+        <text name="searchables_kind_bale" text="ベール"/>
+        <text name="searchables_kind_vehicle" text="車両"/>
+        <text name="searchables_kind_building" text="建物"/>
+        <text name="searchables_kind_field" text="畑"/>
+        <text name="searchables_fieldName" text="畑 %s"/>
+        <text name="searchables_ownedField" text="所有している畑"/>
+        <text name="searchables_owned" text="所有"/>
+        <text name="searchables_empty" text="空"/>
+        <text name="searchables_unknown" text="不明"/>
+        <text name="input_WMS_MAP_SEARCH" text="マップを検索"/>
+    </texts>
+</l10n>

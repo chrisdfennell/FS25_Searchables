@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Caută..."/>
+        <text name="searchables_shopPlaceholder" text="Caută în magazin..."/>
+        <text name="searchables_constructionPlaceholder" text="Caută clădiri..."/>
+        <text name="searchables_mapPlaceholder" text="Caută pe hartă..."/>
+        <text name="searchables_resultsTitle" text="Rezultatele căutării"/>
+        <text name="searchables_countFound" text="%d găsite"/>
+        <text name="searchables_countOf" text="%d din %d"/>
+        <text name="searchables_countNone" text="nimic găsit"/>
+        <text name="searchables_kind_pallet" text="Palet"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Balot"/>
+        <text name="searchables_kind_vehicle" text="Vehicul"/>
+        <text name="searchables_kind_building" text="Clădire"/>
+        <text name="searchables_kind_field" text="Câmp"/>
+        <text name="searchables_fieldName" text="Câmp %s"/>
+        <text name="searchables_ownedField" text="Câmp propriu"/>
+        <text name="searchables_owned" text="propriu"/>
+        <text name="searchables_empty" text="Gol"/>
+        <text name="searchables_unknown" text="Necunoscut"/>
+        <text name="input_WMS_MAP_SEARCH" text="Caută pe hartă"/>
+    </texts>
+</l10n>

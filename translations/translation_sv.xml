@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Sök..."/>
+        <text name="searchables_shopPlaceholder" text="Sök i butiken..."/>
+        <text name="searchables_constructionPlaceholder" text="Sök byggnader..."/>
+        <text name="searchables_mapPlaceholder" text="Sök på kartan..."/>
+        <text name="searchables_resultsTitle" text="Sökresultat"/>
+        <text name="searchables_countFound" text="%d hittade"/>
+        <text name="searchables_countOf" text="%d av %d"/>
+        <text name="searchables_countNone" text="inget hittades"/>
+        <text name="searchables_kind_pallet" text="Pall"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Bal"/>
+        <text name="searchables_kind_vehicle" text="Fordon"/>
+        <text name="searchables_kind_building" text="Byggnad"/>
+        <text name="searchables_kind_field" text="Fält"/>
+        <text name="searchables_fieldName" text="Fält %s"/>
+        <text name="searchables_ownedField" text="Eget fält"/>
+        <text name="searchables_owned" text="eget egen"/>
+        <text name="searchables_empty" text="Tom"/>
+        <text name="searchables_unknown" text="Okänd"/>
+        <text name="input_WMS_MAP_SEARCH" text="Sök på kartan"/>
+    </texts>
+</l10n>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Cari..."/>
+        <text name="searchables_shopPlaceholder" text="Cari di toko..."/>
+        <text name="searchables_constructionPlaceholder" text="Cari bangunan..."/>
+        <text name="searchables_mapPlaceholder" text="Cari di peta..."/>
+        <text name="searchables_resultsTitle" text="Hasil pencarian"/>
+        <text name="searchables_countFound" text="%d ditemukan"/>
+        <text name="searchables_countOf" text="%d dari %d"/>
+        <text name="searchables_countNone" text="tidak ditemukan"/>
+        <text name="searchables_kind_pallet" text="Palet"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Bal"/>
+        <text name="searchables_kind_vehicle" text="Kendaraan"/>
+        <text name="searchables_kind_building" text="Bangunan"/>
+        <text name="searchables_kind_field" text="Ladang"/>
+        <text name="searchables_fieldName" text="Ladang %s"/>
+        <text name="searchables_ownedField" text="Ladang sendiri"/>
+        <text name="searchables_owned" text="milik sendiri"/>
+        <text name="searchables_empty" text="Kosong"/>
+        <text name="searchables_unknown" text="Tidak diketahui"/>
+        <text name="input_WMS_MAP_SEARCH" text="Cari di peta"/>
+    </texts>
+</l10n>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Ara..."/>
+        <text name="searchables_shopPlaceholder" text="Mağazada ara..."/>
+        <text name="searchables_constructionPlaceholder" text="Bina ara..."/>
+        <text name="searchables_mapPlaceholder" text="Haritada ara..."/>
+        <text name="searchables_resultsTitle" text="Arama sonuçları"/>
+        <text name="searchables_countFound" text="%d bulundu"/>
+        <text name="searchables_countOf" text="%d / %d"/>
+        <text name="searchables_countNone" text="sonuç yok"/>
+        <text name="searchables_kind_pallet" text="Palet"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Balya"/>
+        <text name="searchables_kind_vehicle" text="Araç"/>
+        <text name="searchables_kind_building" text="Bina"/>
+        <text name="searchables_kind_field" text="Tarla"/>
+        <text name="searchables_fieldName" text="Tarla %s"/>
+        <text name="searchables_ownedField" text="Sahip olunan tarla"/>
+        <text name="searchables_owned" text="sahip"/>
+        <text name="searchables_empty" text="Boş"/>
+        <text name="searchables_unknown" text="Bilinmiyor"/>
+        <text name="input_WMS_MAP_SEARCH" text="Haritada ara"/>
+    </texts>
+</l10n>

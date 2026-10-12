@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Hledat..."/>
+        <text name="searchables_shopPlaceholder" text="Hledat v obchodě..."/>
+        <text name="searchables_constructionPlaceholder" text="Hledat budovy..."/>
+        <text name="searchables_mapPlaceholder" text="Hledat na mapě..."/>
+        <text name="searchables_resultsTitle" text="Výsledky hledání"/>
+        <text name="searchables_countFound" text="Nalezeno: %d"/>
+        <text name="searchables_countOf" text="%d z %d"/>
+        <text name="searchables_countNone" text="nic nenalezeno"/>
+        <text name="searchables_kind_pallet" text="Paleta"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Balík"/>
+        <text name="searchables_kind_vehicle" text="Vozidlo"/>
+        <text name="searchables_kind_building" text="Budova"/>
+        <text name="searchables_kind_field" text="Pole"/>
+        <text name="searchables_fieldName" text="Pole %s"/>
+        <text name="searchables_ownedField" text="Vlastní pole"/>
+        <text name="searchables_owned" text="vlastní vlastni"/>
+        <text name="searchables_empty" text="Prázdné"/>
+        <text name="searchables_unknown" text="Neznámé"/>
+        <text name="input_WMS_MAP_SEARCH" text="Hledat na mapě"/>
+    </texts>
+</l10n>

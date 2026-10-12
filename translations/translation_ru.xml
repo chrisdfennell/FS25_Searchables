@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <text name="searchables_placeholder" text="Поиск..."/>
+        <text name="searchables_shopPlaceholder" text="Поиск в магазине..."/>
+        <text name="searchables_constructionPlaceholder" text="Поиск построек..."/>
+        <text name="searchables_mapPlaceholder" text="Поиск на карте..."/>
+        <text name="searchables_resultsTitle" text="Результаты поиска"/>
+        <text name="searchables_countFound" text="Найдено: %d"/>
+        <text name="searchables_countOf" text="%d из %d"/>
+        <text name="searchables_countNone" text="ничего не найдено"/>
+        <text name="searchables_kind_pallet" text="Поддон"/>
+        <text name="searchables_kind_bigBag" text="Биг-бэг"/>
+        <text name="searchables_kind_bale" text="Тюк"/>
+        <text name="searchables_kind_vehicle" text="Техника"/>
+        <text name="searchables_kind_building" text="Здание"/>
+        <text name="searchables_kind_field" text="Поле"/>
+        <text name="searchables_fieldName" text="Поле %s"/>
+        <text name="searchables_ownedField" text="Своё поле"/>
+        <text name="searchables_owned" text="своё свое"/>
+        <text name="searchables_empty" text="Пусто"/>
+        <text name="searchables_unknown" text="Неизвестно"/>
+        <text name="input_WMS_MAP_SEARCH" text="Поиск на карте"/>
+    </texts>
+</l10n>
