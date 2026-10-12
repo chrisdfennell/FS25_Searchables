@@ -13,7 +13,7 @@
 
 FS25 has hundreds of vehicles, tools and buildings, and finding the one you want means scrolling through category after category. Searchables puts a search box right on the shop, construction and map screens. Click it, start typing, and the list narrows down as you type. There's no hotkey to remember and no pop-up.
 
-<!-- screenshot to add: ![The shop search box under the balance, filtering a brand list](docs/images/shop-filter.png) -->
+![Inside the Amazone brand, 4000 narrows 7 items to 1](docs/images/shop-filter.png)
 
 ## Features
 
@@ -49,7 +49,7 @@ Type these in the shop search box, alone or together with words. Every filter wo
 - In store-wide results, the first filter you typed decides the order: `hp>200` lists by horsepower, `$<50k` by price, lowest first.
 - On the construction screen, price filters and `affordable` work too.
 
-<!-- screenshot to add: ![Shop filtered with fendt hp>300 $<400k](docs/images/shop-hp-price.png) -->
+![fendt hp>300 $<400k finds 4 Fendts, including the 700 Vario with 203-303 hp](docs/images/shop-hp-price.png)
 
 ### 🏗️ Construction
 - Type to filter the buildings in **every category and tab** at once: `house`, `silo`, `greenhouse`, `fence`, `cow`.
