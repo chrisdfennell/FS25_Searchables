@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<modDesc descVersion="99" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs25/modDesc.xsd">
+<modDesc descVersion="114" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs25/modDesc.xsd">
     <author>Fennell</author>
-    <version>0.3.0.0</version>
+    <version>1.0.0.0</version>
     <title>
         <en>Searchables</en>
+        <de>Searchables</de>
     </title>
     <description>
-        <en><![CDATA[Search boxes right on the shop, construction and map screens. Click the box and type: results update as you type, no pop-up needed. Includes Where's My Stuff.
+        <en><![CDATA[Search boxes right on the shop, construction and map screens. Click the box and type: the list updates as you type.
 
 Shop:
-- In a category or brand list, typing filters that list.
-- On the category, brand, pack and DLC tiles, typing searches the whole shop and lists every match.
-- Searches name, brand, category, DLC, mod name and mod author. Every word must match: "fendt 700", "john deere tedder".
-- Horsepower and price: hp>200, 200-300hp, 250hp, $<50k, $100k-200k, $144,500. Mix with words: "fendt hp>300 $<400k".
+- In a category or brand, typing filters that list.
+- On the category, brand, pack and DLC pages, typing searches the whole shop.
+- Searches name, brand, category, DLC, mod name and mod author. Every word must match, e.g. "fendt 700".
+- Horsepower and price: hp>200, 200-300hp, $<50k, $100k-200k, $144,500. Mix them with words: "fendt hp>300 $<400k".
 
 Construction:
-- Typing filters the buildings in every category and tab.
+- Typing filters the buildings in every category and tab. Price filters work here too.
 
-Map (Where's My Stuff):
-- Type in the box at the top of the map (or press Ctrl+F) to find vehicles, bales, pallets, big bags, buildings and fields. Vehicles are also found by license plate.
-- Every match gets a big arrow that shrinks down onto it. Enter centers the map on the nearest one.
+Map:
+- Type in the box at the top of the map (or press Ctrl+F) to find your vehicles, bales, pallets, big bags, buildings and fields. Vehicles can also be found by license plate.
+- Every match gets an arrow that shrinks down onto it. Enter centers the map on the nearest one.
 
-Enter or clicking elsewhere keeps the search, Esc clears it. In the shop and construction screens going back, switching tabs or closing the screen clears it too.
+Enter keeps the search, Esc clears it.]]></en>
+        <de><![CDATA[Suchfelder direkt im Shop, im Baumenü und auf der Karte. Feld anklicken und tippen: Die Liste aktualisiert sich beim Tippen.
 
-Console commands (development build):
-wmsSummary - totals per fill type
-wmsList <fillType> - every item of that fill type and where it is
-wmsLeftovers - bales and pallets lying on fields
-wmsShow <fillType|ALL|LEFTOVERS|EMPTY> - mark items on the in-game map (map filter "Other")
-wmsGoto <fillType|ALL|LEFTOVERS|EMPTY> - mark items and set the nearest one as your map target
-wmsHide - remove the map markers
-wmsFind <text> - same search as the map, listed nearest first
-wmsTarget <number> - navigate to that numbered marker
-searchablesDumpUi - print the element tree of the open screen
-searchablesMove shop|construction dx dy - nudge a search box by some pixels]]></en>
+Shop:
+- In einer Kategorie oder Marke filtert die Eingabe die Liste.
+- Auf den Seiten für Kategorien, Marken, Pakete und DLCs durchsucht die Eingabe den ganzen Shop.
+- Durchsucht Name, Marke, Kategorie, DLC, Modname und Modautor. Jedes Wort muss passen, z. B. "fendt 700".
+- PS und Preis: hp>200, 200-300hp, $<50k, $100k-200k, $144,500 (€ geht auch). Mit Wörtern kombinierbar: "fendt hp>300 $<400k".
+
+Baumenü:
+- Die Eingabe filtert die Gebäude in allen Kategorien und Reitern. Preisfilter funktionieren auch hier.
+
+Karte:
+- Im Suchfeld oben auf der Karte tippen (oder Strg+F drücken), um eigene Fahrzeuge, Ballen, Paletten, Big Bags, Gebäude und Felder zu finden. Fahrzeuge lassen sich auch über das Kennzeichen finden.
+- Jeder Treffer bekommt einen Pfeil, der auf ihn zuläuft. Enter zentriert die Karte auf den nächsten Treffer.
+
+Enter behält die Suche, Esc löscht sie.]]></de>
     </description>
 
-    <iconFilename>icon_searchables.png</iconFilename>
+    <iconFilename>icon_searchables.dds</iconFilename>
     <multiplayer supported="true"/>
+    <l10n filenamePrefix="translations/translation"/>
 
     <extraSourceFiles>
         <sourceFile filename="scripts/Searchables.lua"/>
@@ -58,10 +64,4 @@ searchablesMove shop|construction dx dy - nudge a search box by some pixels]]></
             <binding device="KB_MOUSE_DEFAULT" input="KEY_lctrl KEY_f"/>
         </actionBinding>
     </inputBinding>
-
-    <l10n>
-        <text name="input_WMS_MAP_SEARCH">
-            <en>Search the map</en>
-        </text>
-    </l10n>
 </modDesc>

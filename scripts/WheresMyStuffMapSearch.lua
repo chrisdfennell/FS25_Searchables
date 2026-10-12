@@ -24,7 +24,7 @@ WheresMyStuffMapSearch.MAX_ARROWS = 40
 
 -- Search box, centered at the top of the map
 WheresMyStuffMapSearch.BOX_TOP_OFFSET = 110
-WheresMyStuffMapSearch.PLACEHOLDER = "Search the map...  (Ctrl+F)"
+
 -- Search this long after the last key, so the arrows do not restart on every letter
 WheresMyStuffMapSearch.SEARCH_DELAY = 300
 -- Only maps at least this wide (share of the screen) get a box; small preview maps do not
@@ -91,7 +91,7 @@ function WheresMyStuffMapSearch.getBox(mapElement)
 
     local box = WheresMyStuffMapSearch.boxes[owner]
     if box == nil and box ~= false then
-        box = SearchablesSearchBox.new(owner, WheresMyStuffMapSearch.PLACEHOLDER, function(text)
+        box = SearchablesSearchBox.new(owner, Searchables.getText("searchables_mapPlaceholder"), function(text)
             WheresMyStuffMapSearch.onTextChanged(WheresMyStuffMapSearch.boxes[owner], text)
         end)
         if box == nil then

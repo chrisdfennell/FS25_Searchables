@@ -16,6 +16,11 @@ Searchables.storeItemTexts = setmetatable({}, {__mode = "k"})
 -- Matching
 -- ---------------------------------------------------------------------------------------------
 
+-- Text from translations/translation_<language>.xml
+function Searchables.getText(key)
+    return g_i18n:getText(key)
+end
+
 function Searchables.toLower(text)
     return utf8ToLower(tostring(text or ""))
 end

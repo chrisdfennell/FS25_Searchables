@@ -7,7 +7,6 @@
 SearchablesSearchBox = {}
 local SearchablesSearchBox_mt = Class(SearchablesSearchBox)
 
-SearchablesSearchBox.PLACEHOLDER = "Search..."
 -- fs25_textInputIconBox is 31px wide and anchored outside the right edge of the text input
 SearchablesSearchBox.ICON_BOX_WIDTH = 31
 
@@ -63,7 +62,7 @@ function SearchablesSearchBox.new(screen, placeholder, onChanged)
     self.wasCapturing = false
     self.menuButtonsPending = false
 
-    self.placeholder:setText(placeholder or SearchablesSearchBox.PLACEHOLDER)
+    self.placeholder:setText(placeholder or Searchables.getText("searchables_placeholder"))
 
     -- raiseCallback passes the target (the screen) first
     input.onEscPressedCallback = function()
@@ -166,11 +165,11 @@ function SearchablesSearchBox:setCount(shown, total)
     if shown == nil then
         self.countText:setText("")
     elseif shown == 0 then
-        self.countText:setText("nothing found")
+        self.countText:setText(Searchables.getText("searchables_countNone"))
     elseif total == nil or shown == total then
-        self.countText:setText(string.format("%d found", shown))
+        self.countText:setText(string.format(Searchables.getText("searchables_countFound"), shown))
     else
-        self.countText:setText(string.format("%d of %d", shown, total))
+        self.countText:setText(string.format(Searchables.getText("searchables_countOf"), shown, total))
     end
 end
 

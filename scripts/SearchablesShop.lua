@@ -15,7 +15,7 @@ SearchablesShop.BALANCE_PROFILES = {fs25_shopMoneyBoxBg = true, fs25_shopMoneySl
 
 -- Whole-shop search starts at this many characters; a single letter matches nearly everything
 SearchablesShop.MIN_GLOBAL_SEARCH_LENGTH = 2
-SearchablesShop.RESULTS_TITLE = "Search results"
+
 SearchablesShop.RESULTS_CATEGORY = "SEARCHABLES"
 
 -- Filtered list -> full list it came from, so a filtered list the game hands back is not taken as the full list
@@ -126,7 +126,7 @@ function SearchablesShop.showResults(query, text)
     local menu = SearchablesShop.menu
     local frame = menu.pageShopItemDetails
     local items = SearchablesShop.findDisplayItems(query)
-    local title = string.format("%s: %s", SearchablesShop.RESULTS_TITLE, string.trim(text))
+    local title = string.format("%s: %s", Searchables.getText("searchables_resultsTitle"), string.trim(text))
 
     SearchablesShop.withInputReleased(function()
         menu.currentCategoryName = "misc"
@@ -188,7 +188,7 @@ end
 function SearchablesShop.createBox(menu)
     SearchablesShop.menu = menu
     SearchablesShop.isShowingResults = false
-    SearchablesShop.box = SearchablesSearchBox.new(menu, "Search the shop...", SearchablesShop.onTextChanged)
+    SearchablesShop.box = SearchablesSearchBox.new(menu, Searchables.getText("searchables_shopPlaceholder"), SearchablesShop.onTextChanged)
 end
 
 -- The dark "Balance" panel at the top of the shop (the wider variant also shows slots). Searching the view is not free,

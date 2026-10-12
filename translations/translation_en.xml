@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<l10n>
+    <texts>
+        <!-- search boxes -->
+        <text name="searchables_placeholder" text="Search..."/>
+        <text name="searchables_shopPlaceholder" text="Search the shop..."/>
+        <text name="searchables_constructionPlaceholder" text="Search buildings..."/>
+        <text name="searchables_mapPlaceholder" text="Search the map..."/>
+        <text name="searchables_resultsTitle" text="Search results"/>
+        <text name="searchables_countFound" text="%d found"/>
+        <text name="searchables_countOf" text="%d of %d"/>
+        <text name="searchables_countNone" text="nothing found"/>
+
+        <!-- map markers (Where's My Stuff) -->
+        <text name="searchables_kind_pallet" text="Pallet"/>
+        <text name="searchables_kind_bigBag" text="Big bag"/>
+        <text name="searchables_kind_bale" text="Bale"/>
+        <text name="searchables_kind_vehicle" text="Vehicle"/>
+        <text name="searchables_kind_building" text="Building"/>
+        <text name="searchables_kind_field" text="Field"/>
+        <text name="searchables_fieldName" text="Field %s"/>
+        <text name="searchables_ownedField" text="Owned field"/>
+        <text name="searchables_owned" text="owned"/>
+        <text name="searchables_empty" text="Empty"/>
+        <text name="searchables_unknown" text="Unknown"/>
+
+        <!-- controls -->
+        <text name="input_WMS_MAP_SEARCH" text="Search the map"/>
+    </texts>
+</l10n>

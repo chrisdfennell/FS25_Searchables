@@ -142,7 +142,7 @@ end
 function WheresMyStuff.getFillTypeTitle(fillTypeIndex)
     local fillType = g_fillTypeManager:getFillTypeByIndex(fillTypeIndex)
     if fillType == nil then
-        return "Unknown"
+        return Searchables.getText("searchables_unknown")
     end
     return fillType.title or fillType.name
 end
@@ -351,7 +351,7 @@ function WheresMyStuff.getLeftovers(items)
 end
 
 function WheresMyStuff.getItemTitle(item)
-    return item.fillLevel > 0 and WheresMyStuff.getFillTypeTitle(item.fillTypeIndex) or "Empty"
+    return item.fillLevel > 0 and WheresMyStuff.getFillTypeTitle(item.fillTypeIndex) or Searchables.getText("searchables_empty")
 end
 
 -- ---------------------------------------------------------------------------------------------
@@ -389,7 +389,7 @@ function WheresMyStuff.getHotspotName(item)
     if item.name ~= nil then
         return item.name
     end
-    local name = string.format("%s (%s)", WheresMyStuff.getItemTitle(item), item.kind)
+    local name = string.format("%s (%s)", WheresMyStuff.getItemTitle(item), WheresMyStuff.getKindTitle(item.kind))
     if item.fillLevel > 0 then
         name = string.format("%s - %s L", name, WheresMyStuff.formatNumber(item.fillLevel))
     end
@@ -508,6 +508,11 @@ WheresMyStuff.KIND_SEARCH_WORDS = {
     field = "field",
 }
 
+-- Name of a kind in the player's language ("Bale", "Ballen"), for marker names and searching
+function WheresMyStuff.getKindTitle(kind)
+    return Searchables.getText("searchables_kind_" .. kind)
+end
+
 function WheresMyStuff.getStoreCategoryTitle(storeItem)
     if storeItem == nil then
         return ""
@@ -518,7 +523,8 @@ end
 function WheresMyStuff.newResult(kind, name, category, node, x, z, extraWords)
     return {
         kind = kind, name = name, category = category or "", node = node, x = x, z = z,
-        searchText = Searchables.toLower(string.format("%s %s %s %s", name, category or "", WheresMyStuff.KIND_SEARCH_WORDS[kind] or "", extraWords or "")),
+        searchText = Searchables.toLower(string.format("%s %s %s %s %s", name, category or "", WheresMyStuff.KIND_SEARCH_WORDS[kind] or "",
+            WheresMyStuff.getKindTitle(kind), extraWords or "")),
     }
 end
 
@@ -606,7 +612,7 @@ function WheresMyStuff.getFieldName(field, fallbackId)
     end
     -- maps often name fields by number only
     if tonumber(fieldName) ~= nil then
-        fieldName = "Field " .. fieldName
+        fieldName = string.format(Searchables.getText("searchables_fieldName"), fieldName)
     end
     return fieldName
 end
@@ -617,9 +623,9 @@ function WheresMyStuff.scanFields(farmId)
     for i, field in ipairs(g_fieldManager.fields or {}) do
         if field.posX ~= nil and field.posZ ~= nil then
             local isOwned = field.farmland ~= nil and g_farmlandManager:getFarmlandOwner(field.farmland.id) == farmId
-            local category = isOwned and "Owned field" or "Field"
+            local category = Searchables.getText(isOwned and "searchables_ownedField" or "searchables_kind_field")
             table.insert(results, WheresMyStuff.newResult(WheresMyStuff.KIND_FIELD, WheresMyStuff.getFieldName(field, i), category,
-                nil, field.posX, field.posZ, isOwned and "owned mine" or ""))
+                nil, field.posX, field.posZ, isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or ""))
         end
     end
     return results

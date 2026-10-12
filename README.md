@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="icon_searchables.png" alt="Searchables icon" width="128">
+  <img src="docs/images/icon.png" alt="Searchables icon" width="128">
 </p>
 
 <h1 align="center">Searchables</h1>
