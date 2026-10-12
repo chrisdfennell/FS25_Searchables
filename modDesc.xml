@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="114" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs25/modDesc.xsd">
     <author>Fennell</author>
-    <version>1.0.0.0</version>
+    <version>1.1.0.0</version>
     <title>
         <en>Searchables</en>
         <de>Searchables</de>
@@ -13,10 +13,10 @@ Shop:
 - In a category or brand, typing filters that list.
 - On the category, brand, pack and DLC pages, typing searches the whole shop.
 - Searches name, brand, category, DLC, mod name and mod author. Every word must match, e.g. "fendt 700".
-- Horsepower and price: hp>200, 200-300hp, $<50k, $100k-200k, $144,500. Mix them with words: "fendt hp>300 $<400k".
+- Filters: price ($<50k, $100k-200k), horsepower (hp>200), working width (width>9, 6-9m), capacity (l>30000), weight (t<10), speed (kph>50, mph>30), power needed (needhp<150) and "affordable". Mix them with words: "fendt hp>300 $<400k".
 
 Construction:
-- Typing filters the buildings in every category and tab. Price filters work here too.
+- Typing filters the buildings in every category and tab. Price filters and "affordable" work here too.
 
 Map:
 - Type in the box at the top of the map (or press Ctrl+F) to find your vehicles, bales, pallets, big bags, buildings and fields. Vehicles can also be found by license plate.
@@ -29,10 +29,10 @@ Shop:
 - In einer Kategorie oder Marke filtert die Eingabe die Liste.
 - Auf den Seiten für Kategorien, Marken, Pakete und DLCs durchsucht die Eingabe den ganzen Shop.
 - Durchsucht Name, Marke, Kategorie, DLC, Modname und Modautor. Jedes Wort muss passen, z. B. "fendt 700".
-- PS und Preis: hp>200, 200-300hp, $<50k, $100k-200k, $144,500 (€ geht auch). Mit Wörtern kombinierbar: "fendt hp>300 $<400k".
+- Filter: Preis ($<50k, $100k-200k, € geht auch), PS (hp>200 oder ps>200), Arbeitsbreite (width>9, 6-9m), Fassungsvermögen (l>30000), Gewicht (t<10), Geschwindigkeit (kph>50), Leistungsbedarf (needhp<150) und "bezahlbar". Mit Wörtern kombinierbar: "fendt hp>300 $<400k".
 
 Baumenü:
-- Die Eingabe filtert die Gebäude in allen Kategorien und Reitern. Preisfilter funktionieren auch hier.
+- Die Eingabe filtert die Gebäude in allen Kategorien und Reitern. Preisfilter und "bezahlbar" funktionieren auch hier.
 
 Karte:
 - Im Suchfeld oben auf der Karte tippen (oder Strg+F drücken), um eigene Fahrzeuge, Ballen, Paletten, Big Bags, Gebäude und Felder zu finden. Fahrzeuge lassen sich auch über das Kennzeichen finden.

@@ -80,11 +80,12 @@ local function compareByValue(a, b)
     return a.sortName < b.sortName
 end
 
--- Display items for every buyable store item matching the query. With a price filter the cheapest come first, with a
--- horsepower filter the weakest; otherwise items with every word in their name come first, then by name.
+-- Display items for every buyable store item matching the query. With a filter they are sorted by its value, lowest
+-- first; otherwise items with every word in their name come first, then by name.
 function SearchablesShop.findDisplayItems(query)
     local nameMatches, otherMatches = {}, {}
-    local sortKind = (Searchables.hasFilter(query, "price") and "price") or (Searchables.hasFilter(query, "hp") and "hp") or nil
+    -- sorted by the first filter typed: "hp>200" by horsepower, "$<50k" by price, "width>9" by width
+    local sortKind = query.filters[1] ~= nil and query.filters[1].kind or nil
 
     for _, storeItem in ipairs(g_storeManager:getItems()) do
         if SearchablesShop.isBuyable(storeItem) and Searchables.matchesStoreItem(storeItem, query) then

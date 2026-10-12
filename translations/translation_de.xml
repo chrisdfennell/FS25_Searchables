@@ -23,6 +23,7 @@
         <text name="searchables_owned" text="eigen eigenes"/>
         <text name="searchables_empty" text="Leer"/>
         <text name="searchables_unknown" text="Unbekannt"/>
+        <text name="searchables_affordable" text="bezahlbar"/>
 
         <!-- Steuerung -->
         <text name="input_WMS_MAP_SEARCH" text="Karte durchsuchen"/>

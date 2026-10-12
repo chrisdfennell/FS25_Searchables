@@ -23,6 +23,7 @@
         <text name="searchables_owned" text="owned"/>
         <text name="searchables_empty" text="Empty"/>
         <text name="searchables_unknown" text="Unknown"/>
+        <text name="searchables_affordable" text="affordable"/>
 
         <!-- controls -->
         <text name="input_WMS_MAP_SEARCH" text="Search the map"/>

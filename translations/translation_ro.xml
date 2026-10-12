@@ -20,6 +20,7 @@
         <text name="searchables_owned" text="propriu"/>
         <text name="searchables_empty" text="Gol"/>
         <text name="searchables_unknown" text="Necunoscut"/>
+        <text name="searchables_affordable" text="accesibil"/>
         <text name="input_WMS_MAP_SEARCH" text="Caută pe hartă"/>
     </texts>
 </l10n>

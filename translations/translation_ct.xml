@@ -20,6 +20,7 @@
         <text name="searchables_owned" text="自有"/>
         <text name="searchables_empty" text="空"/>
         <text name="searchables_unknown" text="未知"/>
+        <text name="searchables_affordable" text="買得起"/>
         <text name="input_WMS_MAP_SEARCH" text="搜尋地圖"/>
     </texts>
 </l10n>

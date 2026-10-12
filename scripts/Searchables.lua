@@ -130,32 +130,65 @@ function Searchables.getEntryText(entry)
 end
 
 -- ---------------------------------------------------------------------------------------------
--- Horsepower and price filters
+-- Spec filters: price, horsepower, working width, capacity, weight, speed, power needed
 -- ---------------------------------------------------------------------------------------------
--- Typed among the words: hp>200, hp<=300, 200-300hp, 250hp, $<50k, price>100000, $100k-200k, $144,500.
--- A vehicle with several engine options matches when any of them fits.
+-- Typed among the words, e.g. hp>200, 200-300hp, $<50k, $144,500, width>9, 6-9m, l>30000, t<10, kph>50, mph<30,
+-- needhp<150, affordable. A vehicle with several options (engines, tanks, widths) matches when any of them fits.
 
--- Horsepower {min, max} per store item, or false for items without an engine. Read from the item's XML, which is slow,
--- so it is cached and filled in the background after loading (see Searchables:update).
-Searchables.storeItemPower = setmetatable({}, {__mode = "k"})
+-- What can be typed: a keyword in front of the number (hp>200) or behind it (200hp), and what it filters.
+-- scale turns the typed number into the unit the game stores (mph -> km/h).
+Searchables.FILTER_KEYWORDS = {
+    {word = "price", kind = "price", prefix = true},
+    {word = "$", kind = "price", prefix = true, suffix = true},
+    {word = "needhp", kind = "neededPower", prefix = true},
+    {word = "reqhp", kind = "neededPower", prefix = true},
+    {word = "hp", kind = "power", prefix = true, suffix = true},
+    {word = "ps", kind = "power", prefix = true, suffix = true},
+    {word = "width", kind = "width", prefix = true},
+    {word = "m", kind = "width", suffix = true},
+    {word = "capacity", kind = "capacity", prefix = true},
+    {word = "cap", kind = "capacity", prefix = true},
+    {word = "liters", kind = "capacity", suffix = true},
+    {word = "l", kind = "capacity", prefix = true, suffix = true},
+    {word = "weight", kind = "weight", prefix = true},
+    {word = "t", kind = "weight", prefix = true, suffix = true},
+    {word = "speed", kind = "speed", prefix = true},
+    {word = "km/h", kind = "speed", suffix = true},
+    {word = "kmh", kind = "speed", prefix = true, suffix = true},
+    {word = "kph", kind = "speed", prefix = true, suffix = true},
+    {word = "mph", kind = "speed", prefix = true, suffix = true, scale = 1.609344},
+}
+-- Longest first, so "needhp" is not read as "hp" and "kmh" not as "m"
+table.sort(Searchables.FILTER_KEYWORDS, function(a, b)
+    return #a.word > #b.word
+end)
+
+-- Spec values per store item and kind: {min, max}, or false when the item does not have it. Most come from the item's
+-- XML, which is slow to read, so the XML is read in the background after loading (see Searchables.preloadSpecs).
+Searchables.specRanges = setmetatable({}, {__mode = "k"})
 Searchables.preloadIndex = 1
 
--- "144,500" -> 144500, "50k" -> 50000, "1.5m" -> 1500000
+-- "144,500" -> 144500, "50k" -> 50000, "1.5m" -> 1500000, "144.500" -> 144500, "1.5" -> 1.5
 function Searchables.parseAmount(text)
     local number, suffix = tostring(text or ""):match("^([%d%.,]+)([km]?)$")
     if number == nil then
         return nil
     end
     number = number:gsub(",", "")
-    if suffix == "" then
-        -- no suffix: dots are thousands separators too (144.500)
-        return tonumber((number:gsub("%.", "")))
+    -- dots followed by groups of exactly three digits are thousands separators
+    if number:match("^%d+%.%d%d%d$") or number:match("^%d+%.%d%d%d%.") then
+        number = number:gsub("%.", "")
     end
     local value = tonumber(number)
     if value == nil then
         return nil
     end
-    return value * (suffix == "k" and 1000 or 1000000)
+    if suffix == "k" then
+        return value * 1000
+    elseif suffix == "m" then
+        return value * 1000000
+    end
+    return value
 end
 
 -- Joins what people type with spaces, so "hp > 200", "200 hp", "$ 100k - 200k" work like "hp>200", "200hp", "$100k-200k"
@@ -165,67 +198,111 @@ function Searchables.normalizeQueryText(text)
     text = text:gsub("%s*([<>]=?)%s*", "%1")
     text = text:gsub("%s+=%s*", "=")
     text = text:gsub("(%d[km]?)%s*%-%s*(%d)", "%1-%2")
-    text = text:gsub("(%d[km]?)%s+hp", "%1hp")
-    text = text:gsub("hp%s+([%d<>=])", "hp%1")
-    text = text:gsub("price%s+([%d<>=])", "price%1")
-    text = text:gsub("%$%s+", "$")
+    for _, keyword in ipairs(Searchables.FILTER_KEYWORDS) do
+        local word = keyword.word:gsub("%p", "%%%0")
+        if keyword.suffix then
+            text = text:gsub("(%d[km]?)%s+" .. word .. "(%f[%s%z])", "%1" .. keyword.word .. "%2")
+        end
+        if keyword.prefix then
+            text = text:gsub("(%f[%w$]" .. word .. ")%s+([%d<>=])", "%1%2")
+        end
+    end
     return text
 end
 
--- A horsepower or price filter from one word, or nil: {kind = "hp"|"price", min, max, minStrict, maxStrict}
-function Searchables.parseFilter(word)
-    local kind = "hp"
-    local rest = word:match("^hp(.+)$") or word:match("^(.+)hp$")
-    if rest == nil then
-        kind = "price"
-        rest = word:match("^%$(.+)$") or word:match("^price(.+)$") or word:match("^(.+)%$$")
+-- Every way a word splits into a keyword and the rest ("hp>200" -> hp, ">200"). "$1.5m" splits both as "$" + "1.5m"
+-- and as "1.5" + "m"; the caller keeps the first split that makes sense.
+function Searchables.getKeywordSplits(word)
+    local splits = {}
+    for _, keyword in ipairs(Searchables.FILTER_KEYWORDS) do
+        local length = #keyword.word
+        if keyword.prefix and #word >= length and word:sub(1, length) == keyword.word then
+            table.insert(splits, {keyword = keyword, rest = word:sub(length + 1)})
+        end
+        if keyword.suffix and #word > length and word:sub(-length) == keyword.word then
+            table.insert(splits, {keyword = keyword, rest = word:sub(1, -length - 1)})
+        end
     end
-    if rest == nil then
+    return splits
+end
+
+-- A spec filter from one word, or nil: {kind, min, max, minStrict, maxStrict}
+function Searchables.parseFilter(word)
+    if word == "affordable" or word == Searchables.toLower(Searchables.getText("searchables_affordable")) then
+        local money = g_currentMission ~= nil and g_currentMission.getMoney ~= nil and g_currentMission:getMoney() or nil
+        return money ~= nil and {kind = "price", max = money} or nil
+    end
+
+    for _, split in ipairs(Searchables.getKeywordSplits(word)) do
+        local filter = Searchables.parseFilterAmount(split.keyword, split.rest)
+        if filter ~= nil then
+            return filter
+        end
+    end
+    return nil
+end
+
+-- The filter for a keyword and the typed amount after (or before) it: ">200", "<=50k", "200-300", "250", or nil
+function Searchables.parseFilterAmount(keyword, rest)
+    rest = rest:gsub("^:", "")
+    if rest == "" then
         return nil
     end
-    rest = rest:gsub("^:", "")
+
+    local scale = keyword.scale or 1
+    local function amount(text)
+        local value = Searchables.parseAmount(text)
+        return value ~= nil and value * scale or nil
+    end
 
     local operator, amountText = rest:match("^([<>]=?)(.+)$")
     if operator == nil then
         operator, amountText = rest:match("^(=)(.+)$")
     end
     if operator ~= nil then
-        local amount = Searchables.parseAmount(amountText)
-        if amount == nil then
+        local value = amount(amountText)
+        if value == nil then
             return nil
         elseif operator == ">" then
-            return {kind = kind, min = amount, minStrict = true}
+            return {kind = keyword.kind, min = value, minStrict = true}
         elseif operator == ">=" then
-            return {kind = kind, min = amount}
+            return {kind = keyword.kind, min = value}
         elseif operator == "<" then
-            return {kind = kind, max = amount, maxStrict = true}
+            return {kind = keyword.kind, max = value, maxStrict = true}
         elseif operator == "<=" then
-            return {kind = kind, max = amount}
+            return {kind = keyword.kind, max = value}
         end
-        return {kind = kind, min = amount, max = amount}
+        return {kind = keyword.kind, min = value, max = value}
     end
 
     local fromText, toText = rest:match("^([%d%.,]+[km]?)%-([%d%.,]+[km]?)$")
     if fromText ~= nil then
-        local from, to = Searchables.parseAmount(fromText), Searchables.parseAmount(toText)
+        local from, to = amount(fromText), amount(toText)
         if from == nil or to == nil then
             return nil
         end
-        return {kind = kind, min = math.min(from, to), max = math.max(from, to)}
+        return {kind = keyword.kind, min = math.min(from, to), max = math.max(from, to)}
     end
 
-    local amount = Searchables.parseAmount(rest)
-    if amount == nil then
+    local value = amount(rest)
+    if value == nil then
         return nil
     end
-    return {kind = kind, min = amount, max = amount}
+    return {kind = keyword.kind, min = value, max = value}
 end
 
--- Half-typed filters ("hp", "hp>", "$", "200-") are ignored instead of searched as words, so the list does not empty
--- out while typing them
+-- Half-typed filters ("hp", "hp>", "width>", "$", "200-") are ignored instead of searched as words, so the list does
+-- not empty out while typing them. Plain numbers ("724") stay words.
 function Searchables.isUnfinishedFilter(word)
-    return word == "hp" or word == "price" or word:find("[<>=%$]") ~= nil or word:match("^hp") ~= nil
-        or word:match("hp$") ~= nil or word:match("^price") ~= nil or word:match("^[%d%.,]+[km]?%-$") ~= nil
+    local function isNumberish(text)
+        return text:match("^[<>=:]*[%d%.,]*[km]?%-?[%d%.,]*[km]?$") ~= nil
+    end
+    for _, split in ipairs(Searchables.getKeywordSplits(word)) do
+        if isNumberish(split.rest) then
+            return true
+        end
+    end
+    return isNumberish(word) and (word:find("[<>=]") ~= nil or word:sub(-1) == "-")
 end
 
 -- Words and filters typed in a search box
@@ -246,47 +323,113 @@ function Searchables.isQueryEmpty(query)
     return #query.words == 0 and #query.filters == 0
 end
 
-function Searchables.hasFilter(query, kind)
-    for _, filter in ipairs(query.filters) do
-        if filter.kind == kind then
-            return true
-        end
+-- ---------------------------------------------------------------------------------------------
+-- Spec values
+-- ---------------------------------------------------------------------------------------------
+
+-- Lowest and highest of the values a spec function returns with returnValues/returnRange (the shop's own functions)
+local function getSpecFunctionRange(storeItem, specName)
+    local specType = g_storeManager:getSpecTypeByName(specName)
+    if specType == nil or specType.getValueFunc == nil then
+        return nil
     end
-    return false
+    local low, high = specType.getValueFunc(storeItem, nil, nil, nil, true, true)
+    if type(low) ~= "number" then
+        return nil
+    end
+    return low, type(high) == "number" and high or low
 end
 
--- Lowest and highest horsepower of a vehicle's engine options, or nil for items without an engine. Uses the same
--- spec function the shop uses to show horsepower.
-function Searchables.getStoreItemPower(storeItem)
-    local power = Searchables.storeItemPower[storeItem]
-    if power == nil then
-        power = false
-        local specType = storeItem.species == StoreSpecies.VEHICLE and g_storeManager:getSpecTypeByName("power") or nil
-        if specType ~= nil then
-            local ok, minPower, maxPower = pcall(function()
-                StoreItemUtil.loadSpecsFromXML(storeItem)
-                return specType.getValueFunc(storeItem, nil, nil, nil, true, true)
-            end)
-            if ok and type(minPower) == "number" then
-                power = {minPower, maxPower or minPower}
-            end
+-- How each kind is read from a store item (after its specs are loaded). Returns low, high or nil.
+Searchables.SPEC_READERS = {
+    power = function(storeItem)
+        return getSpecFunctionRange(storeItem, "power")
+    end,
+    weight = function(storeItem)
+        return getSpecFunctionRange(storeItem, "weight")
+    end,
+    capacity = function(storeItem)
+        local low, high = getSpecFunctionRange(storeItem, "capacity")
+        if low == nil or high == 0 or low == math.huge then
+            return nil
         end
-        Searchables.storeItemPower[storeItem] = power
-    end
-    if power then
-        return power[1], power[2]
-    end
-    return nil
-end
+        return low, high
+    end,
+    width = function(storeItem)
+        local workingWidth = storeItem.specs.workingWidth
+        if type(workingWidth) ~= "table" or workingWidth.width == nil then
+            return nil
+        end
+        return workingWidth.minWidth or workingWidth.width, workingWidth.width
+    end,
+    -- km/h; tools without an engine have a working speed limit instead
+    speed = function(storeItem)
+        local speed = storeItem.specs.maxSpeed or storeItem.specs.speedLimit
+        if type(speed) ~= "number" then
+            return nil
+        end
+        return speed, speed
+    end,
+    -- stored in kW like the game's PTO power; turned into hp like the shop shows it
+    neededPower = function(storeItem)
+        local neededPower = storeItem.specs.neededPower
+        if type(neededPower) ~= "table" then
+            return nil
+        end
+        local low, high = math.huge, -math.huge
+        for _, value in pairs(neededPower.config or {}) do
+            low, high = math.min(low, value), math.max(high, value)
+        end
+        if low == math.huge then
+            low = neededPower.base or 0
+            high = neededPower.maxPower or low
+        end
+        if low == 0 then
+            return nil
+        end
+        local lowHp, highHp = g_i18n:getPower(low), g_i18n:getPower(high)
+        return lowHp, highHp
+    end,
+}
 
+-- Lowest and highest value of a kind for a store item, or nil if it has none
 function Searchables.getStoreItemValueRange(storeItem, kind)
     if storeItem == nil then
         return nil
     end
-    if kind == "hp" then
-        return Searchables.getStoreItemPower(storeItem)
+    if kind == "price" then
+        return storeItem.price, storeItem.price
     end
-    return storeItem.price, storeItem.price
+
+    local ranges = Searchables.specRanges[storeItem]
+    if ranges == nil then
+        ranges = {}
+        Searchables.specRanges[storeItem] = ranges
+    end
+
+    local range = ranges[kind]
+    if range == nil then
+        range = false
+        local reader = Searchables.SPEC_READERS[kind]
+        if reader ~= nil and storeItem.species == StoreSpecies.VEHICLE then
+            local ok, low, high = pcall(function()
+                StoreItemUtil.loadSpecsFromXML(storeItem)
+                if storeItem.specs == nil then
+                    return nil
+                end
+                return reader(storeItem)
+            end)
+            if ok and type(low) == "number" then
+                range = {low, type(high) == "number" and high or low}
+            end
+        end
+        ranges[kind] = range
+    end
+
+    if range then
+        return range[1], range[2]
+    end
+    return nil
 end
 
 -- Does a value range (low..high) overlap the filter's range
@@ -311,7 +454,7 @@ function Searchables.matchesFilters(storeItem, filters)
 end
 
 function Searchables.matchesStoreItem(storeItem, query)
-    -- words first: cheap, and spares loading horsepower for items the words already rule out
+    -- words first: cheap, and spares reading specs for items the words already rule out
     return Searchables.matchesWords(Searchables.getStoreItemText(storeItem), query.words)
         and Searchables.matchesFilters(storeItem, query.filters)
 end
@@ -337,8 +480,8 @@ function Searchables.filterEntries(list, query)
     return matches
 end
 
--- Reads the horsepower of one more vehicle per frame, so the first horsepower search does not freeze the game
-function Searchables.preloadPower()
+-- Reads the specs of one more vehicle per frame, so the first spec search does not freeze the game
+function Searchables.preloadSpecs()
     local items = g_storeManager:getItems()
     -- skip quickly over items that need no loading, but load at most one per frame
     for _ = 1, 50 do
@@ -348,8 +491,8 @@ function Searchables.preloadPower()
             return
         end
         Searchables.preloadIndex = Searchables.preloadIndex + 1
-        if storeItem.species == StoreSpecies.VEHICLE and Searchables.storeItemPower[storeItem] == nil then
-            Searchables.getStoreItemPower(storeItem)
+        if storeItem.species == StoreSpecies.VEHICLE and storeItem.specs == nil then
+            pcall(StoreItemUtil.loadSpecsFromXML, storeItem)
             return
         end
     end
@@ -443,7 +586,7 @@ end
 
 function Searchables:update(dt)
     if not Searchables.isPreloadDone then
-        Searchables.preloadPower()
+        Searchables.preloadSpecs()
     end
 end
 

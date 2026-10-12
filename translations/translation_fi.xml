@@ -20,6 +20,7 @@
         <text name="searchables_owned" text="oma"/>
         <text name="searchables_empty" text="Tyhjä"/>
         <text name="searchables_unknown" text="Tuntematon"/>
+        <text name="searchables_affordable" text="edullinen"/>
         <text name="input_WMS_MAP_SEARCH" text="Hae kartalta"/>
     </texts>
 </l10n>

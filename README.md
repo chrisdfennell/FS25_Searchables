@@ -22,36 +22,38 @@ FS25 has hundreds of vehicles, tools and buildings, and finding the one you want
 - **Search the whole shop.** On the category, brand, pack or DLC tiles, type two or more letters and every match in the shop appears in one list. Items with your words in their name come first.
 - **Searches more than names:** brand, category, DLC, mod name and mod author.
 - **Every word counts:** `fendt 700`, `john deere tedder` and `macdon pack` all work.
-- **Filter by horsepower and price**, mixed in with words. See [Horsepower and price](#-horsepower-and-price) below.
+- **Filter by price, horsepower, working width, capacity, weight, speed and power needed**, mixed in with words. See [Spec filters](#-spec-filters) below.
 - A match count shows in the box, for example `7 of 42`.
 
 ![Typing on the brand tiles searches the whole shop](docs/images/shop-global.png)
 
-### 🐎 Horsepower and price
-Type these in the shop search box, alone or together with words:
+### 🐎 Spec filters
+Type these in the shop search box, alone or together with words. Every filter works with `>`, `<`, `>=`, `<=`, a range (`6-9`) or an exact number.
 
-| You type | Finds |
-|---|---|
-| `hp>200`, `hp<300`, `hp>=250` | More / less horsepower than |
-| `200-300hp` or `hp200-300` | Horsepower in a range |
-| `250hp` | Exactly 250 hp |
-| `$<50k`, `price>100000` | Cheaper / dearer than |
-| `$100k-200k` | Price in a range |
-| `$144500` or `$144,500` | That exact price |
-| `fendt hp>300 $<400k` | Mix them: Fendts over 300 hp under $400,000 |
+| Filter | Examples | Finds |
+|---|---|---|
+| Price | `$<50k`, `price>100000`, `$100k-200k`, `$144,500` | Shop price |
+| Affordable | `affordable` | Everything your farm can pay for right now |
+| Horsepower | `hp>200`, `200-300hp`, `250hp`, `300ps` | Engine power |
+| Working width | `width>9`, `6-9m`, `12m` | Headers, cultivators, sprayers, mowers... |
+| Capacity | `l>30000`, `30000l`, `cap 20000-40000` | Trailers, tanks, seeders, sprayers |
+| Weight | `t<10`, `10t`, `weight 5-8` | Weight in tons |
+| Speed | `kph>50`, `mph>30`, `50 km/h` | Top speed (working speed for tools) |
+| Power needed | `needhp<150` | Tools your tractor can pull (PTO power) |
+| Mixed | `fendt hp>300 $<400k`, `trailer l>30000 affordable` | All of them at once |
 
-- Spaces are fine: `hp > 200`, `200 hp`, `$ 100k - 200k`.
-- `k` means thousand and `m` means million. `€` and `£` work the same as `$`.
-- A vehicle with several engine options matches if **any** of them fits, so a 200–300 hp tractor shows up for `hp>280`.
+- Spaces are fine: `hp > 200`, `200 hp`, `$ 100k - 200k`, `12 m`.
+- `k` means thousand and `m` after a price means million (`$1.5m`). `€` and `£` work the same as `$`.
+- An item with several options (engines, tanks, widths) matches if **any** of them fits, so a 200–300 hp tractor shows up for `hp>280`.
 - The price is the shop's base price, before options.
-- In store-wide results, a price filter sorts cheapest first and a horsepower filter sorts by horsepower.
-- On the construction screen, price filters work too (buildings have no horsepower).
+- In store-wide results, the first filter you typed decides the order: `hp>200` lists by horsepower, `$<50k` by price, lowest first.
+- On the construction screen, price filters and `affordable` work too.
 
 <!-- screenshot to add: ![Shop filtered with fendt hp>300 $<400k](docs/images/shop-hp-price.png) -->
 
 ### 🏗️ Construction
 - Type to filter the buildings in **every category and tab** at once: `silo`, `greenhouse`, `fence`, `cow`.
-- Add a price: `silo $<100k`.
+- Add a price: `silo $<100k`, or `affordable`.
 
 <!-- screenshot to add: ![Construction screen filtered to silos](docs/images/construction.png) -->
 
@@ -116,11 +118,11 @@ It shows on the shop's item lists and on the category, brand, pack and DLC tiles
 **Does it work with mod vehicles and mod buildings?**
 Yes. Anything in the shop or construction menu can be searched, and you can search by the mod's name or author too.
 
-**Can I search by horsepower or price?**
-Yes, in the shop and (price only) on the construction screen: `hp>200`, `$100k-200k`, `$144,500`. See [Horsepower and price](#-horsepower-and-price).
+**Can I search by horsepower, price or width?**
+Yes, in the shop: `hp>200`, `$100k-200k`, `width>9`, `l>30000` and more. Price filters also work on the construction screen. See [Spec filters](#-spec-filters).
 
-**My horsepower search missed a tractor.**
-Horsepower comes from each vehicle's own file. Searchables reads those in the background during your first minute or so in the game. A horsepower search made before then still works, but may pause briefly the first time. Mod vehicles that don't list their horsepower can't be found by `hp`.
+**My horsepower (or width, capacity...) search missed something.**
+These values come from each vehicle's own file. Searchables reads those in the background during your first minute or so in the game. A search made before then still works, but may pause briefly the first time. Mod vehicles that don't list a value can't be found by it.
 
 ## For modders
 

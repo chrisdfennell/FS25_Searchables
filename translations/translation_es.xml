@@ -20,6 +20,7 @@
         <text name="searchables_owned" text="propio"/>
         <text name="searchables_empty" text="Vacío"/>
         <text name="searchables_unknown" text="Desconocido"/>
+        <text name="searchables_affordable" text="asequible"/>
         <text name="input_WMS_MAP_SEARCH" text="Buscar en el mapa"/>
     </texts>
 </l10n>

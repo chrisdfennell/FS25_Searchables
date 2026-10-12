@@ -20,6 +20,7 @@
         <text name="searchables_owned" text="vlastní vlastni"/>
         <text name="searchables_empty" text="Prázdné"/>
         <text name="searchables_unknown" text="Neznámé"/>
+        <text name="searchables_affordable" text="dostupné"/>
         <text name="input_WMS_MAP_SEARCH" text="Hledat na mapě"/>
     </texts>
 </l10n>
