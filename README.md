@@ -63,6 +63,8 @@ Type these in the shop search box, alone or together with words. Every filter wo
 - Every match gets a **big arrow that shrinks down onto it**, so you can spot it at a glance. The nearest 40 get arrows; the rest get a marker dot (up to 500).
 - Press **Enter** to centre the map on the nearest match.
 - **Find fields and properties by number:** type `178` to find field or property 178. A number only matches whole numbers, so `178` won't find 1780.
+- **Find an NPC farmer's land:** type their name, e.g. `huber`, to mark every field and property they still own.
+- One arrow per piece of land: when field 5 and property 5 both match, only the field gets an arrow.
 - Search by fill type too: `wool`, `round bale`, `wheat`, `field 12`, `property 40`, `owned`.
 
 ![Map search for tractor: 3 found, each with an arrow](docs/images/map.png)

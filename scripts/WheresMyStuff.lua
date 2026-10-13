@@ -619,6 +619,21 @@ function WheresMyStuff.getFieldName(field, fallbackId)
     return fieldName
 end
 
+-- Name of the NPC farmer who owns a property ("" once a player farm owns it), so typing a farmer's name finds their
+-- fields and properties
+function WheresMyStuff.getFarmlandNpcName(farmland)
+    if farmland == nil or g_farmlandManager:getFarmlandOwner(farmland.id) ~= FarmlandManager.NO_OWNER_FARM_ID then
+        return ""
+    end
+    local npc
+    if farmland.getNPC ~= nil then
+        npc = farmland:getNPC()
+    elseif farmland.npcIndex ~= nil and g_npcManager ~= nil then
+        npc = g_npcManager:getNPCByIndex(farmland.npcIndex)
+    end
+    return npc ~= nil and npc.title or ""
+end
+
 -- Every field on the map; "owned" is added to the search text of the farm's own fields
 function WheresMyStuff.scanFields(farmId)
     local results = {}
@@ -626,8 +641,9 @@ function WheresMyStuff.scanFields(farmId)
         if field.posX ~= nil and field.posZ ~= nil then
             local isOwned = field.farmland ~= nil and g_farmlandManager:getFarmlandOwner(field.farmland.id) == farmId
             local category = Searchables.getText(isOwned and "searchables_ownedField" or "searchables_kind_field")
+            local extraWords = isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or WheresMyStuff.getFarmlandNpcName(field.farmland)
             local result = WheresMyStuff.newResult(WheresMyStuff.KIND_FIELD, WheresMyStuff.getFieldName(field, i), category,
-                nil, field.posX, field.posZ, isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or "")
+                nil, field.posX, field.posZ, extraWords)
             result.farmlandId = field.farmland ~= nil and field.farmland.id or nil
             table.insert(results, result)
         end
@@ -646,8 +662,9 @@ function WheresMyStuff.scanFarmlands(farmId)
                 name = string.format(Searchables.getText("searchables_farmlandName"), tostring(farmland.id or id))
             end
             local isOwned = g_farmlandManager:getFarmlandOwner(farmland.id or id) == farmId
+            local extraWords = isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or WheresMyStuff.getFarmlandNpcName(farmland)
             local result = WheresMyStuff.newResult(WheresMyStuff.KIND_FARMLAND, name, Searchables.getText("searchables_kind_farmland"),
-                nil, farmland.xWorldPos, farmland.zWorldPos, isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or "")
+                nil, farmland.xWorldPos, farmland.zWorldPos, extraWords)
             result.farmlandId = farmland.id or id
             table.insert(results, result)
         end
