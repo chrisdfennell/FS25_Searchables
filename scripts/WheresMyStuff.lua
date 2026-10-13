@@ -626,8 +626,10 @@ function WheresMyStuff.scanFields(farmId)
         if field.posX ~= nil and field.posZ ~= nil then
             local isOwned = field.farmland ~= nil and g_farmlandManager:getFarmlandOwner(field.farmland.id) == farmId
             local category = Searchables.getText(isOwned and "searchables_ownedField" or "searchables_kind_field")
-            table.insert(results, WheresMyStuff.newResult(WheresMyStuff.KIND_FIELD, WheresMyStuff.getFieldName(field, i), category,
-                nil, field.posX, field.posZ, isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or ""))
+            local result = WheresMyStuff.newResult(WheresMyStuff.KIND_FIELD, WheresMyStuff.getFieldName(field, i), category,
+                nil, field.posX, field.posZ, isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or "")
+            result.farmlandId = field.farmland ~= nil and field.farmland.id or nil
+            table.insert(results, result)
         end
     end
     return results
@@ -644,8 +646,10 @@ function WheresMyStuff.scanFarmlands(farmId)
                 name = string.format(Searchables.getText("searchables_farmlandName"), tostring(farmland.id or id))
             end
             local isOwned = g_farmlandManager:getFarmlandOwner(farmland.id or id) == farmId
-            table.insert(results, WheresMyStuff.newResult(WheresMyStuff.KIND_FARMLAND, name, Searchables.getText("searchables_kind_farmland"),
-                nil, farmland.xWorldPos, farmland.zWorldPos, isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or ""))
+            local result = WheresMyStuff.newResult(WheresMyStuff.KIND_FARMLAND, name, Searchables.getText("searchables_kind_farmland"),
+                nil, farmland.xWorldPos, farmland.zWorldPos, isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or "")
+            result.farmlandId = farmland.id or id
+            table.insert(results, result)
         end
     end
     return results
@@ -687,7 +691,26 @@ function WheresMyStuff.search(text, farmId)
             end
         end
     end
-    return matches
+    return WheresMyStuff.removePropertiesOfMatchedFields(matches)
+end
+
+-- One arrow per piece of land: a property is left out when a field on it matched too (searching 5 finds field 5 on
+-- property 5). The field's arrow sits on the number the map shows. Properties without a matching field stay.
+function WheresMyStuff.removePropertiesOfMatchedFields(matches)
+    local fieldFarmlands = {}
+    for _, result in ipairs(matches) do
+        if result.kind == WheresMyStuff.KIND_FIELD and result.farmlandId ~= nil then
+            fieldFarmlands[result.farmlandId] = true
+        end
+    end
+
+    local kept = {}
+    for _, result in ipairs(matches) do
+        if result.kind ~= WheresMyStuff.KIND_FARMLAND or not fieldFarmlands[result.farmlandId] then
+            table.insert(kept, result)
+        end
+    end
+    return kept
 end
 
 -- Runs a search and marks the results (nearest first). Shared by the map search and wmsFind.
