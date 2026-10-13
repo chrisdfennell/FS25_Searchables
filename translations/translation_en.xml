@@ -19,6 +19,8 @@
         <text name="searchables_kind_building" text="Building"/>
         <text name="searchables_kind_field" text="Field"/>
         <text name="searchables_fieldName" text="Field %s"/>
+        <text name="searchables_kind_farmland" text="Property"/>
+        <text name="searchables_farmlandName" text="Property %s"/>
         <text name="searchables_ownedField" text="Owned field"/>
         <text name="searchables_owned" text="owned"/>
         <text name="searchables_empty" text="Empty"/>

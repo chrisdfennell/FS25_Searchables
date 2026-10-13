@@ -16,6 +16,7 @@ WheresMyStuffHotspot.COLORS = {
     vehicle = {1.00, 0.25, 0.85, 1},
     building = {1.00, 0.85, 0.10, 1},
     field = {0.30, 0.95, 0.95, 1},
+    farmland = {0.75, 1.00, 0.30, 1},
 }
 
 function WheresMyStuffHotspot.getColor(kind)

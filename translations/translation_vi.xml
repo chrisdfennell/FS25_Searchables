@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Công trình"/>
         <text name="searchables_kind_field" text="Cánh đồng"/>
         <text name="searchables_fieldName" text="Cánh đồng %s"/>
+        <text name="searchables_kind_farmland" text="Đất"/>
+        <text name="searchables_farmlandName" text="Đất %s"/>
         <text name="searchables_ownedField" text="Cánh đồng sở hữu"/>
         <text name="searchables_owned" text="sở hữu"/>
         <text name="searchables_empty" text="Trống"/>

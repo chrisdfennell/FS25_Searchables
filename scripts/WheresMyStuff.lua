@@ -14,6 +14,7 @@ WheresMyStuff.KIND_BALE = "bale"
 WheresMyStuff.KIND_VEHICLE = "vehicle"
 WheresMyStuff.KIND_BUILDING = "building"
 WheresMyStuff.KIND_FIELD = "field"
+WheresMyStuff.KIND_FARMLAND = "farmland"
 
 -- Group key for pallets and big bags with nothing in them
 WheresMyStuff.EMPTY_KEY = "EMPTY"
@@ -506,6 +507,7 @@ WheresMyStuff.KIND_SEARCH_WORDS = {
     vehicle = "vehicle",
     building = "building",
     field = "field",
+    farmland = "property farmland land plot",
 }
 
 -- Name of a kind in the player's language ("Bale", "Ballen"), for marker names and searching
@@ -631,14 +633,42 @@ function WheresMyStuff.scanFields(farmId)
     return results
 end
 
+-- Every property (farmland) on the map, by its number: typing 178 finds property 178. "owned" is added to the search
+-- text of the farm's own properties.
+function WheresMyStuff.scanFarmlands(farmId)
+    local results = {}
+    for id, farmland in pairs(g_farmlandManager:getFarmlands() or {}) do
+        if farmland.xWorldPos ~= nil and farmland.zWorldPos ~= nil and farmland.showOnFarmlandsScreen ~= false then
+            local name = farmland.name
+            if name == nil or name == "" or tonumber(name) ~= nil then
+                name = string.format(Searchables.getText("searchables_farmlandName"), tostring(farmland.id or id))
+            end
+            local isOwned = g_farmlandManager:getFarmlandOwner(farmland.id or id) == farmId
+            table.insert(results, WheresMyStuff.newResult(WheresMyStuff.KIND_FARMLAND, name, Searchables.getText("searchables_kind_farmland"),
+                nil, farmland.xWorldPos, farmland.zWorldPos, isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or ""))
+        end
+    end
+    return results
+end
+
 -- Splits free text into lowercase words
 function WheresMyStuff.getSearchWords(text)
     return Searchables.getSearchWords(text)
 end
 
--- Every word must appear somewhere in the name, category, kind or type (case-insensitive)
+-- Every word must appear somewhere in the name, category, kind or type (case-insensitive). A word that is only a number
+-- must match a whole number, so 178 finds field and property 178 but not 1780 or 2178.
 function WheresMyStuff.matchesSearch(result, words)
-    return Searchables.matchesWords(result.searchText, words)
+    for _, word in ipairs(words) do
+        if word:match("^%d+$") then
+            if not result.searchText:find("%f[%d]" .. word .. "%f[%D]") then
+                return false
+            end
+        elseif not result.searchText:find(word, 1, true) then
+            return false
+        end
+    end
+    return true
 end
 
 -- Everything matching the text, unsorted
@@ -649,7 +679,8 @@ function WheresMyStuff.search(text, farmId)
         return matches
     end
 
-    for _, scan in ipairs({WheresMyStuff.scanVehicles, WheresMyStuff.scanStock, WheresMyStuff.scanBuildings, WheresMyStuff.scanFields}) do
+    for _, scan in ipairs({WheresMyStuff.scanVehicles, WheresMyStuff.scanStock, WheresMyStuff.scanBuildings, WheresMyStuff.scanFields,
+        WheresMyStuff.scanFarmlands}) do
         for _, result in ipairs(scan(farmId)) do
             if WheresMyStuff.matchesSearch(result, words) then
                 table.insert(matches, result)

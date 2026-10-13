@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="建築"/>
         <text name="searchables_kind_field" text="田地"/>
         <text name="searchables_fieldName" text="田地 %s"/>
+        <text name="searchables_kind_farmland" text="土地"/>
+        <text name="searchables_farmlandName" text="土地 %s"/>
         <text name="searchables_ownedField" text="自有田地"/>
         <text name="searchables_owned" text="自有"/>
         <text name="searchables_empty" text="空"/>

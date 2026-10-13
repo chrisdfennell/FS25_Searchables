@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Clădire"/>
         <text name="searchables_kind_field" text="Câmp"/>
         <text name="searchables_fieldName" text="Câmp %s"/>
+        <text name="searchables_kind_farmland" text="Teren"/>
+        <text name="searchables_farmlandName" text="Teren %s"/>
         <text name="searchables_ownedField" text="Câmp propriu"/>
         <text name="searchables_owned" text="propriu"/>
         <text name="searchables_empty" text="Gol"/>

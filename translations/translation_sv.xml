@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Byggnad"/>
         <text name="searchables_kind_field" text="Fält"/>
         <text name="searchables_fieldName" text="Fält %s"/>
+        <text name="searchables_kind_farmland" text="Mark"/>
+        <text name="searchables_farmlandName" text="Mark %s"/>
         <text name="searchables_ownedField" text="Eget fält"/>
         <text name="searchables_owned" text="eget egen"/>
         <text name="searchables_empty" text="Tom"/>

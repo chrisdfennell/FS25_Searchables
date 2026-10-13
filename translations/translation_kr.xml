@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="건물"/>
         <text name="searchables_kind_field" text="밭"/>
         <text name="searchables_fieldName" text="밭 %s"/>
+        <text name="searchables_kind_farmland" text="토지"/>
+        <text name="searchables_farmlandName" text="토지 %s"/>
         <text name="searchables_ownedField" text="소유한 밭"/>
         <text name="searchables_owned" text="소유"/>
         <text name="searchables_empty" text="비어 있음"/>

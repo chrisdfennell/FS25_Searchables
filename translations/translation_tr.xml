@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Bina"/>
         <text name="searchables_kind_field" text="Tarla"/>
         <text name="searchables_fieldName" text="Tarla %s"/>
+        <text name="searchables_kind_farmland" text="Arazi"/>
+        <text name="searchables_farmlandName" text="Arazi %s"/>
         <text name="searchables_ownedField" text="Sahip olunan tarla"/>
         <text name="searchables_owned" text="sahip"/>
         <text name="searchables_empty" text="Boş"/>

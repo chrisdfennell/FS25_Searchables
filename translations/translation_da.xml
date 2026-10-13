@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Bygning"/>
         <text name="searchables_kind_field" text="Mark"/>
         <text name="searchables_fieldName" text="Mark %s"/>
+        <text name="searchables_kind_farmland" text="Grund"/>
+        <text name="searchables_farmlandName" text="Grund %s"/>
         <text name="searchables_ownedField" text="Egen mark"/>
         <text name="searchables_owned" text="egen"/>
         <text name="searchables_empty" text="Tom"/>

@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Здание"/>
         <text name="searchables_kind_field" text="Поле"/>
         <text name="searchables_fieldName" text="Поле %s"/>
+        <text name="searchables_kind_farmland" text="Участок"/>
+        <text name="searchables_farmlandName" text="Участок %s"/>
         <text name="searchables_ownedField" text="Своё поле"/>
         <text name="searchables_owned" text="своё свое"/>
         <text name="searchables_empty" text="Пусто"/>

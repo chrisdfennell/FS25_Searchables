@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Gebouw"/>
         <text name="searchables_kind_field" text="Veld"/>
         <text name="searchables_fieldName" text="Veld %s"/>
+        <text name="searchables_kind_farmland" text="Perceel"/>
+        <text name="searchables_farmlandName" text="Perceel %s"/>
         <text name="searchables_ownedField" text="Eigen veld"/>
         <text name="searchables_owned" text="eigen"/>
         <text name="searchables_empty" text="Leeg"/>

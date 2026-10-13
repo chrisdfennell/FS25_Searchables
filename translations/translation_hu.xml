@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Épület"/>
         <text name="searchables_kind_field" text="Föld"/>
         <text name="searchables_fieldName" text="Föld %s"/>
+        <text name="searchables_kind_farmland" text="Telek"/>
+        <text name="searchables_farmlandName" text="Telek %s"/>
         <text name="searchables_ownedField" text="Saját föld"/>
         <text name="searchables_owned" text="saját sajat"/>
         <text name="searchables_empty" text="Üres"/>

@@ -58,11 +58,12 @@ Type these in the shop search box, alone or together with words. Every filter wo
 <img src="docs/images/construction.png" alt="Construction screen searching house: 61 of 930 buildings" width="360">
 
 ### 🗺️ Map: Where's My Stuff
-- Type in the box at the top of the map, or press **Ctrl+F**, to find **vehicles, bales, pallets, big bags, buildings and fields**.
+- Type in the box at the top of the map, or press **Ctrl+F**, to find **vehicles, bales, pallets, big bags, buildings, fields and properties**.
 - **Find vehicles by license plate.** `AB-123`, `ab 123` and `ab123` all find the same truck.
 - Every match gets a **big arrow that shrinks down onto it**, so you can spot it at a glance. The nearest 40 get arrows; the rest get a marker dot (up to 500).
 - Press **Enter** to centre the map on the nearest match.
-- Search by fill type too: `wool`, `round bale`, `wheat`, `field 12`, `owned`.
+- **Find fields and properties by number:** type `178` to find field or property 178. A number only matches whole numbers, so `178` won't find 1780.
+- Search by fill type too: `wool`, `round bale`, `wheat`, `field 12`, `property 40`, `owned`.
 
 ![Map search for tractor: 3 found, each with an arrow](docs/images/map.png)
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="114" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs25/modDesc.xsd">
     <author>Fennell</author>
-    <version>1.1.0.0</version>
+    <version>1.2.0.0</version>
     <title>
         <en>Searchables</en>
         <de>Searchables</de>
@@ -20,7 +20,7 @@ Construction:
 - Typing filters the buildings in every category and tab. Price filters and "affordable" work here too.
 
 Map:
-- Type in the box at the top of the map (or press Ctrl+F) to find your vehicles, bales, pallets, big bags, buildings and fields. Vehicles can also be found by license plate.
+- Type in the box at the top of the map (or press Ctrl+F) to find your vehicles, bales, pallets, big bags, buildings, fields and properties. Type a number like 178 to find field or property 178. Vehicles can also be found by license plate.
 - Every match gets an arrow that shrinks down onto it. Enter centers the map on the nearest one.
 
 Enter keeps the search, Esc clears it.]]></en>
@@ -36,7 +36,7 @@ Baumenü:
 - Die Eingabe filtert die Gebäude in allen Kategorien und Reitern. Preisfilter und "bezahlbar" funktionieren auch hier.
 
 Karte:
-- Im Suchfeld oben auf der Karte tippen (oder Strg+F drücken), um eigene Fahrzeuge, Ballen, Paletten, Big Bags, Gebäude und Felder zu finden. Fahrzeuge lassen sich auch über das Kennzeichen finden.
+- Im Suchfeld oben auf der Karte tippen (oder Strg+F drücken), um eigene Fahrzeuge, Ballen, Paletten, Big Bags, Gebäude, Felder und Grundstücke zu finden. Eine Zahl wie 178 findet Feld oder Grundstück 178. Fahrzeuge lassen sich auch über das Kennzeichen finden.
 - Jeder Treffer bekommt einen Pfeil, der auf ihn zuläuft. Enter zentriert die Karte auf den nächsten Treffer.
 
 Enter behält die Suche, Esc löscht sie.]]></de>
@@ -52,7 +52,7 @@ Construction :
 - La saisie filtre les bâtiments de toutes les catégories et de tous les onglets. Les filtres de prix et « abordable » fonctionnent aussi ici.
 
 Carte :
-- Tapez dans le champ en haut de la carte (ou appuyez sur Ctrl+F) pour trouver vos véhicules, balles, palettes, big bags, bâtiments et champs. Les véhicules se trouvent aussi par leur plaque d'immatriculation.
+- Tapez dans le champ en haut de la carte (ou appuyez sur Ctrl+F) pour trouver vos véhicules, balles, palettes, big bags, bâtiments, champs et parcelles. Un nombre comme 178 trouve le champ ou la parcelle 178. Les véhicules se trouvent aussi par leur plaque d'immatriculation.
 - Chaque résultat reçoit une flèche qui se resserre sur lui. Entrée centre la carte sur le plus proche.
 
 Entrée conserve la recherche, Échap l'efface.]]></fr>

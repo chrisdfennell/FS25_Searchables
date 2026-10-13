@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Budynek"/>
         <text name="searchables_kind_field" text="Pole"/>
         <text name="searchables_fieldName" text="Pole %s"/>
+        <text name="searchables_kind_farmland" text="Działka"/>
+        <text name="searchables_farmlandName" text="Działka %s"/>
         <text name="searchables_ownedField" text="Własne pole"/>
         <text name="searchables_owned" text="własne wlasne"/>
         <text name="searchables_empty" text="Pusty"/>

@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Bangunan"/>
         <text name="searchables_kind_field" text="Ladang"/>
         <text name="searchables_fieldName" text="Ladang %s"/>
+        <text name="searchables_kind_farmland" text="Lahan"/>
+        <text name="searchables_farmlandName" text="Lahan %s"/>
         <text name="searchables_ownedField" text="Ladang sendiri"/>
         <text name="searchables_owned" text="milik sendiri"/>
         <text name="searchables_empty" text="Kosong"/>

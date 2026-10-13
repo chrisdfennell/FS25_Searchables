@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Budova"/>
         <text name="searchables_kind_field" text="Pole"/>
         <text name="searchables_fieldName" text="Pole %s"/>
+        <text name="searchables_kind_farmland" text="Pozemek"/>
+        <text name="searchables_farmlandName" text="Pozemek %s"/>
         <text name="searchables_ownedField" text="Vlastní pole"/>
         <text name="searchables_owned" text="vlastní vlastni"/>
         <text name="searchables_empty" text="Prázdné"/>

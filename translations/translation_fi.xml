@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Rakennus"/>
         <text name="searchables_kind_field" text="Pelto"/>
         <text name="searchables_fieldName" text="Pelto %s"/>
+        <text name="searchables_kind_farmland" text="Maa-alue"/>
+        <text name="searchables_farmlandName" text="Maa-alue %s"/>
         <text name="searchables_ownedField" text="Oma pelto"/>
         <text name="searchables_owned" text="oma"/>
         <text name="searchables_empty" text="Tyhjä"/>

@@ -16,6 +16,8 @@
         <text name="searchables_kind_building" text="Bâtiment"/>
         <text name="searchables_kind_field" text="Champ"/>
         <text name="searchables_fieldName" text="Champ %s"/>
+        <text name="searchables_kind_farmland" text="Parcelle"/>
+        <text name="searchables_farmlandName" text="Parcelle %s"/>
         <text name="searchables_ownedField" text="Champ possédé"/>
         <text name="searchables_owned" text="possédé possede"/>
         <text name="searchables_empty" text="Vide"/>
