@@ -190,6 +190,9 @@ function SearchablesShop.createBox(menu)
     SearchablesShop.menu = menu
     SearchablesShop.isShowingResults = false
     SearchablesShop.box = SearchablesSearchBox.new(menu, Searchables.getText("searchables_shopPlaceholder"), SearchablesShop.onTextChanged)
+    if SearchablesShop.box ~= nil then
+        SearchablesShop.box.recentKey = "shop"
+    end
 end
 
 -- The dark "Balance" panel at the top of the shop (the wider variant also shows slots). Searching the view is not free,

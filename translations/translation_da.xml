@@ -37,6 +37,8 @@
         <text name="searchables_bestPrice" text="bedste pris"/>
         <text name="searchables_kind_sellPoint" text="Salgssted"/>
         <text name="searchables_moreResults" text="+%d mere"/>
+        <text name="searchables_recent" text="Seneste søgninger"/>
+        <text name="searchables_used" text="brugt"/>
         <text name="searchables_vehicle_fuel" text="brændstof"/>
         <text name="searchables_vehicle_damage" text="skade"/>
         <text name="searchables_vehicle_dirty" text="beskidt"/>
@@ -104,5 +106,13 @@
         <text name="searchables_help_controls_keys" text="Enter or clicking elsewhere keeps the search. Esc clears it. In the shop and the construction menu, going back or switching tabs clears it too."/>
         <text name="searchables_help_controls_console_title" text="Console commands"/>
         <text name="searchables_help_controls_console" text="With the developer console: wmsFind, wmsTarget, wmsSummary, wmsList, wmsLeftovers, wmsShow, wmsGoto, wmsHide, wmsField, searchablesMove, searchablesDumpUi."/>
+        <text name="searchables_help_map_vehicles_title" text="Your vehicles"/>
+        <text name="searchables_help_map_vehicles" text="Vehicles show fuel, damage and dirt when they need attention. Search fuel, damaged, dirty, helper, parked or leased, or use fuel&lt;20, damage&gt;50, dirt&gt;50."/>
+        <text name="searchables_help_map_farm_title" text="Animals, production and storage"/>
+        <text name="searchables_help_map_farm" text="Animal pens show how many animals they have and what is low: cows low. Production points show what they make, missing inputs and full outputs: flour, missing, full. stored wheat marks every storage holding wheat, with how much."/>
+        <text name="searchables_help_shop_more_title" text="Leaving things out"/>
+        <text name="searchables_help_shop_more" text="Start a word with - to leave matches out: -mod hides mod items, -trailer hides trailers. mod shows only mod items. used finds second-hand items, and price filters use their sale price."/>
+        <text name="searchables_help_controls_quick_title" text="Quick find and recent searches"/>
+        <text name="searchables_help_controls_quick" text="Press Ctrl+F while walking or driving to open the map with the cursor in the search box. While the box is empty, your last five searches are listed under it: click one to search it again."/>
     </texts>
 </l10n>

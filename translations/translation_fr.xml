@@ -37,6 +37,8 @@
         <text name="searchables_bestPrice" text="meilleur prix"/>
         <text name="searchables_kind_sellPoint" text="Point de vente"/>
         <text name="searchables_moreResults" text="+%d de plus"/>
+        <text name="searchables_recent" text="Recherches récentes"/>
+        <text name="searchables_used" text="occasion"/>
         <text name="searchables_vehicle_fuel" text="carburant"/>
         <text name="searchables_vehicle_damage" text="dégâts"/>
         <text name="searchables_vehicle_dirty" text="sale"/>
@@ -104,5 +106,13 @@
         <text name="searchables_help_controls_keys" text="Entrée ou un clic ailleurs conserve la recherche. Échap l'efface. Au magasin et en construction, revenir en arrière ou changer d'onglet l'efface aussi."/>
         <text name="searchables_help_controls_console_title" text="Commandes de la console"/>
         <text name="searchables_help_controls_console" text="Avec la console de développement : wmsFind, wmsTarget, wmsSummary, wmsList, wmsLeftovers, wmsShow, wmsGoto, wmsHide, wmsField, searchablesMove, searchablesDumpUi."/>
+        <text name="searchables_help_map_vehicles_title" text="Vos véhicules"/>
+        <text name="searchables_help_map_vehicles" text="Les véhicules affichent carburant, dégâts et saleté quand ils ont besoin d'attention. Cherchez fuel, damaged, dirty, helper, parked ou leased (ou carburant, dégâts, sale, garé, en location), ou utilisez fuel&lt;20, damage&gt;50, dirt&gt;50."/>
+        <text name="searchables_help_map_farm_title" text="Animaux, production et stockage"/>
+        <text name="searchables_help_map_farm" text="Les enclos affichent leur nombre d'animaux et ce qui manque : vaches bas. Les productions affichent ce qu'elles produisent, les intrants manquants et les sorties pleines : farine, manque, plein. stocké blé marque chaque stockage contenant du blé, avec la quantité."/>
+        <text name="searchables_help_shop_more_title" text="Exclure des résultats"/>
+        <text name="searchables_help_shop_more" text="Un mot précédé de - exclut des résultats : -mod masque les articles de mods, -remorque masque les remorques. mod n'affiche que les articles de mods. occasion trouve les articles d'occasion ; les filtres de prix utilisent leur prix de vente."/>
+        <text name="searchables_help_controls_quick_title" text="Recherche rapide et recherches récentes"/>
+        <text name="searchables_help_controls_quick" text="Ctrl+F à pied ou en conduisant ouvre la carte avec le curseur dans le champ de recherche. Tant que le champ est vide, vos cinq dernières recherches sont listées dessous : cliquez pour relancer."/>
     </texts>
 </l10n>

@@ -1152,7 +1152,12 @@ end
 -- Every word must appear somewhere in the name, category, kind or type (case-insensitive). A word that is only a number
 -- must match a whole number, so 178 finds field and property 178 but not 1780 or 2178. Filters (ha>5, $<100k, l>1000)
 -- only match results that have that value.
-function WheresMyStuff.matchesSearch(result, words, filters)
+function WheresMyStuff.matchesSearch(result, words, filters, excludes)
+    for _, word in ipairs(excludes or {}) do
+        if result.searchText:find(word, 1, true) then
+            return false
+        end
+    end
     for _, filter in ipairs(filters or {}) do
         local low, high = WheresMyStuff.getResultValueRange(result, filter.kind)
         if low == nil or not Searchables.rangeMatches(filter, low, high) then
@@ -1224,7 +1229,7 @@ end
 function WheresMyStuff.search(text, farmId)
     -- words plus shop-style filters: "for sale $<100k ha>5", "wool l>1000", "tractor hp>200"
     local query = Searchables.parseQuery(text)
-    local words, filters = query.words, query.filters
+    local words, filters, excludes = query.words, query.filters, query.excludes
     local matches = {}
     if #words == 0 and #filters == 0 then
         return matches
@@ -1261,7 +1266,7 @@ function WheresMyStuff.search(text, farmId)
 
     for _, scan in ipairs(scans) do
         for _, result in ipairs(scan(farmId)) do
-            if WheresMyStuff.matchesSearch(result, words, filters) then
+            if WheresMyStuff.matchesSearch(result, words, filters, excludes) then
                 table.insert(matches, result)
             end
         end

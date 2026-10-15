@@ -2,7 +2,7 @@
 -- A text box added to an open screen or menu page. Click it and type: onChanged(text) runs every time the text changes.
 -- Enter or a click elsewhere stops typing and keeps the search, Esc clears it.
 -- Optional fields the owner can set after new(): menu (the tabbed menu the box lives in, see below), onCaptureEnded,
--- onEnterPressed, onClose.
+-- onEnterPressed, onClose, recentKey (remembers searches under that name and offers them while the box is empty).
 
 SearchablesSearchBox = {}
 local SearchablesSearchBox_mt = Class(SearchablesSearchBox)
@@ -81,10 +81,98 @@ function SearchablesSearchBox.new(screen, placeholder, onChanged)
         end
     end
 
+    -- recent searches are drawn under the box and clicked there, so the root draws and takes mouse events for them
+    local rootDraw, rootMouseEvent = root.draw, root.mouseEvent
+    root.draw = function(element, ...)
+        rootDraw(element, ...)
+        self:drawRecentSearches()
+    end
+    root.mouseEvent = function(element, posX, posY, isDown, isUp, button, eventUsed)
+        if self:onRecentMouseEvent(posX, posY, isDown, isUp, button, eventUsed) then
+            return true
+        end
+        return rootMouseEvent(element, posX, posY, isDown, isUp, button, eventUsed)
+    end
+
     root:updateAbsolutePosition()
     SearchablesSearchBox.instances[self] = true
 
     return self
+end
+
+-- ---------------------------------------------------------------------------------------------
+-- Recent searches
+-- ---------------------------------------------------------------------------------------------
+
+SearchablesSearchBox.RECENT_ROW_HEIGHT = 24
+SearchablesSearchBox.RECENT_TEXT_SIZE = 15
+SearchablesSearchBox.RECENT_PADDING_X = 10
+SearchablesSearchBox.RECENT_GAP = 6
+
+-- Shown while typing in an empty box
+function SearchablesSearchBox:getShownRecentSearches()
+    if self.recentKey == nil or not self:getIsCapturing() or self.input:getText() ~= "" then
+        return nil
+    end
+    local list = Searchables.getRecentSearches(self.recentKey)
+    return #list > 0 and list or nil
+end
+
+function SearchablesSearchBox:drawRecentSearches()
+    self.recentRows = {}
+    local list = self:getShownRecentSearches()
+    if list == nil then
+        return
+    end
+
+    local width = self:getSize()
+    local _, rowHeight = getNormalizedScreenValues(0, SearchablesSearchBox.RECENT_ROW_HEIGHT)
+    local _, textSize = getNormalizedScreenValues(0, SearchablesSearchBox.RECENT_TEXT_SIZE)
+    local padX = getNormalizedScreenValues(SearchablesSearchBox.RECENT_PADDING_X, 0)
+    local _, gap = getNormalizedScreenValues(0, SearchablesSearchBox.RECENT_GAP)
+    local x = self.root.absPosition[1]
+    local top = self.root.absPosition[2] - gap
+    local rows = #list + 1
+    drawFilledRect(x, top - rows * rowHeight, width, rows * rowHeight, 0, 0, 0, 0.8)
+
+    local textY = (rowHeight - textSize) * 0.5 + textSize * 0.15
+    setTextAlignment(RenderText.ALIGN_LEFT)
+    setTextColor(0.7, 0.7, 0.7, 1)
+    renderText(x + padX, top - rowHeight + textY, textSize, Searchables.getText("searchables_recent"))
+    for i, text in ipairs(list) do
+        local y = top - (i + 1) * rowHeight
+        if self.hoveredRecent == i then
+            drawFilledRect(x, y, width, rowHeight, 1, 1, 1, 0.12)
+            setTextColor(1, 0.85, 0.1, 1)
+        else
+            setTextColor(1, 1, 1, 1)
+        end
+        renderText(x + padX, y + textY, textSize, Utils.limitTextToWidth(text, textSize, width - padX * 2, false, "..."))
+        table.insert(self.recentRows, {x = x, y = y, width = width, height = rowHeight, text = text})
+    end
+    setTextColor(1, 1, 1, 1)
+end
+
+-- A click on a recent search types it into the box (and the box keeps the cursor)
+function SearchablesSearchBox:onRecentMouseEvent(posX, posY, isDown, isUp, button, eventUsed)
+    self.hoveredRecent = nil
+    if eventUsed or self:getShownRecentSearches() == nil then
+        return false
+    end
+    for i, row in ipairs(self.recentRows or {}) do
+        if posX >= row.x and posX <= row.x + row.width and posY >= row.y and posY <= row.y + row.height then
+            self.hoveredRecent = i
+            if button == Input.MOUSE_BUTTON_LEFT and (isDown or isUp) then
+                if isUp then
+                    self.input:setText(row.text)
+                    self:checkTextChanged()
+                end
+                return true
+            end
+            return false
+        end
+    end
+    return false
 end
 
 -- Only while still attached: when the game deleted the screen first, the box went with it
@@ -202,6 +290,9 @@ function SearchablesSearchBox:update()
     self.placeholder:setVisible(not isCapturing and self.input:getText() == "")
 
     if self.wasCapturing and not isCapturing then
+        if self.recentKey ~= nil then
+            Searchables.addRecentSearch(self.recentKey, self.input:getText())
+        end
         -- the menu buttons it wanted to register while typing go into its own input context now
         if self.menuButtonsPending then
             self.menuButtonsPending = false

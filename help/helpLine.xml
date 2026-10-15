@@ -18,6 +18,10 @@
                 <title text="$l10n_searchables_help_shop_words_title"/>
                 <text text="$l10n_searchables_help_shop_words"/>
             </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_shop_more_title"/>
+                <text text="$l10n_searchables_help_shop_more"/>
+            </paragraph>
         </page>
         <page title="$l10n_searchables_help_filters_title" iconSliceId="basicEconomy_spendingMoney">
             <paragraph>
@@ -73,6 +77,14 @@
                 <title text="$l10n_searchables_help_map_filters_title"/>
                 <text text="$l10n_searchables_help_map_filters"/>
             </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_map_vehicles_title"/>
+                <text text="$l10n_searchables_help_map_vehicles"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_map_farm_title"/>
+                <text text="$l10n_searchables_help_map_farm"/>
+            </paragraph>
         </page>
         <page title="$l10n_searchables_help_fields_title" iconSliceId="farmingBasics_harvesting">
             <paragraph>
@@ -91,6 +103,10 @@
             <paragraph>
                 <title text="$l10n_searchables_help_controls_keys_title"/>
                 <text text="$l10n_searchables_help_controls_keys"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_controls_quick_title"/>
+                <text text="$l10n_searchables_help_controls_quick"/>
             </paragraph>
             <paragraph>
                 <title text="$l10n_searchables_help_controls_console_title"/>

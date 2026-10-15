@@ -22,6 +22,8 @@ FS25 has hundreds of vehicles, tools and buildings, and finding the one you want
 - **Search the whole shop.** On the category, brand, pack or DLC tiles, type two or more letters and every match in the shop appears in one list. Items with your words in their name come first.
 - **Searches more than names:** brand, category, DLC, mod name and mod author.
 - **Every word counts:** `fendt 700`, `john deere tedder` and `macdon pack` all work.
+- **Leave things out:** start a word with `-`. `-mod` hides mod items, `-trailer` hides trailers. `mod` shows only mod items.
+- **Used and owned items:** `used` finds second-hand items in the sales list, and price filters use their sale price.
 - **Filter by price, horsepower, working width, capacity, weight, speed and power needed**, mixed in with words. See [Spec filters](#-spec-filters) below.
 - A match count shows in the box, for example `7 of 42`.
 
@@ -70,6 +72,10 @@ Type these in the shop search box, alone or together with words. Every filter wo
 - **Land for sale:** `for sale` marks every property you can buy, with price and size. Add filters: `for sale $<100k ha>5`.
 - **Contracts:** `contract` marks fields with a contract you can take or are working on, with type and reward. Narrow it down: `contract harvest`, `contract huber`, `contract $>10k`.
 - **Filters on the map:** the shop filters work here too. `wool l>1000` finds only big wool pallets; `fendt hp>200` finds your own big Fendts.
+- **Your vehicles:** vehicles show fuel, damage and dirt when they need attention. Search `fuel`, `damaged`, `dirty`, `helper`, `parked` or `leased`, or filter: `fuel<20`, `damage>50`, `dirt>50`.
+- **Animals:** pens show how many animals they have and which food, water, straw or cleanliness bars are low: `cows low`.
+- **Production:** production points show what they make, which inputs are missing and which outputs are full: `flour`, `missing`, `full`.
+- **Stored goods:** `stored wheat` marks every storage holding wheat, with how much. `stored wheat l>10000` for the big ones.
 - **Results list:** the nearest 8 matches are listed under the search box with their distance. Click one to move the map there; double-click to make it your navigation target.
 - Search by fill type too: `wool`, `round bale`, `wheat`, `field 12`, `property 40`, `owned`.
 
@@ -81,6 +87,8 @@ Type these in the shop search box, alone or together with words. Every filter wo
 |---|---|
 | Click the search box | Start typing (menu hotkeys pause while you type) |
 | Type | The list or map updates as you type |
+| **Ctrl+F** while walking or driving | Open the map with the cursor in the search box |
+| Click in an empty box | Your last five searches are listed: click one to run it again |
 | **Enter** or click elsewhere | Stop typing and keep the search |
 | **Esc** | Clear the search |
 | **Ctrl+F**, or **right stick click** on a controller | Jump into the search box on the shop, construction or map screen (opens the on-screen keyboard on Steam Deck / Big Picture) |
@@ -120,6 +128,7 @@ These are for when the developer console is enabled.
 | `wmsHide` | Remove the map markers |
 | `searchablesMove shop\|construction <dx> <dy>` | Nudge a search box by a few pixels |
 | `searchablesDumpUi` | Print the open screen's layout (for troubleshooting) |
+| `searchablesDumpItem` | Print the first entry of the open shop list (for troubleshooting) |
 
 ## FAQ
 

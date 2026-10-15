@@ -119,6 +119,7 @@ function SearchablesConstruction.createBox(screen)
     SearchablesConstruction.box = SearchablesSearchBox.new(screen, Searchables.getText("searchables_constructionPlaceholder"), SearchablesConstruction.onTextChanged)
     if SearchablesConstruction.box ~= nil then
         SearchablesConstruction.box.onCaptureEnded = SearchablesConstruction.onCaptureEnded
+        SearchablesConstruction.box.recentKey = "construction"
         SearchablesConstruction.box.onClose = SearchablesConstruction.onScreenClosed
     end
 end

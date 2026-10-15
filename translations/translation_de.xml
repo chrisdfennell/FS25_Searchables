@@ -40,6 +40,8 @@
         <text name="searchables_bestPrice" text="bester Preis"/>
         <text name="searchables_kind_sellPoint" text="Verkaufsstelle"/>
         <text name="searchables_moreResults" text="+%d weitere"/>
+        <text name="searchables_recent" text="Letzte Suchen"/>
+        <text name="searchables_used" text="gebraucht"/>
         <text name="searchables_vehicle_fuel" text="Kraftstoff"/>
         <text name="searchables_vehicle_damage" text="Schaden"/>
         <text name="searchables_vehicle_dirty" text="schmutzig"/>
@@ -109,5 +111,13 @@
         <text name="searchables_help_controls_keys" text="Enter oder ein Klick daneben behält die Suche. Esc löscht sie. Im Shop und im Baumenü löschen auch Zurück und ein Reiterwechsel die Suche."/>
         <text name="searchables_help_controls_console_title" text="Konsolenbefehle"/>
         <text name="searchables_help_controls_console" text="Mit der Entwicklerkonsole: wmsFind, wmsTarget, wmsSummary, wmsList, wmsLeftovers, wmsShow, wmsGoto, wmsHide, wmsField, searchablesMove, searchablesDumpUi."/>
+        <text name="searchables_help_map_vehicles_title" text="Eigene Fahrzeuge"/>
+        <text name="searchables_help_map_vehicles" text="Fahrzeuge zeigen Kraftstoff, Schaden und Schmutz, wenn sie Aufmerksamkeit brauchen. Suche nach fuel, damaged, dirty, helper, parked oder leased bzw. Kraftstoff, Schaden, schmutzig, geparkt, geleast, oder mit fuel&lt;20, damage&gt;50, dirt&gt;50."/>
+        <text name="searchables_help_map_farm_title" text="Tiere, Produktion und Lager"/>
+        <text name="searchables_help_map_farm" text="Ställe zeigen, wie viele Tiere sie haben und was knapp ist: kühe niedrig. Produktionen zeigen, was sie erzeugen, welche Zutaten fehlen und was voll ist: mehl, fehlt, voll. gelagert weizen markiert jedes Lager mit Weizen und zeigt die Menge."/>
+        <text name="searchables_help_shop_more_title" text="Dinge ausschließen"/>
+        <text name="searchables_help_shop_more" text="Ein Wort mit - davor schließt Treffer aus: -mod blendet Mod-Artikel aus, -anhänger blendet Anhänger aus. mod zeigt nur Mod-Artikel. gebraucht findet Gebrauchtartikel; Preisfilter nutzen deren Verkaufspreis."/>
+        <text name="searchables_help_controls_quick_title" text="Schnellsuche und letzte Suchen"/>
+        <text name="searchables_help_controls_quick" text="Strg+F beim Gehen oder Fahren öffnet die Karte mit dem Cursor im Suchfeld. Solange das Feld leer ist, stehen die letzten fünf Suchen darunter: Klick darauf sucht erneut."/>
     </texts>
 </l10n>

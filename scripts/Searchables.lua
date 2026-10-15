@@ -94,6 +94,8 @@ function Searchables.getStoreItemText(storeItem)
     end
 
     if storeItem.isMod and storeItem.customEnvironment ~= nil then
+        -- "mod" finds mod items, "-mod" hides them
+        table.insert(parts, "mod")
         local mod = g_modManager.nameToMod[storeItem.customEnvironment]
         if mod ~= nil then
             table.insert(parts, mod.title)
@@ -127,10 +129,31 @@ function Searchables.getEntryStoreItem(entry)
     return nil
 end
 
+-- A used or owned item in a shop list (the entry's concreteItem): its own price, and "used" for items on sale second
+-- hand. nil for new items.
+function Searchables.getEntryDetails(entry)
+    local item = type(entry) == "table" and entry.concreteItem or nil
+    if type(item) ~= "table" then
+        return nil
+    end
+    local details = {words = ""}
+    if type(item.price) == "number" then
+        details.price = item.price
+    end
+    if item.age ~= nil or item.operatingTime ~= nil then
+        details.words = "used " .. Searchables.toLower(Searchables.getText("searchables_used"))
+    end
+    return details
+end
+
 -- Text of a list entry. Entries without a store item fall back to their own name/title.
 function Searchables.getEntryText(entry)
     local storeItem = Searchables.getEntryStoreItem(entry)
     if storeItem ~= nil then
+        local details = Searchables.getEntryDetails(entry)
+        if details ~= nil and details.words ~= "" then
+            return Searchables.getStoreItemText(storeItem) .. "\n" .. details.words
+        end
         return Searchables.getStoreItemText(storeItem)
     end
     if type(entry) ~= "table" then
@@ -332,10 +355,13 @@ end
 
 -- Words and filters typed in a search box
 function Searchables.parseQuery(text)
-    local query = {words = {}, filters = {}}
+    local query = {words = {}, filters = {}, excludes = {}}
     for word in Searchables.normalizeQueryText(text):gmatch("%S+") do
         local filter = Searchables.parseFilter(word)
-        if filter ~= nil then
+        -- "-mod", "-trailer": leave out what contains the word
+        if #word > 1 and word:sub(1, 1) == "-" and not word:match("^%-[%d%.]") then
+            table.insert(query.excludes, word:sub(2))
+        elseif filter ~= nil then
             table.insert(query.filters, filter)
         elseif not Searchables.isUnfinishedFilter(word) then
             table.insert(query.words, word)
@@ -345,7 +371,20 @@ function Searchables.parseQuery(text)
 end
 
 function Searchables.isQueryEmpty(query)
-    return #query.words == 0 and #query.filters == 0
+    return #query.words == 0 and #query.filters == 0 and #(query.excludes or {}) == 0
+end
+
+-- Every word in the text and none of the excluded ones
+function Searchables.matchesQueryText(searchText, query)
+    if not Searchables.matchesWords(searchText, query.words) then
+        return false
+    end
+    for _, word in ipairs(query.excludes or {}) do
+        if searchText:find(word, 1, true) then
+            return false
+        end
+    end
+    return true
 end
 
 -- ---------------------------------------------------------------------------------------------
@@ -468,9 +507,15 @@ function Searchables.rangeMatches(filter, low, high)
     return true
 end
 
-function Searchables.matchesFilters(storeItem, filters)
+-- details: a used or owned item's own values (its price), see getEntryDetails
+function Searchables.matchesFilters(storeItem, filters, details)
     for _, filter in ipairs(filters) do
-        local low, high = Searchables.getStoreItemValueRange(storeItem, filter.kind)
+        local low, high
+        if filter.kind == "price" and details ~= nil and details.price ~= nil then
+            low, high = details.price, details.price
+        else
+            low, high = Searchables.getStoreItemValueRange(storeItem, filter.kind)
+        end
         if low == nil or not Searchables.rangeMatches(filter, low, high) then
             return false
         end
@@ -480,15 +525,16 @@ end
 
 function Searchables.matchesStoreItem(storeItem, query)
     -- words first: cheap, and spares reading specs for items the words already rule out
-    return Searchables.matchesWords(Searchables.getStoreItemText(storeItem), query.words)
+    return Searchables.matchesQueryText(Searchables.getStoreItemText(storeItem), query)
         and Searchables.matchesFilters(storeItem, query.filters)
 end
 
 function Searchables.matchesEntry(entry, query)
-    if not Searchables.matchesWords(Searchables.getEntryText(entry), query.words) then
+    if not Searchables.matchesQueryText(Searchables.getEntryText(entry), query) then
         return false
     end
-    return #query.filters == 0 or Searchables.matchesFilters(Searchables.getEntryStoreItem(entry), query.filters)
+    return #query.filters == 0
+        or Searchables.matchesFilters(Searchables.getEntryStoreItem(entry), query.filters, Searchables.getEntryDetails(entry))
 end
 
 -- Entries of a list matching the query. Returns the list itself when there is nothing to filter.
@@ -578,6 +624,33 @@ function Searchables:consoleDumpUi(maxDepthArg)
     return "Done."
 end
 
+local function dumpTable(name, value)
+    if type(value) ~= "table" then
+        print(string.format("  %s = %s", name, tostring(value)))
+        return
+    end
+    print(string.format("  %s:", name))
+    for key, field in pairs(value) do
+        if type(field) ~= "function" then
+            print(string.format("    %-28s %s", tostring(key), tostring(field)))
+        end
+    end
+end
+
+-- Prints the first entry of the shop list that is open (and its concreteItem), to see what used and owned items carry
+function Searchables:consoleDumpItem()
+    local menu = SearchablesShop.menu
+    local page = menu ~= nil and menu.currentPage or nil
+    local items = page ~= nil and page.searchablesItems or nil
+    if items == nil or items[1] == nil then
+        return "Open a shop list (a category, brand, sales or owned vehicles) first."
+    end
+    print(string.format("First of %d entries on the open shop list:", #items))
+    dumpTable("entry", items[1])
+    dumpTable("entry.concreteItem", items[1].concreteItem)
+    return "Done."
+end
+
 -- Nudges a search box by a number of reference pixels, so we can find the right spot in-game
 function Searchables:consoleMove(whichArg, dxArg, dyArg)
     local module = ({shop = SearchablesShop, construction = SearchablesConstruction})[tostring(whichArg):lower()]
@@ -589,6 +662,93 @@ function Searchables:consoleMove(whichArg, dxArg, dyArg)
     module.OFFSET_Y = module.OFFSET_Y + dy
     module.updateBoxPosition()
     return string.format("Offset is now %d, %d px. Put these values in OFFSET_X / OFFSET_Y to keep them.", module.OFFSET_X, module.OFFSET_Y)
+end
+
+-- ---------------------------------------------------------------------------------------------
+-- Recent searches
+-- ---------------------------------------------------------------------------------------------
+
+-- Last searches per box ("shop", "construction", "map"), newest first, kept in modSettings between game sessions
+Searchables.RECENT_MAX = 5
+Searchables.recentSearches = {}
+
+function Searchables.getRecentFilename()
+    return getUserProfileAppPath() .. "modSettings/FS25_Searchables.xml"
+end
+
+function Searchables.getRecentSearches(key)
+    Searchables.recentSearches[key] = Searchables.recentSearches[key] or {}
+    return Searchables.recentSearches[key]
+end
+
+-- Puts a search at the top of its box's list (once) and saves the lists
+function Searchables.addRecentSearch(key, text)
+    text = string.trim(tostring(text or ""))
+    if key == nil or text == "" then
+        return
+    end
+    local list = Searchables.getRecentSearches(key)
+    for i = #list, 1, -1 do
+        if Searchables.toLower(list[i]) == Searchables.toLower(text) then
+            table.remove(list, i)
+        end
+    end
+    table.insert(list, 1, text)
+    while #list > Searchables.RECENT_MAX do
+        table.remove(list)
+    end
+    Searchables.saveRecentSearches()
+end
+
+function Searchables.saveRecentSearches()
+    pcall(function()
+        createFolder(getUserProfileAppPath() .. "modSettings/")
+        local xmlFile = createXMLFile("SearchablesSettings", Searchables.getRecentFilename(), "searchables")
+        if xmlFile == nil or xmlFile == 0 then
+            return
+        end
+        local i = 0
+        for key, list in pairs(Searchables.recentSearches) do
+            for _, text in ipairs(list) do
+                local entryKey = string.format("searchables.recent(%d)", i)
+                setXMLString(xmlFile, entryKey .. "#box", key)
+                setXMLString(xmlFile, entryKey .. "#text", text)
+                i = i + 1
+            end
+        end
+        saveXMLFile(xmlFile)
+        delete(xmlFile)
+    end)
+end
+
+function Searchables.loadRecentSearches()
+    Searchables.recentSearches = {}
+    pcall(function()
+        local filename = Searchables.getRecentFilename()
+        if not fileExists(filename) then
+            return
+        end
+        local xmlFile = loadXMLFile("SearchablesSettings", filename)
+        if xmlFile == nil or xmlFile == 0 then
+            return
+        end
+        local i = 0
+        while true do
+            local entryKey = string.format("searchables.recent(%d)", i)
+            if not hasXMLProperty(xmlFile, entryKey) then
+                break
+            end
+            local key, text = getXMLString(xmlFile, entryKey .. "#box"), getXMLString(xmlFile, entryKey .. "#text")
+            if key ~= nil and text ~= nil then
+                local list = Searchables.getRecentSearches(key)
+                if #list < Searchables.RECENT_MAX then
+                    table.insert(list, text)
+                end
+            end
+            i = i + 1
+        end
+        delete(xmlFile)
+    end)
 end
 
 -- ---------------------------------------------------------------------------------------------
@@ -622,9 +782,11 @@ function Searchables:loadMap(name)
 
     Searchables.preloadIndex = 1
     Searchables.isPreloadDone = g_dedicatedServer ~= nil
+    Searchables.loadRecentSearches()
 
     addConsoleCommand("searchablesDumpUi", "Searchables: print the element tree of the open screen", "consoleDumpUi", Searchables, "[maxDepth]")
     addConsoleCommand("searchablesMove", "Searchables: nudge a search box by some pixels", "consoleMove", Searchables, "shop|construction dxPx dyPx")
+    addConsoleCommand("searchablesDumpItem", "Searchables: print the first entry of the open shop list", "consoleDumpItem", Searchables)
     Logging.info("[Searchables] Loaded. Search boxes are on the shop and construction screens.")
 end
 
@@ -637,6 +799,7 @@ end
 function Searchables:deleteMap()
     removeConsoleCommand("searchablesDumpUi")
     removeConsoleCommand("searchablesMove")
+    removeConsoleCommand("searchablesDumpItem")
     SearchablesShop.delete()
     SearchablesConstruction.delete()
 end

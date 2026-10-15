@@ -114,6 +114,7 @@ function WheresMyStuffMapSearch.getBox(mapElement)
         box.onEnterPressed = function()
             WheresMyStuffMapSearch.onEnterPressed(box)
         end
+        box.recentKey = "map"
 
         -- show what was searched before (also searches made with wmsFind)
         if WheresMyStuff.searchQuery ~= nil then
@@ -359,6 +360,12 @@ function WheresMyStuffMapSearch.onMapUpdate(mapElement, dt)
     WheresMyStuffMapSearch.positionBox(box, mapElement)
     box:update()
 
+    -- opened by quick find: put the cursor in the box
+    if WheresMyStuffMapSearch.focusWhenShown then
+        WheresMyStuffMapSearch.focusWhenShown = false
+        box:focus()
+    end
+
     if box.pendingText ~= nil and g_time >= box.searchTime then
         WheresMyStuffMapSearch.runSearch(box)
     end
@@ -375,6 +382,35 @@ function WheresMyStuffMapSearch.onSearchAction(mapElement)
     if box and not g_gui:getIsDialogVisible() then
         box:focus()
     end
+end
+
+-- Quick find: the Search key (Ctrl+F) while walking or driving opens the map with the cursor in the search box.
+-- Only from the keyboard: on a controller the Search button (right stick) has its own job outside menus.
+WheresMyStuffMapSearch.quickFindTargets = {}
+
+function WheresMyStuffMapSearch.onRegisterGlobalPlayerActionEvents(inputComponent, contextName)
+    local key = contextName or "default"
+    local target = WheresMyStuffMapSearch.quickFindTargets[key] or {}
+    WheresMyStuffMapSearch.quickFindTargets[key] = target
+    Searchables.registerSearchAction(target, WheresMyStuffMapSearch.onQuickFind)
+end
+
+function WheresMyStuffMapSearch.onQuickFind()
+    if g_gui:getIsGuiVisible() or g_inputBinding.lastInputMode ~= GS_INPUT_HELP_MODE_KEYBOARD then
+        return
+    end
+    local menu = g_inGameMenu
+    if menu == nil or menu.pageMapOverview == nil then
+        return
+    end
+    WheresMyStuffMapSearch.focusWhenShown = true
+    g_gui:changeScreen(nil, InGameMenu)
+    menu:goToPage(menu.pageMapOverview)
+end
+
+if PlayerInputComponent ~= nil and PlayerInputComponent.registerGlobalPlayerActionEvents ~= nil then
+    PlayerInputComponent.registerGlobalPlayerActionEvents = Utils.appendedFunction(PlayerInputComponent.registerGlobalPlayerActionEvents,
+        WheresMyStuffMapSearch.onRegisterGlobalPlayerActionEvents)
 end
 
 if IngameMapElement ~= nil then
