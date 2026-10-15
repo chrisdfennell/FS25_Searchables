@@ -26,6 +26,19 @@
         <text name="searchables_empty" text="Empty"/>
         <text name="searchables_unknown" text="Unknown"/>
         <text name="searchables_affordable" text="affordable"/>
+        <text name="searchables_state_harvest" text="ready to harvest"/>
+        <text name="searchables_state_growing" text="growing"/>
+        <text name="searchables_state_withered" text="withered"/>
+        <text name="searchables_state_harvested" text="harvested"/>
+        <text name="searchables_state_lime" text="needs lime"/>
+        <text name="searchables_state_fertilize" text="needs fertilizer"/>
+        <text name="searchables_state_plow" text="needs plowing"/>
+        <text name="searchables_state_weeds" text="weeds"/>
+        <text name="searchables_state_stones" text="stones"/>
+        <text name="searchables_state_roll" text="needs rolling"/>
+        <text name="searchables_sell" text="sell"/>
+        <text name="searchables_bestPrice" text="best price"/>
+        <text name="searchables_kind_sellPoint" text="Selling point"/>
 
         <!-- controls -->
         <text name="input_SEARCHABLES_SEARCH" text="Search"/>

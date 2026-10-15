@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Pusty"/>
         <text name="searchables_unknown" text="Nieznany"/>
         <text name="searchables_affordable" text="przystępne"/>
+        <text name="searchables_state_harvest" text="gotowe do zbioru"/>
+        <text name="searchables_state_growing" text="rośnie"/>
+        <text name="searchables_state_withered" text="zwiędłe"/>
+        <text name="searchables_state_harvested" text="zebrane"/>
+        <text name="searchables_state_lime" text="wymaga wapna"/>
+        <text name="searchables_state_fertilize" text="wymaga nawożenia"/>
+        <text name="searchables_state_plow" text="wymaga orki"/>
+        <text name="searchables_state_weeds" text="chwasty"/>
+        <text name="searchables_state_stones" text="kamienie"/>
+        <text name="searchables_state_roll" text="wymaga wałowania"/>
+        <text name="searchables_sell" text="sprzedaj"/>
+        <text name="searchables_bestPrice" text="najlepsza cena"/>
+        <text name="searchables_kind_sellPoint" text="Punkt sprzedaży"/>
         <text name="input_SEARCHABLES_SEARCH" text="Szukaj"/>
     </texts>
 </l10n>

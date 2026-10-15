@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="비어 있음"/>
         <text name="searchables_unknown" text="알 수 없음"/>
         <text name="searchables_affordable" text="구매가능"/>
+        <text name="searchables_state_harvest" text="수확 가능"/>
+        <text name="searchables_state_growing" text="생장 중"/>
+        <text name="searchables_state_withered" text="시듦"/>
+        <text name="searchables_state_harvested" text="수확 완료"/>
+        <text name="searchables_state_lime" text="석회 필요"/>
+        <text name="searchables_state_fertilize" text="비료 필요"/>
+        <text name="searchables_state_plow" text="쟁기질 필요"/>
+        <text name="searchables_state_weeds" text="잡초"/>
+        <text name="searchables_state_stones" text="돌"/>
+        <text name="searchables_state_roll" text="롤링 필요"/>
+        <text name="searchables_sell" text="판매"/>
+        <text name="searchables_bestPrice" text="최고가"/>
+        <text name="searchables_kind_sellPoint" text="판매처"/>
         <text name="input_SEARCHABLES_SEARCH" text="검색"/>
     </texts>
 </l10n>

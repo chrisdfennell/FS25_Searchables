@@ -26,6 +26,19 @@
         <text name="searchables_empty" text="Leer"/>
         <text name="searchables_unknown" text="Unbekannt"/>
         <text name="searchables_affordable" text="bezahlbar"/>
+        <text name="searchables_state_harvest" text="erntereif"/>
+        <text name="searchables_state_growing" text="wächst"/>
+        <text name="searchables_state_withered" text="verdorrt"/>
+        <text name="searchables_state_harvested" text="abgeerntet"/>
+        <text name="searchables_state_lime" text="braucht Kalk"/>
+        <text name="searchables_state_fertilize" text="braucht Dünger"/>
+        <text name="searchables_state_plow" text="muss gepflügt werden"/>
+        <text name="searchables_state_weeds" text="Unkraut"/>
+        <text name="searchables_state_stones" text="Steine"/>
+        <text name="searchables_state_roll" text="muss gewalzt werden"/>
+        <text name="searchables_sell" text="verkaufen"/>
+        <text name="searchables_bestPrice" text="bester Preis"/>
+        <text name="searchables_kind_sellPoint" text="Verkaufsstelle"/>
 
         <!-- Steuerung -->
         <text name="input_SEARCHABLES_SEARCH" text="Suchen"/>

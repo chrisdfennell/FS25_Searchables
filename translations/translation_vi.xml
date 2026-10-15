@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Trống"/>
         <text name="searchables_unknown" text="Không rõ"/>
         <text name="searchables_affordable" text="affordable"/>
+        <text name="searchables_state_harvest" text="sẵn sàng thu hoạch"/>
+        <text name="searchables_state_growing" text="đang phát triển"/>
+        <text name="searchables_state_withered" text="héo"/>
+        <text name="searchables_state_harvested" text="đã thu hoạch"/>
+        <text name="searchables_state_lime" text="cần vôi"/>
+        <text name="searchables_state_fertilize" text="cần bón phân"/>
+        <text name="searchables_state_plow" text="cần cày"/>
+        <text name="searchables_state_weeds" text="cỏ dại"/>
+        <text name="searchables_state_stones" text="đá"/>
+        <text name="searchables_state_roll" text="cần lăn"/>
+        <text name="searchables_sell" text="bán"/>
+        <text name="searchables_bestPrice" text="giá tốt nhất"/>
+        <text name="searchables_kind_sellPoint" text="Điểm bán"/>
         <text name="input_SEARCHABLES_SEARCH" text="Tìm kiếm"/>
     </texts>
 </l10n>

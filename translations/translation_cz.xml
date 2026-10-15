@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Prázdné"/>
         <text name="searchables_unknown" text="Neznámé"/>
         <text name="searchables_affordable" text="dostupné"/>
+        <text name="searchables_state_harvest" text="připraveno ke sklizni"/>
+        <text name="searchables_state_growing" text="roste"/>
+        <text name="searchables_state_withered" text="uschlé"/>
+        <text name="searchables_state_harvested" text="sklizeno"/>
+        <text name="searchables_state_lime" text="potřebuje vápno"/>
+        <text name="searchables_state_fertilize" text="potřebuje hnojivo"/>
+        <text name="searchables_state_plow" text="potřebuje orbu"/>
+        <text name="searchables_state_weeds" text="plevel"/>
+        <text name="searchables_state_stones" text="kameny"/>
+        <text name="searchables_state_roll" text="potřebuje válení"/>
+        <text name="searchables_sell" text="prodat"/>
+        <text name="searchables_bestPrice" text="nejlepší cena"/>
+        <text name="searchables_kind_sellPoint" text="Výkupní místo"/>
         <text name="input_SEARCHABLES_SEARCH" text="Hledat"/>
     </texts>
 </l10n>

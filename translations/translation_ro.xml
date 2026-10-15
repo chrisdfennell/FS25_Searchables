@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Gol"/>
         <text name="searchables_unknown" text="Necunoscut"/>
         <text name="searchables_affordable" text="accesibil"/>
+        <text name="searchables_state_harvest" text="gata de recoltat"/>
+        <text name="searchables_state_growing" text="crește"/>
+        <text name="searchables_state_withered" text="ofilit"/>
+        <text name="searchables_state_harvested" text="recoltat"/>
+        <text name="searchables_state_lime" text="necesită var"/>
+        <text name="searchables_state_fertilize" text="necesită îngrășământ"/>
+        <text name="searchables_state_plow" text="necesită arat"/>
+        <text name="searchables_state_weeds" text="buruieni"/>
+        <text name="searchables_state_stones" text="pietre"/>
+        <text name="searchables_state_roll" text="necesită tăvălugire"/>
+        <text name="searchables_sell" text="vinde"/>
+        <text name="searchables_bestPrice" text="cel mai bun preț"/>
+        <text name="searchables_kind_sellPoint" text="Punct de vânzare"/>
         <text name="input_SEARCHABLES_SEARCH" text="Caută"/>
     </texts>
 </l10n>

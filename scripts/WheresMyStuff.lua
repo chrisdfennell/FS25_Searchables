@@ -15,6 +15,7 @@ WheresMyStuff.KIND_VEHICLE = "vehicle"
 WheresMyStuff.KIND_BUILDING = "building"
 WheresMyStuff.KIND_FIELD = "field"
 WheresMyStuff.KIND_FARMLAND = "farmland"
+WheresMyStuff.KIND_SELL_POINT = "sellPoint"
 
 -- Group key for pallets and big bags with nothing in them
 WheresMyStuff.EMPTY_KEY = "EMPTY"
@@ -508,6 +509,7 @@ WheresMyStuff.KIND_SEARCH_WORDS = {
     building = "building",
     field = "field",
     farmland = "property farmland land plot",
+    sellPoint = "sell selling point",
 }
 
 -- Name of a kind in the player's language ("Bale", "Ballen"), for marker names and searching
@@ -619,6 +621,180 @@ function WheresMyStuff.getFieldName(field, fallbackId)
     return fieldName
 end
 
+-- ---------------------------------------------------------------------------------------------
+-- Field crops and work to do
+-- ---------------------------------------------------------------------------------------------
+
+-- Field status is read from the ground at the field's center (the spot where the map shows its number) and kept a few
+-- seconds, so typing does not read every field's ground again for each letter
+WheresMyStuff.FIELD_STATUS_MAX_AGE = 5000
+WheresMyStuff.fieldStatuses = setmetatable({}, {__mode = "k"})
+
+-- English search words per status; the translated label (translations/, searchables_state_*) is searchable too
+WheresMyStuff.FIELD_STATUS_WORDS = {
+    harvest = "harvest ready",
+    growing = "growing",
+    withered = "withered",
+    harvested = "harvested stubble",
+    lime = "lime",
+    fertilize = "fertilize fertilizer",
+    plow = "plow plough",
+    weeds = "weeds",
+    stones = "stones",
+    roll = "roll roller",
+}
+
+-- What the ground at a field's center says: crop, growth stage, lime, fertilizer, plowing, weeds, stones, rolling
+function WheresMyStuff.readFieldState(field)
+    local state = FieldState.new()
+    state:update(field.posX, field.posZ)
+    return state
+end
+
+-- Crop and work to do on a field: {words = searchable text, label = "Wheat, ready to harvest"}
+function WheresMyStuff.getFieldStatus(field)
+    local status = WheresMyStuff.fieldStatuses[field]
+    if status ~= nil and g_time - status.time < WheresMyStuff.FIELD_STATUS_MAX_AGE then
+        return status
+    end
+    status = {time = g_time, words = "", label = ""}
+    WheresMyStuff.fieldStatuses[field] = status
+
+    local ok, state = pcall(WheresMyStuff.readFieldState, field)
+    if not ok or state == nil or not state.isValid then
+        return status
+    end
+
+    local words, labels = {}, {}
+    local function addStatus(key)
+        local text = Searchables.getText("searchables_state_" .. key)
+        table.insert(words, WheresMyStuff.FIELD_STATUS_WORDS[key])
+        table.insert(words, text)
+        table.insert(labels, text)
+    end
+
+    local fruitType = nil
+    if state.fruitTypeIndex ~= nil and state.fruitTypeIndex ~= FruitType.UNKNOWN then
+        fruitType = g_fruitTypeManager:getFruitTypeByIndex(state.fruitTypeIndex)
+    end
+    if fruitType ~= nil then
+        local title = fruitType.fillType ~= nil and fruitType.fillType.title or fruitType.name
+        table.insert(words, tostring(fruitType.name))
+        table.insert(words, tostring(title))
+        table.insert(labels, tostring(title))
+
+        local growth = state.growthState or 0
+        local minHarvest, maxHarvest = fruitType.minHarvestingGrowthState or 0, fruitType.maxHarvestingGrowthState or 0
+        if fruitType.witheredState ~= nil and growth == fruitType.witheredState then
+            addStatus("withered")
+        elseif fruitType.cutStates ~= nil and fruitType.cutStates[growth] then
+            addStatus("harvested")
+        elseif minHarvest > 0 and growth >= minHarvest and growth <= maxHarvest then
+            addStatus("harvest")
+        elseif growth > 0 then
+            addStatus("growing")
+        end
+    end
+
+    -- work only counts where the game's settings ask for it
+    local info = g_currentMission ~= nil and g_currentMission.missionInfo or {}
+    if state.limeLevel == 0 and info.limeRequired ~= false then
+        addStatus("lime")
+    end
+    if state.sprayLevel == 0 then
+        addStatus("fertilize")
+    end
+    if state.plowLevel == 0 and info.plowingRequiredEnabled ~= false then
+        addStatus("plow")
+    end
+    if (state.weedState or 0) > 0 and info.weedsEnabled ~= false then
+        addStatus("weeds")
+    end
+    if (state.stoneLevel or 0) > 0 and info.stonesEnabled ~= false then
+        addStatus("stones")
+    end
+    if (state.rollerLevel or 0) > 0 then
+        addStatus("roll")
+    end
+
+    status.words = table.concat(words, " ")
+    status.label = table.concat(labels, ", ")
+    return status
+end
+
+-- ---------------------------------------------------------------------------------------------
+-- Where to sell
+-- ---------------------------------------------------------------------------------------------
+
+-- The word that starts a selling search ("sell wheat"), in English or the player's language, or nil
+function WheresMyStuff.findSellWord(words)
+    local translated = Searchables.toLower(Searchables.getText("searchables_sell"))
+    for i, word in ipairs(words) do
+        if word == "sell" or word == translated then
+            return i
+        end
+    end
+    return nil
+end
+
+-- Fill types whose name contains every word ("wheat", "wood chips"); all of them when there are no words
+function WheresMyStuff.findFillTypes(words)
+    local fillTypes = {}
+    for _, fillType in ipairs(g_fillTypeManager:getFillTypes()) do
+        if fillType.showOnPriceTable ~= false then
+            local text = Searchables.toLower(string.format("%s %s", tostring(fillType.title), tostring(fillType.name)))
+            if Searchables.matchesWords(text, words) then
+                fillTypes[fillType.index] = fillType
+            end
+        end
+    end
+    return fillTypes
+end
+
+-- Every selling point that buys what is named after "sell", the same ones the game's price list shows. Each result
+-- shows the price per 1000 l; the best price for each fill type is marked.
+function WheresMyStuff.searchSellPoints(words)
+    local storageSystem = g_currentMission ~= nil and g_currentMission.storageSystem or nil
+    if storageSystem == nil or storageSystem.getUnloadingStations == nil then
+        return {}
+    end
+    local fillTypes = WheresMyStuff.findFillTypes(words)
+
+    local offers, bestPrices = {}, {}
+    for _, station in pairs(storageSystem:getUnloadingStations()) do
+        if type(station) == "table" and station.isSellingPoint and not station.hideFromPricesMenu and station.acceptedFillTypes ~= nil then
+            for fillTypeIndex, fillType in pairs(fillTypes) do
+                if station.acceptedFillTypes[fillTypeIndex] and station.getEffectiveFillTypePrice ~= nil then
+                    local price = (station:getEffectiveFillTypePrice(fillTypeIndex) or 0) * 1000
+                    if price > 0 then
+                        table.insert(offers, {station = station, fillType = fillType, price = price})
+                        bestPrices[fillTypeIndex] = math.max(bestPrices[fillTypeIndex] or 0, price)
+                    end
+                end
+            end
+        end
+    end
+
+    local results = {}
+    for _, offer in ipairs(offers) do
+        local station = offer.station
+        local placeable = station.owningPlaceable
+        local node = station.rootNode or (placeable ~= nil and placeable.rootNode) or nil
+        if node ~= nil and node ~= 0 then
+            local stationName = (station.getName ~= nil and station:getName()) or (placeable ~= nil and placeable:getName()) or "?"
+            local name = string.format("%s: %s %s / 1000 l", stationName, tostring(offer.fillType.title),
+                g_i18n:formatMoney(offer.price, 0, true, true))
+            if offer.price >= bestPrices[offer.fillType.index] then
+                name = string.format("%s (%s)", name, Searchables.getText("searchables_bestPrice"))
+            end
+            local x, _, z = getWorldTranslation(node)
+            table.insert(results, WheresMyStuff.newResult(WheresMyStuff.KIND_SELL_POINT, name,
+                Searchables.getText("searchables_kind_sellPoint"), node, x, z, tostring(offer.fillType.name)))
+        end
+    end
+    return results
+end
+
 -- Name of the NPC farmer who owns a property ("" once a player farm owns it), so typing a farmer's name finds their
 -- fields and properties
 function WheresMyStuff.getFarmlandNpcName(farmland)
@@ -642,8 +818,14 @@ function WheresMyStuff.scanFields(farmId)
             local isOwned = field.farmland ~= nil and g_farmlandManager:getFarmlandOwner(field.farmland.id) == farmId
             local category = Searchables.getText(isOwned and "searchables_ownedField" or "searchables_kind_field")
             local extraWords = isOwned and ("owned mine " .. Searchables.getText("searchables_owned")) or WheresMyStuff.getFarmlandNpcName(field.farmland)
-            local result = WheresMyStuff.newResult(WheresMyStuff.KIND_FIELD, WheresMyStuff.getFieldName(field, i), category,
-                nil, field.posX, field.posZ, extraWords)
+            -- crop and work to do: searchable ("wheat harvest", "lime") and shown on the marker
+            local status = WheresMyStuff.getFieldStatus(field)
+            local name = WheresMyStuff.getFieldName(field, i)
+            if status.label ~= "" then
+                name = string.format("%s (%s)", name, status.label)
+            end
+            local result = WheresMyStuff.newResult(WheresMyStuff.KIND_FIELD, name, category,
+                nil, field.posX, field.posZ, extraWords .. " " .. status.words)
             result.farmlandId = field.farmland ~= nil and field.farmland.id or nil
             table.insert(results, result)
         end
@@ -700,6 +882,13 @@ function WheresMyStuff.search(text, farmId)
         return matches
     end
 
+    -- "sell wheat": where to sell it instead of where things are
+    local sellIndex = WheresMyStuff.findSellWord(words)
+    if sellIndex ~= nil then
+        table.remove(words, sellIndex)
+        return WheresMyStuff.searchSellPoints(words)
+    end
+
     for _, scan in ipairs({WheresMyStuff.scanVehicles, WheresMyStuff.scanStock, WheresMyStuff.scanBuildings, WheresMyStuff.scanFields,
         WheresMyStuff.scanFarmlands}) do
         for _, result in ipairs(scan(farmId)) do
@@ -741,6 +930,33 @@ function WheresMyStuff.runSearch(text, farmId)
 end
 
 -- Console arguments arrive split on spaces, so take them all: wmsFind john deere 6r
+-- Raw ground state of a field (by its number), to check what the field search reads
+function WheresMyStuff:consoleField(numberArg)
+    local number = tostring(numberArg or "")
+    for i, field in ipairs(g_fieldManager.fields or {}) do
+        local id = field.getId ~= nil and field:getId() or i
+        if tostring(id) == number or tostring(field.name) == number then
+            local ok, state = pcall(WheresMyStuff.readFieldState, field)
+            if not ok or state == nil then
+                return string.format("Could not read field %s: %s", number, tostring(state))
+            end
+            local fruitType = state.fruitTypeIndex ~= FruitType.UNKNOWN and g_fruitTypeManager:getFruitTypeByIndex(state.fruitTypeIndex) or nil
+            print(string.format("Field %s at %.0f, %.0f: valid=%s fruit=%s growth=%s (harvest %s-%s, withered %s) ground=%s",
+                number, field.posX, field.posZ, tostring(state.isValid), fruitType ~= nil and fruitType.name or "none",
+                tostring(state.growthState), tostring(fruitType ~= nil and fruitType.minHarvestingGrowthState),
+                tostring(fruitType ~= nil and fruitType.maxHarvestingGrowthState), tostring(fruitType ~= nil and fruitType.witheredState),
+                tostring(state.groundType)))
+            print(string.format("  spray=%s lime=%s plow=%s roller=%s weeds=%s stones=%s stubble=%s water=%s",
+                tostring(state.sprayLevel), tostring(state.limeLevel), tostring(state.plowLevel), tostring(state.rollerLevel),
+                tostring(state.weedState), tostring(state.stoneLevel), tostring(state.stubbleShredLevel), tostring(state.waterLevel)))
+            WheresMyStuff.fieldStatuses[field] = nil
+            local status = WheresMyStuff.getFieldStatus(field)
+            return string.format("  search sees: %s", status.label ~= "" and status.label or "(nothing)")
+        end
+    end
+    return string.format("No field %s. Usage: wmsField <field number>", number)
+end
+
 function WheresMyStuff:consoleFind(...)
     local text = table.concat({...}, " ")
     if #WheresMyStuff.getSearchWords(text) == 0 then
@@ -783,7 +999,8 @@ function WheresMyStuff:loadMap(name)
     addConsoleCommand("wmsGoto", "Where's My Stuff: mark items on the map and target the nearest", "consoleGoto", WheresMyStuff, "fillType|ALL|LEFTOVERS|EMPTY [farmId]")
     addConsoleCommand("wmsFind", "Where's My Stuff: search vehicles, stock, buildings and fields and mark them on the map", "consoleFind", WheresMyStuff, "text")
     addConsoleCommand("wmsTarget", "Where's My Stuff: navigate to the n-th marker (nearest first)", "consoleTarget", WheresMyStuff, "[number]")
-    Logging.info("[WheresMyStuff] Loaded. Console commands: wmsSummary, wmsList, wmsLeftovers, wmsShow, wmsHide, wmsGoto, wmsFind, wmsTarget")
+    addConsoleCommand("wmsField", "Where's My Stuff: show what the field search reads for a field", "consoleField", WheresMyStuff, "fieldNumber")
+    Logging.info("[WheresMyStuff] Loaded. Console commands: wmsSummary, wmsList, wmsLeftovers, wmsShow, wmsHide, wmsGoto, wmsFind, wmsTarget, wmsField")
 end
 
 function WheresMyStuff:deleteMap()
@@ -795,6 +1012,7 @@ function WheresMyStuff:deleteMap()
     removeConsoleCommand("wmsGoto")
     removeConsoleCommand("wmsFind")
     removeConsoleCommand("wmsTarget")
+    removeConsoleCommand("wmsField")
     WheresMyStuff.removeHotspots()
     WheresMyStuffMapSearch.delete()
 end

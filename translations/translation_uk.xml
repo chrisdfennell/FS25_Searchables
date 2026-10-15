@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Порожньо"/>
         <text name="searchables_unknown" text="Невідомо"/>
         <text name="searchables_affordable" text="доступно"/>
+        <text name="searchables_state_harvest" text="готово до збору"/>
+        <text name="searchables_state_growing" text="росте"/>
+        <text name="searchables_state_withered" text="зів'яло"/>
+        <text name="searchables_state_harvested" text="зібрано"/>
+        <text name="searchables_state_lime" text="потрібне вапно"/>
+        <text name="searchables_state_fertilize" text="потрібне добриво"/>
+        <text name="searchables_state_plow" text="потрібна оранка"/>
+        <text name="searchables_state_weeds" text="бур'яни"/>
+        <text name="searchables_state_stones" text="каміння"/>
+        <text name="searchables_state_roll" text="потрібне прикочування"/>
+        <text name="searchables_sell" text="продати"/>
+        <text name="searchables_bestPrice" text="найкраща ціна"/>
+        <text name="searchables_kind_sellPoint" text="Пункт продажу"/>
         <text name="input_SEARCHABLES_SEARCH" text="Пошук"/>
     </texts>
 </l10n>

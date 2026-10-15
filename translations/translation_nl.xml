@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Leeg"/>
         <text name="searchables_unknown" text="Onbekend"/>
         <text name="searchables_affordable" text="betaalbaar"/>
+        <text name="searchables_state_harvest" text="oogstklaar"/>
+        <text name="searchables_state_growing" text="groeit"/>
+        <text name="searchables_state_withered" text="verdord"/>
+        <text name="searchables_state_harvested" text="geoogst"/>
+        <text name="searchables_state_lime" text="kalk nodig"/>
+        <text name="searchables_state_fertilize" text="bemesting nodig"/>
+        <text name="searchables_state_plow" text="moet geploegd worden"/>
+        <text name="searchables_state_weeds" text="onkruid"/>
+        <text name="searchables_state_stones" text="stenen"/>
+        <text name="searchables_state_roll" text="moet gerold worden"/>
+        <text name="searchables_sell" text="verkopen"/>
+        <text name="searchables_bestPrice" text="beste prijs"/>
+        <text name="searchables_kind_sellPoint" text="Verkooppunt"/>
         <text name="input_SEARCHABLES_SEARCH" text="Zoeken"/>
     </texts>
 </l10n>

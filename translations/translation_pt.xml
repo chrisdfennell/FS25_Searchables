@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Vazio"/>
         <text name="searchables_unknown" text="Desconhecido"/>
         <text name="searchables_affordable" text="acessível"/>
+        <text name="searchables_state_harvest" text="pronto para colheita"/>
+        <text name="searchables_state_growing" text="a crescer"/>
+        <text name="searchables_state_withered" text="murcho"/>
+        <text name="searchables_state_harvested" text="colhido"/>
+        <text name="searchables_state_lime" text="precisa de calcário"/>
+        <text name="searchables_state_fertilize" text="precisa de fertilizante"/>
+        <text name="searchables_state_plow" text="precisa de lavoura"/>
+        <text name="searchables_state_weeds" text="ervas daninhas"/>
+        <text name="searchables_state_stones" text="pedras"/>
+        <text name="searchables_state_roll" text="precisa de rolo"/>
+        <text name="searchables_sell" text="vender"/>
+        <text name="searchables_bestPrice" text="melhor preço"/>
+        <text name="searchables_kind_sellPoint" text="Ponto de venda"/>
         <text name="input_SEARCHABLES_SEARCH" text="Pesquisar"/>
     </texts>
 </l10n>

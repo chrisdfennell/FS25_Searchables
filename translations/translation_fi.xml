@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Tyhjä"/>
         <text name="searchables_unknown" text="Tuntematon"/>
         <text name="searchables_affordable" text="edullinen"/>
+        <text name="searchables_state_harvest" text="valmis korjattavaksi"/>
+        <text name="searchables_state_growing" text="kasvaa"/>
+        <text name="searchables_state_withered" text="kuihtunut"/>
+        <text name="searchables_state_harvested" text="korjattu"/>
+        <text name="searchables_state_lime" text="tarvitsee kalkkia"/>
+        <text name="searchables_state_fertilize" text="tarvitsee lannoitetta"/>
+        <text name="searchables_state_plow" text="kynnettävä"/>
+        <text name="searchables_state_weeds" text="rikkaruohot"/>
+        <text name="searchables_state_stones" text="kivet"/>
+        <text name="searchables_state_roll" text="jyrättävä"/>
+        <text name="searchables_sell" text="myy"/>
+        <text name="searchables_bestPrice" text="paras hinta"/>
+        <text name="searchables_kind_sellPoint" text="Myyntipiste"/>
         <text name="input_SEARCHABLES_SEARCH" text="Hae"/>
     </texts>
 </l10n>

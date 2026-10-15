@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="空"/>
         <text name="searchables_unknown" text="不明"/>
         <text name="searchables_affordable" text="購入可能"/>
+        <text name="searchables_state_harvest" text="収穫可能"/>
+        <text name="searchables_state_growing" text="生育中"/>
+        <text name="searchables_state_withered" text="枯死"/>
+        <text name="searchables_state_harvested" text="収穫済み"/>
+        <text name="searchables_state_lime" text="石灰が必要"/>
+        <text name="searchables_state_fertilize" text="肥料が必要"/>
+        <text name="searchables_state_plow" text="耕起が必要"/>
+        <text name="searchables_state_weeds" text="雑草"/>
+        <text name="searchables_state_stones" text="石"/>
+        <text name="searchables_state_roll" text="ローラー掛けが必要"/>
+        <text name="searchables_sell" text="売る"/>
+        <text name="searchables_bestPrice" text="最高価格"/>
+        <text name="searchables_kind_sellPoint" text="販売所"/>
         <text name="input_SEARCHABLES_SEARCH" text="検索"/>
     </texts>
 </l10n>

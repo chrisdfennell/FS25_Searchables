@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Tom"/>
         <text name="searchables_unknown" text="Ukendt"/>
         <text name="searchables_affordable" text="overkommelig"/>
+        <text name="searchables_state_harvest" text="klar til høst"/>
+        <text name="searchables_state_growing" text="vokser"/>
+        <text name="searchables_state_withered" text="visnet"/>
+        <text name="searchables_state_harvested" text="høstet"/>
+        <text name="searchables_state_lime" text="mangler kalk"/>
+        <text name="searchables_state_fertilize" text="mangler gødning"/>
+        <text name="searchables_state_plow" text="skal pløjes"/>
+        <text name="searchables_state_weeds" text="ukrudt"/>
+        <text name="searchables_state_stones" text="sten"/>
+        <text name="searchables_state_roll" text="skal tromles"/>
+        <text name="searchables_sell" text="sælg"/>
+        <text name="searchables_bestPrice" text="bedste pris"/>
+        <text name="searchables_kind_sellPoint" text="Salgssted"/>
         <text name="input_SEARCHABLES_SEARCH" text="Søg"/>
     </texts>
 </l10n>

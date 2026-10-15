@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Kosong"/>
         <text name="searchables_unknown" text="Tidak diketahui"/>
         <text name="searchables_affordable" text="terjangkau"/>
+        <text name="searchables_state_harvest" text="siap panen"/>
+        <text name="searchables_state_growing" text="tumbuh"/>
+        <text name="searchables_state_withered" text="layu"/>
+        <text name="searchables_state_harvested" text="sudah dipanen"/>
+        <text name="searchables_state_lime" text="perlu kapur"/>
+        <text name="searchables_state_fertilize" text="perlu pupuk"/>
+        <text name="searchables_state_plow" text="perlu dibajak"/>
+        <text name="searchables_state_weeds" text="gulma"/>
+        <text name="searchables_state_stones" text="batu"/>
+        <text name="searchables_state_roll" text="perlu digilas"/>
+        <text name="searchables_sell" text="jual"/>
+        <text name="searchables_bestPrice" text="harga terbaik"/>
+        <text name="searchables_kind_sellPoint" text="Titik penjualan"/>
         <text name="input_SEARCHABLES_SEARCH" text="Cari"/>
     </texts>
 </l10n>

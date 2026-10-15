@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="Boş"/>
         <text name="searchables_unknown" text="Bilinmiyor"/>
         <text name="searchables_affordable" text="uygun"/>
+        <text name="searchables_state_harvest" text="hasada hazır"/>
+        <text name="searchables_state_growing" text="büyüyor"/>
+        <text name="searchables_state_withered" text="kurumuş"/>
+        <text name="searchables_state_harvested" text="hasat edildi"/>
+        <text name="searchables_state_lime" text="kireç gerekli"/>
+        <text name="searchables_state_fertilize" text="gübre gerekli"/>
+        <text name="searchables_state_plow" text="sürülmeli"/>
+        <text name="searchables_state_weeds" text="yabani ot"/>
+        <text name="searchables_state_stones" text="taşlar"/>
+        <text name="searchables_state_roll" text="silindirlenmeli"/>
+        <text name="searchables_sell" text="sat"/>
+        <text name="searchables_bestPrice" text="en iyi fiyat"/>
+        <text name="searchables_kind_sellPoint" text="Satış noktası"/>
         <text name="input_SEARCHABLES_SEARCH" text="Ara"/>
     </texts>
 </l10n>

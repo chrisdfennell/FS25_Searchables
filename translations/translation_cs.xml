@@ -23,6 +23,19 @@
         <text name="searchables_empty" text="空"/>
         <text name="searchables_unknown" text="未知"/>
         <text name="searchables_affordable" text="买得起"/>
+        <text name="searchables_state_harvest" text="可收获"/>
+        <text name="searchables_state_growing" text="生长中"/>
+        <text name="searchables_state_withered" text="枯萎"/>
+        <text name="searchables_state_harvested" text="已收获"/>
+        <text name="searchables_state_lime" text="需要石灰"/>
+        <text name="searchables_state_fertilize" text="需要施肥"/>
+        <text name="searchables_state_plow" text="需要犁地"/>
+        <text name="searchables_state_weeds" text="杂草"/>
+        <text name="searchables_state_stones" text="石头"/>
+        <text name="searchables_state_roll" text="需要镇压"/>
+        <text name="searchables_sell" text="出售"/>
+        <text name="searchables_bestPrice" text="最高价"/>
+        <text name="searchables_kind_sellPoint" text="销售点"/>
         <text name="input_SEARCHABLES_SEARCH" text="搜索"/>
     </texts>
 </l10n>
