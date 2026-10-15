@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="cel mai bun preț"/>
         <text name="searchables_kind_sellPoint" text="Punct de vânzare"/>
         <text name="searchables_moreResults" text="+%d în plus"/>
+        <text name="searchables_vehicle_fuel" text="combustibil"/>
+        <text name="searchables_vehicle_damage" text="daune"/>
+        <text name="searchables_vehicle_dirty" text="murdar"/>
+        <text name="searchables_vehicle_helper" text="ajutor la lucru"/>
+        <text name="searchables_vehicle_parked" text="parcat"/>
+        <text name="searchables_vehicle_leased" text="în leasing"/>
+        <text name="searchables_animalCount" text="%d animale"/>
+        <text name="searchables_low" text="scăzut"/>
+        <text name="searchables_prod_makes" text="produce"/>
+        <text name="searchables_prod_missing" text="lipsește"/>
+        <text name="searchables_prod_full" text="plin"/>
+        <text name="searchables_stored" text="depozitat"/>
+        <text name="searchables_kind_storage" text="Depozit"/>
         <text name="searchables_kind_contract" text="Contract"/>
         <text name="searchables_contract" text="contract"/>
         <text name="searchables_contractAvailable" text="disponibil"/>

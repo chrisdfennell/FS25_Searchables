@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="bästa pris"/>
         <text name="searchables_kind_sellPoint" text="Försäljningsställe"/>
         <text name="searchables_moreResults" text="+%d till"/>
+        <text name="searchables_vehicle_fuel" text="bränsle"/>
+        <text name="searchables_vehicle_damage" text="skada"/>
+        <text name="searchables_vehicle_dirty" text="smutsig"/>
+        <text name="searchables_vehicle_helper" text="medhjälpare arbetar"/>
+        <text name="searchables_vehicle_parked" text="parkerad"/>
+        <text name="searchables_vehicle_leased" text="leasad"/>
+        <text name="searchables_animalCount" text="%d djur"/>
+        <text name="searchables_low" text="låg"/>
+        <text name="searchables_prod_makes" text="tillverkar"/>
+        <text name="searchables_prod_missing" text="saknas"/>
+        <text name="searchables_prod_full" text="full"/>
+        <text name="searchables_stored" text="lagrat"/>
+        <text name="searchables_kind_storage" text="Lager"/>
         <text name="searchables_kind_contract" text="Kontrakt"/>
         <text name="searchables_contract" text="kontrakt"/>
         <text name="searchables_contractAvailable" text="tillgängligt"/>

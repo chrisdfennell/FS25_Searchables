@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="bedste pris"/>
         <text name="searchables_kind_sellPoint" text="Salgssted"/>
         <text name="searchables_moreResults" text="+%d mere"/>
+        <text name="searchables_vehicle_fuel" text="brændstof"/>
+        <text name="searchables_vehicle_damage" text="skade"/>
+        <text name="searchables_vehicle_dirty" text="beskidt"/>
+        <text name="searchables_vehicle_helper" text="medhjælper arbejder"/>
+        <text name="searchables_vehicle_parked" text="parkeret"/>
+        <text name="searchables_vehicle_leased" text="leaset"/>
+        <text name="searchables_animalCount" text="%d dyr"/>
+        <text name="searchables_low" text="lav"/>
+        <text name="searchables_prod_makes" text="laver"/>
+        <text name="searchables_prod_missing" text="mangler"/>
+        <text name="searchables_prod_full" text="fuld"/>
+        <text name="searchables_stored" text="opbevaret"/>
+        <text name="searchables_kind_storage" text="Lager"/>
         <text name="searchables_kind_contract" text="Kontrakt"/>
         <text name="searchables_contract" text="kontrakt"/>
         <text name="searchables_contractAvailable" text="ledig"/>

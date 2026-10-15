@@ -174,8 +174,12 @@ Searchables.FILTER_KEYWORDS = {
     {word = "kmh", kind = "speed", prefix = true, suffix = true},
     {word = "kph", kind = "speed", prefix = true, suffix = true},
     {word = "mph", kind = "speed", prefix = true, suffix = true, scale = 1.609344},
-    -- map search: land size
+    -- map search: land size, and vehicle condition in percent
     {word = "ha", kind = "area", prefix = true, suffix = true},
+    -- isWordToo: on its own it is a search word ("fuel" finds vehicles low on fuel)
+    {word = "fuel", kind = "fuel", prefix = true, isWordToo = true},
+    {word = "damage", kind = "damage", prefix = true, isWordToo = true},
+    {word = "dirt", kind = "dirt", prefix = true, isWordToo = true},
 }
 -- Longest first, so "needhp" is not read as "hp" and "kmh" not as "m"
 table.sort(Searchables.FILTER_KEYWORDS, function(a, b)
@@ -214,6 +218,8 @@ end
 function Searchables.normalizeQueryText(text)
     text = Searchables.toLower(text)
     text = text:gsub("€", "$"):gsub("£", "$")
+    -- percentages: fuel<20% is fuel<20
+    text = text:gsub("(%d)%%", "%1")
     text = text:gsub("%s*([<>]=?)%s*", "%1")
     text = text:gsub("%s+=%s*", "=")
     text = text:gsub("(%d[km]?)%s*%-%s*(%d)", "%1-%2")
@@ -317,7 +323,7 @@ function Searchables.isUnfinishedFilter(word)
         return text:match("^[<>=:]*[%d%.,]*[km]?%-?[%d%.,]*[km]?$") ~= nil
     end
     for _, split in ipairs(Searchables.getKeywordSplits(word)) do
-        if isNumberish(split.rest) then
+        if isNumberish(split.rest) and not (split.rest == "" and split.keyword.isWordToo) then
             return true
         end
     end

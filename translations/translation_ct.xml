@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="最高價"/>
         <text name="searchables_kind_sellPoint" text="銷售點"/>
         <text name="searchables_moreResults" text="還有 %d 個"/>
+        <text name="searchables_vehicle_fuel" text="燃料"/>
+        <text name="searchables_vehicle_damage" text="損壞"/>
+        <text name="searchables_vehicle_dirty" text="髒"/>
+        <text name="searchables_vehicle_helper" text="幫手工作中"/>
+        <text name="searchables_vehicle_parked" text="停放"/>
+        <text name="searchables_vehicle_leased" text="租賃"/>
+        <text name="searchables_animalCount" text="%d 隻動物"/>
+        <text name="searchables_low" text="不足"/>
+        <text name="searchables_prod_makes" text="生產"/>
+        <text name="searchables_prod_missing" text="缺少"/>
+        <text name="searchables_prod_full" text="已滿"/>
+        <text name="searchables_stored" text="存放"/>
+        <text name="searchables_kind_storage" text="倉庫"/>
         <text name="searchables_kind_contract" text="合約"/>
         <text name="searchables_contract" text="合約"/>
         <text name="searchables_contractAvailable" text="可接受"/>

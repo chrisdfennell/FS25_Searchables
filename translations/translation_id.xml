@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="harga terbaik"/>
         <text name="searchables_kind_sellPoint" text="Titik penjualan"/>
         <text name="searchables_moreResults" text="+%d lagi"/>
+        <text name="searchables_vehicle_fuel" text="bahan bakar"/>
+        <text name="searchables_vehicle_damage" text="kerusakan"/>
+        <text name="searchables_vehicle_dirty" text="kotor"/>
+        <text name="searchables_vehicle_helper" text="pembantu bekerja"/>
+        <text name="searchables_vehicle_parked" text="diparkir"/>
+        <text name="searchables_vehicle_leased" text="disewa"/>
+        <text name="searchables_animalCount" text="%d hewan"/>
+        <text name="searchables_low" text="rendah"/>
+        <text name="searchables_prod_makes" text="membuat"/>
+        <text name="searchables_prod_missing" text="kurang"/>
+        <text name="searchables_prod_full" text="penuh"/>
+        <text name="searchables_stored" text="disimpan"/>
+        <text name="searchables_kind_storage" text="Gudang"/>
         <text name="searchables_kind_contract" text="Kontrak"/>
         <text name="searchables_contract" text="kontrak"/>
         <text name="searchables_contractAvailable" text="tersedia"/>

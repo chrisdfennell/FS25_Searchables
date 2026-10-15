@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="giá tốt nhất"/>
         <text name="searchables_kind_sellPoint" text="Điểm bán"/>
         <text name="searchables_moreResults" text="+%d nữa"/>
+        <text name="searchables_vehicle_fuel" text="nhiên liệu"/>
+        <text name="searchables_vehicle_damage" text="hư hỏng"/>
+        <text name="searchables_vehicle_dirty" text="bẩn"/>
+        <text name="searchables_vehicle_helper" text="người giúp đang làm"/>
+        <text name="searchables_vehicle_parked" text="đang đỗ"/>
+        <text name="searchables_vehicle_leased" text="thuê"/>
+        <text name="searchables_animalCount" text="%d con vật"/>
+        <text name="searchables_low" text="thấp"/>
+        <text name="searchables_prod_makes" text="sản xuất"/>
+        <text name="searchables_prod_missing" text="thiếu"/>
+        <text name="searchables_prod_full" text="đầy"/>
+        <text name="searchables_stored" text="lưutrữ"/>
+        <text name="searchables_kind_storage" text="Kho"/>
         <text name="searchables_kind_contract" text="Hợp đồng"/>
         <text name="searchables_contract" text="hợpđồng"/>
         <text name="searchables_contractAvailable" text="có sẵn"/>

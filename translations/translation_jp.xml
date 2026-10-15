@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="最高価格"/>
         <text name="searchables_kind_sellPoint" text="販売所"/>
         <text name="searchables_moreResults" text="他 %d 件"/>
+        <text name="searchables_vehicle_fuel" text="燃料"/>
+        <text name="searchables_vehicle_damage" text="損傷"/>
+        <text name="searchables_vehicle_dirty" text="汚れ"/>
+        <text name="searchables_vehicle_helper" text="作業員が作業中"/>
+        <text name="searchables_vehicle_parked" text="駐車中"/>
+        <text name="searchables_vehicle_leased" text="リース"/>
+        <text name="searchables_animalCount" text="%d 頭"/>
+        <text name="searchables_low" text="不足"/>
+        <text name="searchables_prod_makes" text="生産"/>
+        <text name="searchables_prod_missing" text="不足材料"/>
+        <text name="searchables_prod_full" text="満杯"/>
+        <text name="searchables_stored" text="保管"/>
+        <text name="searchables_kind_storage" text="倉庫"/>
         <text name="searchables_kind_contract" text="契約"/>
         <text name="searchables_contract" text="契約"/>
         <text name="searchables_contractAvailable" text="受注可能"/>

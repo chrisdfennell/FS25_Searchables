@@ -17,6 +17,7 @@ WheresMyStuff.KIND_FIELD = "field"
 WheresMyStuff.KIND_FARMLAND = "farmland"
 WheresMyStuff.KIND_SELL_POINT = "sellPoint"
 WheresMyStuff.KIND_CONTRACT = "contract"
+WheresMyStuff.KIND_STORAGE = "storage"
 
 -- Group key for pallets and big bags with nothing in them
 WheresMyStuff.EMPTY_KEY = "EMPTY"
@@ -512,6 +513,7 @@ WheresMyStuff.KIND_SEARCH_WORDS = {
     farmland = "property farmland land plot",
     sellPoint = "sell selling point",
     contract = "contract mission",
+    storage = "stored storage silo",
 }
 
 -- Name of a kind in the player's language ("Bale", "Ballen"), for marker names and searching
@@ -548,6 +550,83 @@ function WheresMyStuff.getLicensePlateWords(vehicle)
     return plate .. " " .. plate:gsub("[%s%-_]", "")
 end
 
+-- Fuel left, damage and dirt in percent (nil where the vehicle has none), whether a helper drives it, whether it is
+-- parked, and whether it is leased. Words to search ("fuel<20", "damaged", "helper", "parked") and a short label.
+WheresMyStuff.DIRTY_PERCENT = 50
+WheresMyStuff.DAMAGED_PERCENT = 30
+WheresMyStuff.LOW_FUEL_PERCENT = 20
+
+function WheresMyStuff.getVehicleFuelPercent(vehicle)
+    if vehicle.getConsumerFillUnitIndex == nil or vehicle.getFillUnitFillLevel == nil then
+        return nil
+    end
+    for _, fillTypeIndex in ipairs({FillType.DIESEL, FillType.ELECTRICCHARGE, FillType.METHANE}) do
+        local fillUnitIndex = fillTypeIndex ~= nil and vehicle:getConsumerFillUnitIndex(fillTypeIndex) or nil
+        if fillUnitIndex ~= nil then
+            local capacity = vehicle:getFillUnitCapacity(fillUnitIndex)
+            if capacity ~= nil and capacity > 0 then
+                return vehicle:getFillUnitFillLevel(fillUnitIndex) / capacity * 100
+            end
+        end
+    end
+    return nil
+end
+
+function WheresMyStuff.getVehicleCondition(vehicle)
+    local condition = {words = "", label = ""}
+    local ok = pcall(function()
+        local words, labels = {}, {}
+        local function add(word, label)
+            table.insert(words, word)
+            if label ~= nil then
+                table.insert(labels, label)
+            end
+        end
+
+        condition.fuel = WheresMyStuff.getVehicleFuelPercent(vehicle)
+        if condition.fuel ~= nil and condition.fuel < WheresMyStuff.LOW_FUEL_PERCENT then
+            local text = Searchables.getText("searchables_vehicle_fuel")
+            add("fuel low " .. text, string.format("%s %d%%", text, math.floor(condition.fuel + 0.5)))
+        end
+
+        if vehicle.getDamageAmount ~= nil then
+            condition.damage = vehicle:getDamageAmount() * 100
+            if condition.damage >= WheresMyStuff.DAMAGED_PERCENT then
+                local text = Searchables.getText("searchables_vehicle_damage")
+                add("damaged damage repair " .. text, string.format("%s %d%%", text, math.floor(condition.damage + 0.5)))
+            end
+        end
+
+        if vehicle.getDirtAmount ~= nil then
+            condition.dirt = vehicle:getDirtAmount() * 100
+            if condition.dirt >= WheresMyStuff.DIRTY_PERCENT then
+                local text = Searchables.getText("searchables_vehicle_dirty")
+                add("dirty wash " .. text, text)
+            end
+        end
+
+        if vehicle.getIsAIActive ~= nil and vehicle:getIsAIActive() then
+            local text = Searchables.getText("searchables_vehicle_helper")
+            add("helper ai worker working " .. text, text)
+        elseif vehicle.getIsMotorStarted ~= nil and not vehicle:getIsMotorStarted()
+            and not (vehicle.getIsControlled ~= nil and vehicle:getIsControlled()) then
+            add("parked idle " .. Searchables.getText("searchables_vehicle_parked"), nil)
+        end
+
+        if vehicle.propertyState == VehiclePropertyState.LEASED then
+            local text = Searchables.getText("searchables_vehicle_leased")
+            add("leased lease " .. text, text)
+        end
+
+        condition.words = table.concat(words, " ")
+        condition.label = table.concat(labels, ", ")
+    end)
+    if not ok then
+        return {words = "", label = ""}
+    end
+    return condition
+end
+
 -- Every vehicle the farm owns or leases, except pallets and big bags. Searchable by name, category, type and plate.
 function WheresMyStuff.scanVehicles(farmId)
     local results = {}
@@ -564,9 +643,14 @@ function WheresMyStuff.scanVehicles(farmId)
             local name = vehicle.getFullName ~= nil and vehicle:getFullName() or tostring(vehicle.typeName)
             local storeItem = vehicle.configFileName ~= nil and g_storeManager:getItemByXMLFilename(vehicle.configFileName) or nil
             local x, _, z = getWorldTranslation(vehicle.rootNode)
+            local condition = WheresMyStuff.getVehicleCondition(vehicle)
+            if condition.label ~= "" then
+                name = string.format("%s (%s)", name, condition.label)
+            end
             local result = WheresMyStuff.newResult(WheresMyStuff.KIND_VEHICLE, name, WheresMyStuff.getStoreCategoryTitle(storeItem),
-                vehicle.rootNode, x, z, tostring(vehicle.typeName) .. " " .. WheresMyStuff.getLicensePlateWords(vehicle))
+                vehicle.rootNode, x, z, string.format("%s %s %s", tostring(vehicle.typeName), WheresMyStuff.getLicensePlateWords(vehicle), condition.words))
             result.storeItem = storeItem
+            result.fuel, result.damage, result.dirt = condition.fuel, condition.damage, condition.dirt
             table.insert(results, result)
         end
     end
@@ -594,6 +678,166 @@ function WheresMyStuff.scanStock(farmId)
     return results
 end
 
+-- ---------------------------------------------------------------------------------------------
+-- Animals and production
+-- ---------------------------------------------------------------------------------------------
+
+-- Below this share a food, water or straw bar counts as low (above 1 - this for bars where full is bad, like dirt)
+WheresMyStuff.LOW_RATIO = 0.2
+-- An output storage this full counts as full
+WheresMyStuff.FULL_RATIO = 0.95
+
+-- Pens: number of animals and which conditions are low, from the same lists the game's Animals page shows
+function WheresMyStuff.getHusbandryStatus(placeable, words, labels)
+    if placeable.spec_husbandryAnimals == nil then
+        return
+    end
+    if placeable.getNumOfAnimals ~= nil then
+        local count = placeable:getNumOfAnimals() or 0
+        table.insert(labels, string.format(Searchables.getText("searchables_animalCount"), count))
+    end
+
+    local low = {}
+    local infos = {}
+    for _, getter in ipairs({"getConditionInfos", "getFoodInfos"}) do
+        if placeable[getter] ~= nil then
+            for _, info in ipairs(placeable[getter](placeable) or {}) do
+                table.insert(infos, info)
+            end
+        end
+    end
+    for _, info in ipairs(infos) do
+        local ratio = info.ratio
+        if type(ratio) == "number" and info.title ~= nil then
+            local isLow = (info.invertedBar and ratio > 1 - WheresMyStuff.LOW_RATIO) or (not info.invertedBar and ratio < WheresMyStuff.LOW_RATIO)
+            if isLow then
+                table.insert(low, tostring(info.title))
+            end
+        end
+    end
+    if #low > 0 then
+        local text = Searchables.getText("searchables_low")
+        table.insert(words, string.format("low needs care %s %s", text, table.concat(low, " ")))
+        table.insert(labels, string.format("%s: %s", text, table.concat(low, ", ")))
+    end
+end
+
+-- Production points: what they make and need, which inputs are missing and which outputs are full
+function WheresMyStuff.getProductionStatus(placeable, words, labels)
+    local spec = placeable.spec_productionPoint
+    local productionPoint = spec ~= nil and spec.productionPoint or nil
+    if productionPoint == nil or productionPoint.productions == nil or productionPoint.storage == nil then
+        return
+    end
+    local storage = productionPoint.storage
+    local function title(fillTypeIndex)
+        local fillType = g_fillTypeManager:getFillTypeByIndex(fillTypeIndex)
+        return fillType ~= nil and tostring(fillType.title) or "?"
+    end
+
+    local makes, needs, missing, full = {}, {}, {}, {}
+    local seen = {}
+    for _, production in pairs(productionPoint.productions) do
+        for _, input in pairs(production.inputs or {}) do
+            if not seen["in" .. input.type] then
+                seen["in" .. input.type] = true
+                table.insert(needs, title(input.type))
+                if storage:getFillLevel(input.type) < (input.amount or 0) then
+                    table.insert(missing, title(input.type))
+                end
+            end
+        end
+        for _, output in pairs(production.outputs or {}) do
+            if not seen["out" .. output.type] then
+                seen["out" .. output.type] = true
+                table.insert(makes, title(output.type))
+                local capacity = storage:getCapacity(output.type) or 0
+                if capacity > 0 and storage:getFillLevel(output.type) >= capacity * WheresMyStuff.FULL_RATIO then
+                    table.insert(full, title(output.type))
+                end
+            end
+        end
+    end
+
+    local makesText, missingText, fullText = Searchables.getText("searchables_prod_makes"),
+        Searchables.getText("searchables_prod_missing"), Searchables.getText("searchables_prod_full")
+    table.insert(words, string.format("makes production %s %s needs %s", makesText, table.concat(makes, " "), table.concat(needs, " ")))
+    if #makes > 0 then
+        table.insert(labels, string.format("%s %s", makesText, table.concat(makes, ", ")))
+    end
+    if #missing > 0 then
+        table.insert(words, string.format("missing %s", missingText))
+        table.insert(labels, string.format("%s %s", missingText, table.concat(missing, ", ")))
+    end
+    if #full > 0 then
+        table.insert(words, string.format("full %s", fullText))
+        table.insert(labels, string.format("%s %s", fullText, table.concat(full, ", ")))
+    end
+end
+
+-- Words and a label for a building: animals needing care, production status. Empty for other buildings.
+function WheresMyStuff.getBuildingStatus(placeable)
+    local words, labels = {}, {}
+    local ok = pcall(function()
+        WheresMyStuff.getHusbandryStatus(placeable, words, labels)
+        WheresMyStuff.getProductionStatus(placeable, words, labels)
+    end)
+    if not ok then
+        return {words = "", label = ""}
+    end
+    return {words = table.concat(words, " "), label = table.concat(labels, "; ")}
+end
+
+-- ---------------------------------------------------------------------------------------------
+-- Stored goods
+-- ---------------------------------------------------------------------------------------------
+
+-- The word that asks where goods are stored ("stored wheat"), in English or the player's language, or nil
+function WheresMyStuff.findStoredWord(words)
+    local translated = Searchables.toLower(Searchables.getText("searchables_stored"))
+    for i, word in ipairs(words) do
+        if word == "stored" or word == "storage" or word == translated then
+            return i
+        end
+    end
+    return nil
+end
+
+-- Every storage of the farm (silos, production and animal storages) holding goods named by the words, with how much
+function WheresMyStuff.searchStorages(words, farmId)
+    local storageSystem = g_currentMission ~= nil and g_currentMission.storageSystem or nil
+    if storageSystem == nil or storageSystem.getStorages == nil then
+        return {}
+    end
+    local fillTypes = WheresMyStuff.findFillTypes(words)
+
+    local results = {}
+    for _, storage in pairs(storageSystem:getStorages()) do
+        local isOurs = storage.getOwnerFarmId ~= nil and storage:getOwnerFarmId() == farmId
+        if isOurs and storage.getFillLevels ~= nil then
+            local station = (storage.unloadingStations ~= nil and next(storage.unloadingStations) ~= nil and select(2, next(storage.unloadingStations)))
+                or (storage.loadingStations ~= nil and next(storage.loadingStations) ~= nil and select(2, next(storage.loadingStations))) or nil
+            local placeable = station ~= nil and station.owningPlaceable or nil
+            local node = (storage.rootNode ~= nil and storage.rootNode ~= 0 and storage.rootNode) or (placeable ~= nil and placeable.rootNode) or nil
+            local storageName = (placeable ~= nil and placeable:getName()) or Searchables.getText("searchables_kind_storage")
+            if node ~= nil then
+                for fillTypeIndex, fillLevel in pairs(storage:getFillLevels()) do
+                    local fillType = fillTypes[fillTypeIndex]
+                    if fillType ~= nil and fillLevel > 0.5 then
+                        local x, _, z = getWorldTranslation(node)
+                        local name = string.format("%s: %s %s l", storageName, tostring(fillType.title), WheresMyStuff.formatNumber(fillLevel))
+                        local result = WheresMyStuff.newResult(WheresMyStuff.KIND_STORAGE, name, Searchables.getText("searchables_kind_storage"),
+                            node, x, z, tostring(fillType.name))
+                        result.fillLevel = fillLevel
+                        table.insert(results, result)
+                    end
+                end
+            end
+        end
+    end
+    return results
+end
+
 -- Buildings and other placeables of the farm, plus public ones like selling points
 function WheresMyStuff.scanBuildings(farmId)
     local results = {}
@@ -608,8 +852,13 @@ function WheresMyStuff.scanBuildings(farmId)
         if placeable.rootNode ~= nil and (ownerFarmId == farmId or ownerFarmId == AccessHandler.EVERYONE) then
             local name = placeable:getName() or ""
             local x, _, z = getWorldTranslation(placeable.rootNode)
+            -- animal pens and production points tell what they need
+            local status = WheresMyStuff.getBuildingStatus(placeable)
+            if status.label ~= "" then
+                name = string.format("%s (%s)", name, status.label)
+            end
             local result = WheresMyStuff.newResult(WheresMyStuff.KIND_BUILDING, name, WheresMyStuff.getStoreCategoryTitle(placeable.storeItem),
-                placeable.rootNode, x, z, tostring(placeable.typeName))
+                placeable.rootNode, x, z, tostring(placeable.typeName) .. " " .. status.words)
             result.storeItem = placeable.storeItem
             table.insert(results, result)
         end
@@ -888,6 +1137,12 @@ function WheresMyStuff.getResultValueRange(result, kind)
         return result.areaHa, result.areaHa
     elseif kind == "capacity" and result.fillLevel ~= nil then
         return result.fillLevel, result.fillLevel
+    elseif (kind == "fuel" or kind == "damage" or kind == "dirt") then
+        local value = result[kind]
+        if value == nil then
+            return nil
+        end
+        return value, value
     elseif result.storeItem ~= nil then
         return Searchables.getStoreItemValueRange(result.storeItem, kind)
     end
@@ -980,6 +1235,19 @@ function WheresMyStuff.search(text, farmId)
     if sellIndex ~= nil then
         table.remove(words, sellIndex)
         return WheresMyStuff.searchSellPoints(words)
+    end
+
+    -- "stored wheat": where the farm keeps it, with how much ("stored wheat l>10000")
+    local storedIndex = WheresMyStuff.findStoredWord(words)
+    if storedIndex ~= nil then
+        table.remove(words, storedIndex)
+        local stored = {}
+        for _, result in ipairs(WheresMyStuff.searchStorages(words, farmId)) do
+            if WheresMyStuff.matchesSearch(result, {}, filters) then
+                table.insert(stored, result)
+            end
+        end
+        return stored
     end
 
     -- contracts only when asked for, so "harvest" finds fields ready to harvest, not every harvest contract

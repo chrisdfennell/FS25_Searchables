@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="最高价"/>
         <text name="searchables_kind_sellPoint" text="销售点"/>
         <text name="searchables_moreResults" text="还有 %d 个"/>
+        <text name="searchables_vehicle_fuel" text="燃料"/>
+        <text name="searchables_vehicle_damage" text="损坏"/>
+        <text name="searchables_vehicle_dirty" text="脏"/>
+        <text name="searchables_vehicle_helper" text="帮手工作中"/>
+        <text name="searchables_vehicle_parked" text="停放"/>
+        <text name="searchables_vehicle_leased" text="租赁"/>
+        <text name="searchables_animalCount" text="%d 只动物"/>
+        <text name="searchables_low" text="不足"/>
+        <text name="searchables_prod_makes" text="生产"/>
+        <text name="searchables_prod_missing" text="缺少"/>
+        <text name="searchables_prod_full" text="已满"/>
+        <text name="searchables_stored" text="存储"/>
+        <text name="searchables_kind_storage" text="仓库"/>
         <text name="searchables_kind_contract" text="合同"/>
         <text name="searchables_contract" text="合同"/>
         <text name="searchables_contractAvailable" text="可接受"/>

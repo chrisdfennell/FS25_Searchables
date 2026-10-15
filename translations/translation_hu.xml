@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="legjobb ár"/>
         <text name="searchables_kind_sellPoint" text="Eladási pont"/>
         <text name="searchables_moreResults" text="+%d további"/>
+        <text name="searchables_vehicle_fuel" text="üzemanyag"/>
+        <text name="searchables_vehicle_damage" text="sérülés"/>
+        <text name="searchables_vehicle_dirty" text="koszos"/>
+        <text name="searchables_vehicle_helper" text="segítő dolgozik"/>
+        <text name="searchables_vehicle_parked" text="parkol"/>
+        <text name="searchables_vehicle_leased" text="lízingelt"/>
+        <text name="searchables_animalCount" text="%d állat"/>
+        <text name="searchables_low" text="alacsony"/>
+        <text name="searchables_prod_makes" text="gyárt"/>
+        <text name="searchables_prod_missing" text="hiányzik"/>
+        <text name="searchables_prod_full" text="tele"/>
+        <text name="searchables_stored" text="tárolt"/>
+        <text name="searchables_kind_storage" text="Tároló"/>
         <text name="searchables_kind_contract" text="Megbízás"/>
         <text name="searchables_contract" text="megbízás"/>
         <text name="searchables_contractAvailable" text="elérhető"/>

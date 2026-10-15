@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="najlepsza cena"/>
         <text name="searchables_kind_sellPoint" text="Punkt sprzedaży"/>
         <text name="searchables_moreResults" text="+%d więcej"/>
+        <text name="searchables_vehicle_fuel" text="paliwo"/>
+        <text name="searchables_vehicle_damage" text="uszkodzenia"/>
+        <text name="searchables_vehicle_dirty" text="brudny"/>
+        <text name="searchables_vehicle_helper" text="pomocnik pracuje"/>
+        <text name="searchables_vehicle_parked" text="zaparkowany"/>
+        <text name="searchables_vehicle_leased" text="leasing"/>
+        <text name="searchables_animalCount" text="%d zwierząt"/>
+        <text name="searchables_low" text="niski"/>
+        <text name="searchables_prod_makes" text="produkuje"/>
+        <text name="searchables_prod_missing" text="brak"/>
+        <text name="searchables_prod_full" text="pełny"/>
+        <text name="searchables_stored" text="przechowywane"/>
+        <text name="searchables_kind_storage" text="Magazyn"/>
         <text name="searchables_kind_contract" text="Zlecenie"/>
         <text name="searchables_contract" text="zlecenie"/>
         <text name="searchables_contractAvailable" text="dostępne"/>

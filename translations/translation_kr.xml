@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="최고가"/>
         <text name="searchables_kind_sellPoint" text="판매처"/>
         <text name="searchables_moreResults" text="%d개 더"/>
+        <text name="searchables_vehicle_fuel" text="연료"/>
+        <text name="searchables_vehicle_damage" text="손상"/>
+        <text name="searchables_vehicle_dirty" text="더러움"/>
+        <text name="searchables_vehicle_helper" text="일꾼 작업 중"/>
+        <text name="searchables_vehicle_parked" text="주차됨"/>
+        <text name="searchables_vehicle_leased" text="임대"/>
+        <text name="searchables_animalCount" text="%d마리"/>
+        <text name="searchables_low" text="부족"/>
+        <text name="searchables_prod_makes" text="생산"/>
+        <text name="searchables_prod_missing" text="부족함"/>
+        <text name="searchables_prod_full" text="가득"/>
+        <text name="searchables_stored" text="보관"/>
+        <text name="searchables_kind_storage" text="저장고"/>
         <text name="searchables_kind_contract" text="계약"/>
         <text name="searchables_contract" text="계약"/>
         <text name="searchables_contractAvailable" text="수주 가능"/>

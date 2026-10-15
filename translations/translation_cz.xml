@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="nejlepší cena"/>
         <text name="searchables_kind_sellPoint" text="Výkupní místo"/>
         <text name="searchables_moreResults" text="+%d dalších"/>
+        <text name="searchables_vehicle_fuel" text="palivo"/>
+        <text name="searchables_vehicle_damage" text="poškození"/>
+        <text name="searchables_vehicle_dirty" text="špinavý"/>
+        <text name="searchables_vehicle_helper" text="pracuje pomocník"/>
+        <text name="searchables_vehicle_parked" text="zaparkováno"/>
+        <text name="searchables_vehicle_leased" text="na leasing"/>
+        <text name="searchables_animalCount" text="%d zvířat"/>
+        <text name="searchables_low" text="nízké"/>
+        <text name="searchables_prod_makes" text="vyrábí"/>
+        <text name="searchables_prod_missing" text="chybí"/>
+        <text name="searchables_prod_full" text="plné"/>
+        <text name="searchables_stored" text="uskladněno"/>
+        <text name="searchables_kind_storage" text="Sklad"/>
         <text name="searchables_kind_contract" text="Zakázka"/>
         <text name="searchables_contract" text="zakázka"/>
         <text name="searchables_contractAvailable" text="dostupná"/>

@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="beste prijs"/>
         <text name="searchables_kind_sellPoint" text="Verkooppunt"/>
         <text name="searchables_moreResults" text="+%d meer"/>
+        <text name="searchables_vehicle_fuel" text="brandstof"/>
+        <text name="searchables_vehicle_damage" text="schade"/>
+        <text name="searchables_vehicle_dirty" text="vuil"/>
+        <text name="searchables_vehicle_helper" text="helper aan het werk"/>
+        <text name="searchables_vehicle_parked" text="geparkeerd"/>
+        <text name="searchables_vehicle_leased" text="geleaset"/>
+        <text name="searchables_animalCount" text="%d dieren"/>
+        <text name="searchables_low" text="laag"/>
+        <text name="searchables_prod_makes" text="maakt"/>
+        <text name="searchables_prod_missing" text="ontbreekt"/>
+        <text name="searchables_prod_full" text="vol"/>
+        <text name="searchables_stored" text="opgeslagen"/>
+        <text name="searchables_kind_storage" text="Opslag"/>
         <text name="searchables_kind_contract" text="Opdracht"/>
         <text name="searchables_contract" text="opdracht"/>
         <text name="searchables_contractAvailable" text="beschikbaar"/>

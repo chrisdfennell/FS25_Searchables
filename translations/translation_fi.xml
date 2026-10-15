@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="paras hinta"/>
         <text name="searchables_kind_sellPoint" text="Myyntipiste"/>
         <text name="searchables_moreResults" text="+%d lisää"/>
+        <text name="searchables_vehicle_fuel" text="polttoaine"/>
+        <text name="searchables_vehicle_damage" text="vauriot"/>
+        <text name="searchables_vehicle_dirty" text="likainen"/>
+        <text name="searchables_vehicle_helper" text="apulainen töissä"/>
+        <text name="searchables_vehicle_parked" text="pysäköity"/>
+        <text name="searchables_vehicle_leased" text="liisattu"/>
+        <text name="searchables_animalCount" text="%d eläintä"/>
+        <text name="searchables_low" text="vähissä"/>
+        <text name="searchables_prod_makes" text="valmistaa"/>
+        <text name="searchables_prod_missing" text="puuttuu"/>
+        <text name="searchables_prod_full" text="täynnä"/>
+        <text name="searchables_stored" text="varastoitu"/>
+        <text name="searchables_kind_storage" text="Varasto"/>
         <text name="searchables_kind_contract" text="Sopimus"/>
         <text name="searchables_contract" text="sopimus"/>
         <text name="searchables_contractAvailable" text="saatavilla"/>

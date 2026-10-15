@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="en iyi fiyat"/>
         <text name="searchables_kind_sellPoint" text="Satış noktası"/>
         <text name="searchables_moreResults" text="+%d daha"/>
+        <text name="searchables_vehicle_fuel" text="yakıt"/>
+        <text name="searchables_vehicle_damage" text="hasar"/>
+        <text name="searchables_vehicle_dirty" text="kirli"/>
+        <text name="searchables_vehicle_helper" text="yardımcı çalışıyor"/>
+        <text name="searchables_vehicle_parked" text="park halinde"/>
+        <text name="searchables_vehicle_leased" text="kiralık"/>
+        <text name="searchables_animalCount" text="%d hayvan"/>
+        <text name="searchables_low" text="düşük"/>
+        <text name="searchables_prod_makes" text="üretir"/>
+        <text name="searchables_prod_missing" text="eksik"/>
+        <text name="searchables_prod_full" text="dolu"/>
+        <text name="searchables_stored" text="depolanmış"/>
+        <text name="searchables_kind_storage" text="Depo"/>
         <text name="searchables_kind_contract" text="Sözleşme"/>
         <text name="searchables_contract" text="sözleşme"/>
         <text name="searchables_contractAvailable" text="mevcut"/>

@@ -37,6 +37,19 @@
         <text name="searchables_bestPrice" text="лучшая цена"/>
         <text name="searchables_kind_sellPoint" text="Пункт продажи"/>
         <text name="searchables_moreResults" text="ещё %d"/>
+        <text name="searchables_vehicle_fuel" text="топливо"/>
+        <text name="searchables_vehicle_damage" text="повреждения"/>
+        <text name="searchables_vehicle_dirty" text="грязный"/>
+        <text name="searchables_vehicle_helper" text="работает помощник"/>
+        <text name="searchables_vehicle_parked" text="стоит"/>
+        <text name="searchables_vehicle_leased" text="в лизинге"/>
+        <text name="searchables_animalCount" text="%d животных"/>
+        <text name="searchables_low" text="мало"/>
+        <text name="searchables_prod_makes" text="производит"/>
+        <text name="searchables_prod_missing" text="не хватает"/>
+        <text name="searchables_prod_full" text="полно"/>
+        <text name="searchables_stored" text="хранится"/>
+        <text name="searchables_kind_storage" text="Склад"/>
         <text name="searchables_kind_contract" text="Контракт"/>
         <text name="searchables_contract" text="контракт"/>
         <text name="searchables_contractAvailable" text="доступен"/>
