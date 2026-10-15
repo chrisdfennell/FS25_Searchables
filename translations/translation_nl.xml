@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="verkopen"/>
         <text name="searchables_bestPrice" text="beste prijs"/>
         <text name="searchables_kind_sellPoint" text="Verkooppunt"/>
+        <text name="searchables_kind_contract" text="Opdracht"/>
+        <text name="searchables_contract" text="opdracht"/>
+        <text name="searchables_contractAvailable" text="beschikbaar"/>
+        <text name="searchables_contractActive" text="actief"/>
+        <text name="searchables_forSale" text="te koop"/>
         <text name="input_SEARCHABLES_SEARCH" text="Zoeken"/>
 
         <!-- in-game help -->

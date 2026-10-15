@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="prodat"/>
         <text name="searchables_bestPrice" text="nejlepší cena"/>
         <text name="searchables_kind_sellPoint" text="Výkupní místo"/>
+        <text name="searchables_kind_contract" text="Zakázka"/>
+        <text name="searchables_contract" text="zakázka"/>
+        <text name="searchables_contractAvailable" text="dostupná"/>
+        <text name="searchables_contractActive" text="aktivní"/>
+        <text name="searchables_forSale" text="na prodej"/>
         <text name="input_SEARCHABLES_SEARCH" text="Hledat"/>
 
         <!-- in-game help -->

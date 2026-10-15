@@ -18,6 +18,7 @@ WheresMyStuffHotspot.COLORS = {
     field = {0.30, 0.95, 0.95, 1},
     farmland = {0.75, 1.00, 0.30, 1},
     sellPoint = {1.00, 0.40, 0.40, 1},
+    contract = {0.70, 0.45, 1.00, 1},
 }
 
 function WheresMyStuffHotspot.getColor(kind)

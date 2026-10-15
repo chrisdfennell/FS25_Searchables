@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="jual"/>
         <text name="searchables_bestPrice" text="harga terbaik"/>
         <text name="searchables_kind_sellPoint" text="Titik penjualan"/>
+        <text name="searchables_kind_contract" text="Kontrak"/>
+        <text name="searchables_contract" text="kontrak"/>
+        <text name="searchables_contractAvailable" text="tersedia"/>
+        <text name="searchables_contractActive" text="aktif"/>
+        <text name="searchables_forSale" text="dijual"/>
         <text name="input_SEARCHABLES_SEARCH" text="Cari"/>
 
         <!-- in-game help -->

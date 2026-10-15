@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="vendre"/>
         <text name="searchables_bestPrice" text="meilleur prix"/>
         <text name="searchables_kind_sellPoint" text="Point de vente"/>
+        <text name="searchables_kind_contract" text="Contrat"/>
+        <text name="searchables_contract" text="contrat"/>
+        <text name="searchables_contractAvailable" text="disponible"/>
+        <text name="searchables_contractActive" text="en cours"/>
+        <text name="searchables_forSale" text="à vendre"/>
         <text name="input_SEARCHABLES_SEARCH" text="Rechercher"/>
 
         <!-- in-game help -->

@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="bán"/>
         <text name="searchables_bestPrice" text="giá tốt nhất"/>
         <text name="searchables_kind_sellPoint" text="Điểm bán"/>
+        <text name="searchables_kind_contract" text="Hợp đồng"/>
+        <text name="searchables_contract" text="hợpđồng"/>
+        <text name="searchables_contractAvailable" text="có sẵn"/>
+        <text name="searchables_contractActive" text="đang làm"/>
+        <text name="searchables_forSale" text="đang bán"/>
         <text name="input_SEARCHABLES_SEARCH" text="Tìm kiếm"/>
 
         <!-- in-game help -->

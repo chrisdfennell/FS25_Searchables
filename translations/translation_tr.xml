@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="sat"/>
         <text name="searchables_bestPrice" text="en iyi fiyat"/>
         <text name="searchables_kind_sellPoint" text="Satış noktası"/>
+        <text name="searchables_kind_contract" text="Sözleşme"/>
+        <text name="searchables_contract" text="sözleşme"/>
+        <text name="searchables_contractAvailable" text="mevcut"/>
+        <text name="searchables_contractActive" text="aktif"/>
+        <text name="searchables_forSale" text="satılık"/>
         <text name="input_SEARCHABLES_SEARCH" text="Ara"/>
 
         <!-- in-game help -->

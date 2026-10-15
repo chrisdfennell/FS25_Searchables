@@ -174,6 +174,8 @@ Searchables.FILTER_KEYWORDS = {
     {word = "kmh", kind = "speed", prefix = true, suffix = true},
     {word = "kph", kind = "speed", prefix = true, suffix = true},
     {word = "mph", kind = "speed", prefix = true, suffix = true, scale = 1.609344},
+    -- map search: land size
+    {word = "ha", kind = "area", prefix = true, suffix = true},
 }
 -- Longest first, so "needhp" is not read as "hp" and "kmh" not as "m"
 table.sort(Searchables.FILTER_KEYWORDS, function(a, b)

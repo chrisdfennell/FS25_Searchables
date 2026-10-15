@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="sælg"/>
         <text name="searchables_bestPrice" text="bedste pris"/>
         <text name="searchables_kind_sellPoint" text="Salgssted"/>
+        <text name="searchables_kind_contract" text="Kontrakt"/>
+        <text name="searchables_contract" text="kontrakt"/>
+        <text name="searchables_contractAvailable" text="ledig"/>
+        <text name="searchables_contractActive" text="aktiv"/>
+        <text name="searchables_forSale" text="til salg"/>
         <text name="input_SEARCHABLES_SEARCH" text="Søg"/>
 
         <!-- in-game help -->

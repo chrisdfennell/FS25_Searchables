@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="出售"/>
         <text name="searchables_bestPrice" text="最高價"/>
         <text name="searchables_kind_sellPoint" text="銷售點"/>
+        <text name="searchables_kind_contract" text="合約"/>
+        <text name="searchables_contract" text="合約"/>
+        <text name="searchables_contractAvailable" text="可接受"/>
+        <text name="searchables_contractActive" text="進行中"/>
+        <text name="searchables_forSale" text="出售中"/>
         <text name="input_SEARCHABLES_SEARCH" text="搜尋"/>
 
         <!-- in-game help -->

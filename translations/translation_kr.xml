@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="판매"/>
         <text name="searchables_bestPrice" text="최고가"/>
         <text name="searchables_kind_sellPoint" text="판매처"/>
+        <text name="searchables_kind_contract" text="계약"/>
+        <text name="searchables_contract" text="계약"/>
+        <text name="searchables_contractAvailable" text="수주 가능"/>
+        <text name="searchables_contractActive" text="진행 중"/>
+        <text name="searchables_forSale" text="판매 중"/>
         <text name="input_SEARCHABLES_SEARCH" text="검색"/>
 
         <!-- in-game help -->

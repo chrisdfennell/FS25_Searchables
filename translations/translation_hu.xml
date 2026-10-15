@@ -36,6 +36,11 @@
         <text name="searchables_sell" text="eladás"/>
         <text name="searchables_bestPrice" text="legjobb ár"/>
         <text name="searchables_kind_sellPoint" text="Eladási pont"/>
+        <text name="searchables_kind_contract" text="Megbízás"/>
+        <text name="searchables_contract" text="megbízás"/>
+        <text name="searchables_contractAvailable" text="elérhető"/>
+        <text name="searchables_contractActive" text="aktív"/>
+        <text name="searchables_forSale" text="eladó"/>
         <text name="input_SEARCHABLES_SEARCH" text="Keresés"/>
 
         <!-- in-game help -->

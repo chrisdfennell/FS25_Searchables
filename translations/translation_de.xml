@@ -39,6 +39,11 @@
         <text name="searchables_sell" text="verkaufen"/>
         <text name="searchables_bestPrice" text="bester Preis"/>
         <text name="searchables_kind_sellPoint" text="Verkaufsstelle"/>
+        <text name="searchables_kind_contract" text="Auftrag"/>
+        <text name="searchables_contract" text="auftrag"/>
+        <text name="searchables_contractAvailable" text="verfügbar"/>
+        <text name="searchables_contractActive" text="aktiv"/>
+        <text name="searchables_forSale" text="zu verkaufen"/>
 
         <!-- Steuerung -->
         <text name="input_SEARCHABLES_SEARCH" text="Suchen"/>
