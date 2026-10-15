@@ -94,6 +94,61 @@ Type these in the shop search box, alone or together with words. Every filter wo
 | **Ctrl+F**, or **right stick click** on a controller | Jump into the search box on the shop, construction or map screen (opens the on-screen keyboard on Steam Deck / Big Picture) |
 | Go back, switch tabs or close the screen (shop/construction) | The search clears |
 
+## Cheat sheet
+
+Every special word and filter in one place. Mix them with normal words, e.g. `fendt hp>300 $<400k` or `sell wheat`.
+
+**Works everywhere (shop, construction, map)**
+
+| Type | Does |
+|---|---|
+| `-word` | Leaves out matches containing the word: `-mod`, `-trailer` |
+| `$<50k`, `price>100000`, `$100k-200k`, `$144,500` | Price |
+| `affordable` | Only what your farm can pay for right now |
+
+**Shop**
+
+| Type | Does |
+|---|---|
+| `mod` | Only mod items (`-mod` hides them) |
+| `used` | Second-hand items in the sales list |
+| `hp>200`, `200-300hp`, `300ps` | Horsepower |
+| `needhp<150` | Power a tool needs |
+| `width>9`, `6-9m` | Working width |
+| `l>30000`, `cap 20000-40000` | Capacity |
+| `t<10`, `weight 5-8` | Weight |
+| `kph>50`, `mph>30` | Speed |
+
+**Map: what to find**
+
+| Type | Marks |
+|---|---|
+| a name, brand or plate: `fendt`, `ab123` | Your vehicles |
+| `wool`, `round bale`, `pallet`, `big bag` | Bales, pallets and big bags |
+| a building name: `silo`, `cow barn` | Your buildings |
+| a number: `178` | Field or property 178 |
+| `owned` | Your own fields and properties |
+| a farmer's name: `huber` | The land an NPC farmer still owns |
+
+**Map: special words**
+
+| Type | Marks |
+|---|---|
+| `sell wheat` | Selling points that buy wheat, with price; best price marked |
+| `stored wheat` | Your storages holding wheat, with how much |
+| `for sale` | Land you can buy, with price and size (`for sale $<100k ha>5`) |
+| `contract` | Fields with a contract (`contract harvest`, `contract huber`, `contract $>10k`) |
+| `wheat`, `ready`, `growing`, `withered`, `harvested` | Fields by crop and growth |
+| `lime`, `fertilize`, `plow`, `roll`, `weeds`, `stones` | Fields that need that work |
+| `fuel`, `damaged`, `dirty` | Vehicles needing attention (`fuel<20`, `damage>50`, `dirt>50`) |
+| `helper`, `parked`, `leased` | Vehicles by what they're doing |
+| `low` | Animal pens running low on food, water, straw or cleanliness (`cows low`) |
+| `missing`, `full` | Production points missing inputs or with full outputs |
+| `l>1000` | Pallets, bales and storages holding more than 1000 l (`wool l>1000`) |
+| `ha>5` | Fields and properties bigger than 5 ha |
+
+Special words also work in your game's language, e.g. `verkaufen weizen` or `vendre blé`.
+
 ## In-game help
 
 Everything above is also in the game: pause menu → **Help** → **Searchables**.
