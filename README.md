@@ -113,7 +113,13 @@ Supported. Everything runs on each player's own screen, so nobody else sees your
 
 ## Console commands
 
-These are for when the developer console is enabled.
+You don't need these to use the mod; they're extras for checking things and troubleshooting. They only work with the game's developer console switched on:
+
+1. **Close the game.** It rewrites its settings when it exits and would undo the change.
+2. Open `Documents\My Games\FarmingSimulator2025\game.xml` in a text editor.
+3. Find `<controls>false</controls>` (inside `<development>`) and change it to `<controls>true</controls>`. Save.
+4. Start the game and load your savegame. Press **~** (the key left of 1) **twice**: the first press opens chat, the second opens the console.
+5. Type a command and press Enter. Capitals matter: `wmsField 33`, not `wmsfield 33`.
 
 | Command | What it does |
 |---|---|
