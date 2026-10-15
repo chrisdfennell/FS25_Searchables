@@ -32,6 +32,14 @@ WheresMyStuffMapSearch.MIN_MAP_WIDTH = 0.4
 -- The box hides when its map has not been updated for this long (the map was closed or hidden)
 WheresMyStuffMapSearch.HIDE_AFTER = 250
 
+-- Results list under the box: nearest matches first, click to pan the map there, double-click to also navigate there
+WheresMyStuffMapSearch.LIST_ROWS = 8
+WheresMyStuffMapSearch.LIST_ROW_HEIGHT = 24
+WheresMyStuffMapSearch.LIST_TEXT_SIZE = 15
+WheresMyStuffMapSearch.LIST_PADDING_X = 10
+WheresMyStuffMapSearch.LIST_GAP = 6
+WheresMyStuffMapSearch.DOUBLE_CLICK_TIME = 400
+
 -- One search box per frame or screen that shows a map: owner -> box
 WheresMyStuffMapSearch.boxes = {}
 
@@ -197,6 +205,107 @@ function WheresMyStuffMapSearch.drawArrows(ingameMap)
 end
 
 -- ---------------------------------------------------------------------------------------------
+-- Results list
+-- ---------------------------------------------------------------------------------------------
+
+-- Distance from the camera to a hotspot as text, or ""
+function WheresMyStuffMapSearch.getDistanceText(hotspot, viewerX, viewerZ)
+    if viewerX == nil then
+        return ""
+    end
+    local x, z = hotspot:getWorldPosition()
+    local distance = MathUtil.vector2Length(x - viewerX, z - viewerZ)
+    if distance >= 1000 then
+        return string.format("%.1f km", distance / 1000)
+    end
+    return string.format("%d m", math.floor(distance + 0.5))
+end
+
+-- Draws the nearest results under the search box and remembers where each row is for clicks
+function WheresMyStuffMapSearch.drawResultsList(box)
+    box.listRows = {}
+    local hotspots = WheresMyStuff.hotspots
+    if WheresMyStuff.searchQuery == nil or #hotspots == 0 or not box.root:getIsVisible() then
+        return
+    end
+
+    local width = box:getSize()
+    local _, rowHeight = getNormalizedScreenValues(0, WheresMyStuffMapSearch.LIST_ROW_HEIGHT)
+    local _, textSize = getNormalizedScreenValues(0, WheresMyStuffMapSearch.LIST_TEXT_SIZE)
+    local padX = getNormalizedScreenValues(WheresMyStuffMapSearch.LIST_PADDING_X, 0)
+    local _, gap = getNormalizedScreenValues(0, WheresMyStuffMapSearch.LIST_GAP)
+
+    local count = math.min(#hotspots, WheresMyStuffMapSearch.LIST_ROWS)
+    local hasMore = #hotspots > count
+    local rows = count + (hasMore and 1 or 0)
+    local x = box.root.absPosition[1]
+    local top = box.root.absPosition[2] - gap
+    drawFilledRect(x, top - rows * rowHeight, width, rows * rowHeight, 0, 0, 0, 0.75)
+
+    local viewerX, viewerZ = WheresMyStuff.getViewerPosition()
+    local textY = (rowHeight - textSize) * 0.5 + textSize * 0.15
+    for i = 1, count do
+        local hotspot = hotspots[i]
+        local y = top - i * rowHeight
+        local isHovered = box.hoveredRow == i
+        if isHovered then
+            drawFilledRect(x, y, width, rowHeight, 1, 1, 1, 0.12)
+        end
+
+        local color = WheresMyStuffHotspot.getColor(hotspot.kind)
+        drawFilledRect(x, y + rowHeight * 0.2, padX * 0.35, rowHeight * 0.6, color[1], color[2], color[3], 1)
+
+        local distance = WheresMyStuffMapSearch.getDistanceText(hotspot, viewerX, viewerZ)
+        setTextAlignment(RenderText.ALIGN_RIGHT)
+        setTextColor(0.7, 0.7, 0.7, 1)
+        renderText(x + width - padX, y + textY, textSize, distance)
+        local distanceWidth = getTextWidth(textSize, distance) + padX
+
+        setTextAlignment(RenderText.ALIGN_LEFT)
+        if isHovered then
+            setTextColor(1, 0.85, 0.1, 1)
+        else
+            setTextColor(1, 1, 1, 1)
+        end
+        local name = Utils.limitTextToWidth(string.format("%d. %s", i, hotspot:getName()), textSize, width - padX * 2 - distanceWidth, false, "...")
+        renderText(x + padX, y + textY, textSize, name)
+
+        table.insert(box.listRows, {x = x, y = y, width = width, height = rowHeight, hotspot = hotspot})
+    end
+
+    if hasMore then
+        setTextAlignment(RenderText.ALIGN_LEFT)
+        setTextColor(0.7, 0.7, 0.7, 1)
+        renderText(x + padX, top - rows * rowHeight + textY, textSize,
+            string.format(Searchables.getText("searchables_moreResults"), #hotspots - count))
+    end
+    setTextAlignment(RenderText.ALIGN_LEFT)
+    setTextColor(1, 1, 1, 1)
+end
+
+-- The list row under the mouse, or nil
+function WheresMyStuffMapSearch.getRowAt(box, posX, posY)
+    for i, row in ipairs(box.listRows or {}) do
+        if posX >= row.x and posX <= row.x + row.width and posY >= row.y and posY <= row.y + row.height then
+            return i, row
+        end
+    end
+    return nil
+end
+
+-- Click pans the map to a result; a second click on the same row also makes it the navigation target
+function WheresMyStuffMapSearch.onListClick(box, mapElement, index, row)
+    if mapElement.panToHotspot ~= nil then
+        mapElement:panToHotspot(row.hotspot)
+    end
+    if box.lastClickedRow == index and g_time - (box.lastClickTime or 0) < WheresMyStuffMapSearch.DOUBLE_CLICK_TIME then
+        WheresMyStuff.setTarget(row.hotspot)
+    end
+    box.lastClickedRow = index
+    box.lastClickTime = g_time
+end
+
+-- ---------------------------------------------------------------------------------------------
 -- Hooks into IngameMapElement
 -- ---------------------------------------------------------------------------------------------
 
@@ -206,6 +315,30 @@ function WheresMyStuffMapSearch.onMapDraw(mapElement)
         return
     end
     WheresMyStuffMapSearch.drawArrows(mapElement.ingameMap)
+
+    local box = mapElement.target ~= nil and WheresMyStuffMapSearch.boxes[mapElement.target] or nil
+    if box and box.mapElement == mapElement then
+        WheresMyStuffMapSearch.drawResultsList(box)
+    end
+end
+
+-- Clicks on the results list go to the list; everything else goes to the map as usual
+function WheresMyStuffMapSearch.onMapMouseEvent(mapElement, superFunc, posX, posY, isDown, isUp, button, eventUsed)
+    local box = mapElement.target ~= nil and WheresMyStuffMapSearch.boxes[mapElement.target] or nil
+    if box and box.mapElement == mapElement and mapElement:getIsActive() then
+        local index, row = nil, nil
+        if not eventUsed then
+            index, row = WheresMyStuffMapSearch.getRowAt(box, posX, posY)
+        end
+        box.hoveredRow = index
+        if row ~= nil and button == Input.MOUSE_BUTTON_LEFT and (isDown or isUp) then
+            if isUp then
+                WheresMyStuffMapSearch.onListClick(box, mapElement, index, row)
+            end
+            return true
+        end
+    end
+    return superFunc(mapElement, posX, posY, isDown, isUp, button, eventUsed)
 end
 
 -- Every frame while a map is shown: keep its box visible and in place, and run the search once typing pauses
@@ -247,6 +380,7 @@ end
 if IngameMapElement ~= nil then
     IngameMapElement.draw = Utils.appendedFunction(IngameMapElement.draw, WheresMyStuffMapSearch.onMapDraw)
     IngameMapElement.update = Utils.appendedFunction(IngameMapElement.update, WheresMyStuffMapSearch.onMapUpdate)
+    IngameMapElement.mouseEvent = Utils.overwrittenFunction(IngameMapElement.mouseEvent, WheresMyStuffMapSearch.onMapMouseEvent)
     IngameMapElement.registerActionEvents = Utils.appendedFunction(IngameMapElement.registerActionEvents, WheresMyStuffMapSearch.onMapRegisterActionEvents)
 else
     Logging.warning("[Searchables] In-game map not found, map search is not available")

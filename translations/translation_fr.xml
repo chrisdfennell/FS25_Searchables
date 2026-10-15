@@ -36,6 +36,7 @@
         <text name="searchables_sell" text="vendre"/>
         <text name="searchables_bestPrice" text="meilleur prix"/>
         <text name="searchables_kind_sellPoint" text="Point de vente"/>
+        <text name="searchables_moreResults" text="+%d de plus"/>
         <text name="searchables_kind_contract" text="Contrat"/>
         <text name="searchables_contract" text="contrat"/>
         <text name="searchables_contractAvailable" text="disponible"/>
@@ -73,6 +74,12 @@
         <text name="searchables_help_map_find" text="Vos véhicules (aussi par la plaque d'immatriculation), balles, palettes, big bags, bâtiments, champs et parcelles. Exemples : tracteur, laine, balle ronde, silo, possédé."/>
         <text name="searchables_help_map_numbers_title" text="Numéros et agriculteurs"/>
         <text name="searchables_help_map_numbers" text="Un nombre comme 178 trouve le champ ou la parcelle 178. Le nom d'un agriculteur PNJ trouve les terres qu'il possède encore."/>
+        <text name="searchables_help_map_list_title" text="Liste des résultats"/>
+        <text name="searchables_help_map_list" text="Les résultats les plus proches sont listés sous le champ de recherche avec leur distance. Cliquez sur l'un d'eux pour y déplacer la carte ; cliquez à nouveau pour en faire votre destination."/>
+        <text name="searchables_help_map_land_title" text="Terres et contrats"/>
+        <text name="searchables_help_map_land" text="à vendre marque chaque parcelle que vous pouvez acheter, avec son prix et sa taille : à vendre $&lt;100k ha&gt;5. contrat marque les champs avec un contrat disponible ou en cours : contrat récolte, contrat huber."/>
+        <text name="searchables_help_map_filters_title" text="Filtres sur la carte"/>
+        <text name="searchables_help_map_filters" text="Les filtres du magasin fonctionnent aussi ici : laine l&gt;1000 trouve les grosses palettes de laine, fendt hp&gt;200 trouve vos gros Fendt."/>
         <text name="searchables_help_fields_title" text="Champs et ventes"/>
         <text name="searchables_help_fields_crops_title" text="Cultures et travaux"/>
         <text name="searchables_help_fields_crops" text="Les champs affichent leur culture et ce dont ils ont besoin. Cherchez une culture ou prêt, croissance, flétri, récolté, chaux, engrais, labourer, rouler, mauvaises herbes ou pierres. Exemple : blé prêt."/>

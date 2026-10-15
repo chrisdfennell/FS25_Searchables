@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="114" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs25/modDesc.xsd">
     <author>Fennell</author>
-    <version>1.4.0.0</version>
+    <version>1.5.0.0</version>
     <title>
         <en>Searchables</en>
         <de>Searchables</de>
@@ -23,7 +23,8 @@ Map:
 - Type in the box at the top of the map (or press Ctrl+F) to find your vehicles, bales, pallets, big bags, buildings, fields and properties. Type a number like 178 to find field or property 178, or an NPC farmer's name to find their land. Vehicles can also be found by license plate.
 - Fields show their crop and what they need: search "wheat ready", "lime" or "fertilize".
 - "sell wheat" marks every selling point that buys wheat, with its price; the best price is marked.
-- Every match gets an arrow that shrinks down onto it. Enter centers the map on the nearest one.
+- "for sale $<100k ha>5" finds land to buy; "contract" finds fields with contracts; "wool l>1000" finds big pallets.
+- Every match gets an arrow that shrinks down onto it, and the nearest are listed under the box: click one to go there.
 
 Ctrl+F (or the right stick on a controller) jumps into the search box. Enter keeps the search, Esc clears it.
 Everything is explained in the game's Help menu under Searchables.]]></en>
@@ -42,7 +43,8 @@ Karte:
 - Im Suchfeld oben auf der Karte tippen (oder Strg+F drücken), um eigene Fahrzeuge, Ballen, Paletten, Big Bags, Gebäude, Felder und Grundstücke zu finden. Eine Zahl wie 178 findet Feld oder Grundstück 178, der Name eines NPC-Landwirts findet sein Land. Fahrzeuge lassen sich auch über das Kennzeichen finden.
 - Felder zeigen ihre Frucht und was sie brauchen: "weizen erntereif", "kalk" oder "dünger" suchen.
 - "verkaufen weizen" markiert jede Verkaufsstelle, die Weizen kauft, mit Preis; der beste Preis ist markiert.
-- Jeder Treffer bekommt einen Pfeil, der auf ihn zuläuft. Enter zentriert die Karte auf den nächsten Treffer.
+- "zu verkaufen $<100k ha>5" findet Land zum Kaufen; "auftrag" findet Felder mit Aufträgen; "wolle l>1000" findet große Paletten.
+- Jeder Treffer bekommt einen Pfeil, der auf ihn zuläuft, und die nächsten stehen unter dem Suchfeld: Klick darauf führt hin.
 
 Strg+F (oder der rechte Stick am Controller) springt ins Suchfeld. Enter behält die Suche, Esc löscht sie.
 Alles wird im Hilfe-Menü des Spiels unter Searchables erklärt.]]></de>
@@ -61,7 +63,8 @@ Carte :
 - Tapez dans le champ en haut de la carte (ou appuyez sur Ctrl+F) pour trouver vos véhicules, balles, palettes, big bags, bâtiments, champs et parcelles. Un nombre comme 178 trouve le champ ou la parcelle 178, le nom d'un agriculteur PNJ trouve ses terres. Les véhicules se trouvent aussi par leur plaque d'immatriculation.
 - Les champs affichent leur culture et ce dont ils ont besoin : cherchez « blé prêt », « chaux » ou « engrais ».
 - « vendre blé » marque chaque point de vente qui achète du blé, avec son prix ; le meilleur prix est signalé.
-- Chaque résultat reçoit une flèche qui se resserre sur lui. Entrée centre la carte sur le plus proche.
+- « à vendre $<100k ha>5 » trouve des terres à acheter ; « contrat » trouve les champs avec un contrat ; « laine l>1000 » trouve les grosses palettes.
+- Chaque résultat reçoit une flèche qui se resserre sur lui, et les plus proches sont listés sous le champ : cliquez pour y aller.
 
 Ctrl+F (ou le stick droit à la manette) place le curseur dans le champ de recherche. Entrée conserve la recherche, Échap l'efface.
 Tout est expliqué dans le menu Aide du jeu, sous Searchables.]]></fr>

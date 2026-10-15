@@ -61,6 +61,18 @@
                 <title text="$l10n_searchables_help_map_numbers_title"/>
                 <text text="$l10n_searchables_help_map_numbers"/>
             </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_map_list_title"/>
+                <text text="$l10n_searchables_help_map_list"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_map_land_title"/>
+                <text text="$l10n_searchables_help_map_land"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_map_filters_title"/>
+                <text text="$l10n_searchables_help_map_filters"/>
+            </paragraph>
         </page>
         <page title="$l10n_searchables_help_fields_title" iconSliceId="farmingBasics_harvesting">
             <paragraph>

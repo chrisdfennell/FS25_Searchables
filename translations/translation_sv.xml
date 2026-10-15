@@ -36,6 +36,7 @@
         <text name="searchables_sell" text="sälj"/>
         <text name="searchables_bestPrice" text="bästa pris"/>
         <text name="searchables_kind_sellPoint" text="Försäljningsställe"/>
+        <text name="searchables_moreResults" text="+%d till"/>
         <text name="searchables_kind_contract" text="Kontrakt"/>
         <text name="searchables_contract" text="kontrakt"/>
         <text name="searchables_contractAvailable" text="tillgängligt"/>
@@ -73,6 +74,12 @@
         <text name="searchables_help_map_find" text="Your vehicles (also by license plate), bales, pallets, big bags, buildings, fields and properties. Examples: tractor, wool, round bale, silo, owned."/>
         <text name="searchables_help_map_numbers_title" text="Numbers and farmers"/>
         <text name="searchables_help_map_numbers" text="Type a number like 178 to find field or property 178. Type an NPC farmer's name to find the land they still own."/>
+        <text name="searchables_help_map_list_title" text="Results list"/>
+        <text name="searchables_help_map_list" text="The nearest matches are listed under the search box with their distance. Click one to move the map there; click it again to make it your navigation target."/>
+        <text name="searchables_help_map_land_title" text="Land and contracts"/>
+        <text name="searchables_help_map_land" text="for sale marks every property you can buy, with price and size: for sale $&lt;100k ha&gt;5. contract marks fields with a contract you can take or are working on: contract harvest, contract huber."/>
+        <text name="searchables_help_map_filters_title" text="Filters on the map"/>
+        <text name="searchables_help_map_filters" text="The shop's filters work here too: wool l&gt;1000 finds big wool pallets, fendt hp&gt;200 finds your own big Fendts."/>
         <text name="searchables_help_fields_title" text="Fields and selling"/>
         <text name="searchables_help_fields_crops_title" text="Crops and field work"/>
         <text name="searchables_help_fields_crops" text="Fields show their crop and what they need. Search for a crop or for ready, growing, withered, harvested, lime, fertilize, plow, roll, weeds or stones. Example: wheat ready."/>

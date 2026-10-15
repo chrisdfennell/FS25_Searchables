@@ -67,6 +67,10 @@ Type these in the shop search box, alone or together with words. Every filter wo
 - One arrow per piece of land: when field 5 and property 5 both match, only the field gets an arrow.
 - **Crops and field work:** fields show their crop and what they need. Search `wheat`, `ready`, `growing`, `withered`, `harvested`, `lime`, `fertilize`, `plow`, `roll`, `weeds` or `stones`, e.g. `wheat ready` or `barley fertilize`.
 - **Where to sell:** `sell wheat` marks every selling point that buys wheat, with its price per 1000 l. The best price is marked.
+- **Land for sale:** `for sale` marks every property you can buy, with price and size. Add filters: `for sale $<100k ha>5`.
+- **Contracts:** `contract` marks fields with a contract you can take or are working on, with type and reward. Narrow it down: `contract harvest`, `contract huber`, `contract $>10k`.
+- **Filters on the map:** the shop filters work here too. `wool l>1000` finds only big wool pallets; `fendt hp>200` finds your own big Fendts.
+- **Results list:** the nearest 8 matches are listed under the search box with their distance. Click one to move the map there; double-click to make it your navigation target.
 - Search by fill type too: `wool`, `round bale`, `wheat`, `field 12`, `property 40`, `owned`.
 
 ![Map search for tractor: 3 found, each with an arrow](docs/images/map.png)

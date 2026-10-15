@@ -39,6 +39,7 @@
         <text name="searchables_sell" text="verkaufen"/>
         <text name="searchables_bestPrice" text="bester Preis"/>
         <text name="searchables_kind_sellPoint" text="Verkaufsstelle"/>
+        <text name="searchables_moreResults" text="+%d weitere"/>
         <text name="searchables_kind_contract" text="Auftrag"/>
         <text name="searchables_contract" text="auftrag"/>
         <text name="searchables_contractAvailable" text="verfügbar"/>
@@ -78,6 +79,12 @@
         <text name="searchables_help_map_find" text="Eigene Fahrzeuge (auch über das Kennzeichen), Ballen, Paletten, Big Bags, Gebäude, Felder und Grundstücke. Beispiele: traktor, wolle, rundballen, silo, eigen."/>
         <text name="searchables_help_map_numbers_title" text="Nummern und Landwirte"/>
         <text name="searchables_help_map_numbers" text="Eine Zahl wie 178 findet Feld oder Grundstück 178. Der Name eines NPC-Landwirts findet das Land, das ihm noch gehört."/>
+        <text name="searchables_help_map_list_title" text="Trefferliste"/>
+        <text name="searchables_help_map_list" text="Die nächsten Treffer stehen mit Entfernung unter dem Suchfeld. Ein Klick verschiebt die Karte dorthin, ein zweiter Klick setzt ihn als Navigationsziel."/>
+        <text name="searchables_help_map_land_title" text="Land und Aufträge"/>
+        <text name="searchables_help_map_land" text="zu verkaufen markiert jedes Grundstück, das sich kaufen lässt, mit Preis und Größe: zu verkaufen $&lt;100k ha&gt;5. auftrag markiert Felder mit einem annehmbaren oder laufenden Auftrag: auftrag ernte, auftrag huber."/>
+        <text name="searchables_help_map_filters_title" text="Filter auf der Karte"/>
+        <text name="searchables_help_map_filters" text="Die Filter aus dem Shop gehen auch hier: wolle l&gt;1000 findet große Wollpaletten, fendt hp&gt;200 findet die eigenen großen Fendts."/>
         <text name="searchables_help_fields_title" text="Felder und Verkauf"/>
         <text name="searchables_help_fields_crops_title" text="Früchte und Feldarbeit"/>
         <text name="searchables_help_fields_crops" text="Felder zeigen ihre Frucht und was sie brauchen. Nach einer Frucht oder nach erntereif, wächst, verdorrt, abgeerntet, Kalk, Dünger, gepflügt, gewalzt, Unkraut oder Steine suchen. Beispiel: weizen erntereif."/>
