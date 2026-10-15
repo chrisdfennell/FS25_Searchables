@@ -42,5 +42,47 @@
 
         <!-- Steuerung -->
         <text name="input_SEARCHABLES_SEARCH" text="Suchen"/>
+
+        <!-- in-game help -->
+        <text name="searchables_help_title" text="Searchables"/>
+        <text name="searchables_help_shop_title" text="Suche im Shop"/>
+        <text name="searchables_help_shop_intro" text="Unter KONTOSTAND steht im Shop ein Suchfeld. Anklicken (oder die Such-Taste drücken: Strg+F, am Controller der rechte Stick) und tippen. Die Liste aktualisiert sich beim Tippen."/>
+        <text name="searchables_help_shop_list_title" text="In einer Kategorie oder Marke"/>
+        <text name="searchables_help_shop_list" text="Die Eingabe filtert die gerade angezeigte Liste. Beispiel: Amazone öffnen und 4000 tippen."/>
+        <text name="searchables_help_shop_all_title" text="Auf den Kachelseiten"/>
+        <text name="searchables_help_shop_all" text="Auf den Seiten für Kategorien, Marken, Pakete und DLCs durchsuchen zwei oder mehr Buchstaben den ganzen Shop. Treffer mit den Wörtern im Namen stehen vorne."/>
+        <text name="searchables_help_shop_words_title" text="Was durchsucht wird"/>
+        <text name="searchables_help_shop_words" text="Name, Marke, Kategorie, DLC, Modname und Modautor. Jedes Wort muss passen: fendt 700, john deere tedder."/>
+        <text name="searchables_help_filters_title" text="Filter im Shop"/>
+        <text name="searchables_help_filters_intro" text="Filter werden zwischen die Wörter getippt. Jeder Filter funktioniert mit &gt;, &lt;, &gt;=, &lt;=, einem Bereich wie 6-9 oder einer genauen Zahl. k steht für tausend, m nach einem Preis für Million."/>
+        <text name="searchables_help_filters_price_title" text="Preis"/>
+        <text name="searchables_help_filters_price" text="$&lt;50k, price&gt;100000, $100k-200k, $144,500 (€ geht auch). bezahlbar zeigt nur, was der Hof gerade bezahlen kann."/>
+        <text name="searchables_help_filters_power_title" text="PS und Leistungsbedarf"/>
+        <text name="searchables_help_filters_power" text="hp&gt;200, 200-300hp, 250hp, ps&gt;200. needhp&lt;150 findet Geräte, die der Traktor betreiben kann."/>
+        <text name="searchables_help_filters_size_title" text="Breite, Fassungsvermögen und Gewicht"/>
+        <text name="searchables_help_filters_size" text="Arbeitsbreite: width&gt;9, 6-9m. Fassungsvermögen: l&gt;30000, cap 20000-40000. Gewicht: t&lt;10."/>
+        <text name="searchables_help_filters_speed_title" text="Geschwindigkeit"/>
+        <text name="searchables_help_filters_speed" text="kph&gt;50, mph&gt;30, 50 km/h. Geräte nutzen ihre Arbeitsgeschwindigkeit."/>
+        <text name="searchables_help_filters_mix_title" text="Kombinieren"/>
+        <text name="searchables_help_filters_mix" text="fendt hp&gt;300 $&lt;400k. Treffer aus dem ganzen Shop werden nach dem ersten getippten Filter sortiert."/>
+        <text name="searchables_help_construction_title" text="Suche im Baumenü"/>
+        <text name="searchables_help_construction" text="Das Suchfeld steht neben der Gebäudeliste. Die Eingabe filtert alle Kategorien und Reiter auf einmal: silo, haus, gewächshaus. Preisfilter und bezahlbar funktionieren auch hier."/>
+        <text name="searchables_help_map_title" text="Suche auf der Karte"/>
+        <text name="searchables_help_map_intro" text="Karte öffnen und oben ins Suchfeld tippen. Jeder Treffer bekommt einen Pfeil, der auf ihn zuläuft. Enter zentriert die Karte auf den nächsten Treffer."/>
+        <text name="searchables_help_map_find_title" text="Was sich finden lässt"/>
+        <text name="searchables_help_map_find" text="Eigene Fahrzeuge (auch über das Kennzeichen), Ballen, Paletten, Big Bags, Gebäude, Felder und Grundstücke. Beispiele: traktor, wolle, rundballen, silo, eigen."/>
+        <text name="searchables_help_map_numbers_title" text="Nummern und Landwirte"/>
+        <text name="searchables_help_map_numbers" text="Eine Zahl wie 178 findet Feld oder Grundstück 178. Der Name eines NPC-Landwirts findet das Land, das ihm noch gehört."/>
+        <text name="searchables_help_fields_title" text="Felder und Verkauf"/>
+        <text name="searchables_help_fields_crops_title" text="Früchte und Feldarbeit"/>
+        <text name="searchables_help_fields_crops" text="Felder zeigen ihre Frucht und was sie brauchen. Nach einer Frucht oder nach erntereif, wächst, verdorrt, abgeerntet, Kalk, Dünger, gepflügt, gewalzt, Unkraut oder Steine suchen. Beispiel: weizen erntereif."/>
+        <text name="searchables_help_fields_sell_title" text="Wo verkaufen"/>
+        <text name="searchables_help_fields_sell" text="verkaufen und ein Produkt tippen: verkaufen weizen. Jede Verkaufsstelle, die es kauft, bekommt einen Pfeil mit dem Preis pro 1000 l; der beste Preis ist markiert."/>
+        <text name="searchables_help_controls_title" text="Steuerung und Tipps"/>
+        <text name="searchables_help_controls_intro" text="Die Such-Taste springt im Shop, im Baumenü und auf der Karte ins Suchfeld: Strg+F auf der Tastatur, der rechte Stick am Controller. Änderbar in der Steuerung unter Suchen. Auf dem Steam Deck und im Big-Picture-Modus öffnet sich die Bildschirmtastatur."/>
+        <text name="searchables_help_controls_keys_title" text="Tasten"/>
+        <text name="searchables_help_controls_keys" text="Enter oder ein Klick daneben behält die Suche. Esc löscht sie. Im Shop und im Baumenü löschen auch Zurück und ein Reiterwechsel die Suche."/>
+        <text name="searchables_help_controls_console_title" text="Konsolenbefehle"/>
+        <text name="searchables_help_controls_console" text="Mit der Entwicklerkonsole: wmsFind, wmsTarget, wmsSummary, wmsList, wmsLeftovers, wmsShow, wmsGoto, wmsHide, wmsField, searchablesMove, searchablesDumpUi."/>
     </texts>
 </l10n>

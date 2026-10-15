@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="no" ?>
+<!-- "Searchables" chapter in the game's Help page (pause menu). Loaded by Searchables.lua; texts are in translations/. -->
+<helpLines>
+    <category title="$l10n_searchables_help_title">
+        <page title="$l10n_searchables_help_shop_title" iconSliceId="firstSteps_shop">
+            <paragraph>
+                <text text="$l10n_searchables_help_shop_intro"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_shop_list_title"/>
+                <text text="$l10n_searchables_help_shop_list"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_shop_all_title"/>
+                <text text="$l10n_searchables_help_shop_all"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_shop_words_title"/>
+                <text text="$l10n_searchables_help_shop_words"/>
+            </paragraph>
+        </page>
+        <page title="$l10n_searchables_help_filters_title" iconSliceId="basicEconomy_spendingMoney">
+            <paragraph>
+                <text text="$l10n_searchables_help_filters_intro"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_filters_price_title"/>
+                <text text="$l10n_searchables_help_filters_price"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_filters_power_title"/>
+                <text text="$l10n_searchables_help_filters_power"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_filters_size_title"/>
+                <text text="$l10n_searchables_help_filters_size"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_filters_speed_title"/>
+                <text text="$l10n_searchables_help_filters_speed"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_filters_mix_title"/>
+                <text text="$l10n_searchables_help_filters_mix"/>
+            </paragraph>
+        </page>
+        <page title="$l10n_searchables_help_construction_title" iconSliceId="firstSteps_buildMode">
+            <paragraph>
+                <text text="$l10n_searchables_help_construction"/>
+            </paragraph>
+        </page>
+        <page title="$l10n_searchables_help_map_title" iconSliceId="farmingBasics_map">
+            <paragraph>
+                <text text="$l10n_searchables_help_map_intro"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_map_find_title"/>
+                <text text="$l10n_searchables_help_map_find"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_map_numbers_title"/>
+                <text text="$l10n_searchables_help_map_numbers"/>
+            </paragraph>
+        </page>
+        <page title="$l10n_searchables_help_fields_title" iconSliceId="farmingBasics_harvesting">
+            <paragraph>
+                <title text="$l10n_searchables_help_fields_crops_title"/>
+                <text text="$l10n_searchables_help_fields_crops"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_fields_sell_title"/>
+                <text text="$l10n_searchables_help_fields_sell"/>
+            </paragraph>
+        </page>
+        <page title="$l10n_searchables_help_controls_title" iconSliceId="firstSteps_howToStart">
+            <paragraph>
+                <text text="$l10n_searchables_help_controls_intro"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_controls_keys_title"/>
+                <text text="$l10n_searchables_help_controls_keys"/>
+            </paragraph>
+            <paragraph>
+                <title text="$l10n_searchables_help_controls_console_title"/>
+                <text text="$l10n_searchables_help_controls_console"/>
+            </paragraph>
+        </page>
+    </category>
+</helpLines>

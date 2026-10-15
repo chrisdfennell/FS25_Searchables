@@ -65,6 +65,8 @@ Type these in the shop search box, alone or together with words. Every filter wo
 - **Find fields and properties by number:** type `178` to find field or property 178. A number only matches whole numbers, so `178` won't find 1780.
 - **Find an NPC farmer's land:** type their name, e.g. `huber`, to mark every field and property they still own.
 - One arrow per piece of land: when field 5 and property 5 both match, only the field gets an arrow.
+- **Crops and field work:** fields show their crop and what they need. Search `wheat`, `ready`, `growing`, `withered`, `harvested`, `lime`, `fertilize`, `plow`, `roll`, `weeds` or `stones`, e.g. `wheat ready` or `barley fertilize`.
+- **Where to sell:** `sell wheat` marks every selling point that buys wheat, with its price per 1000 l. The best price is marked.
 - Search by fill type too: `wool`, `round bale`, `wheat`, `field 12`, `property 40`, `owned`.
 
 ![Map search for tractor: 3 found, each with an arrow](docs/images/map.png)
@@ -77,8 +79,12 @@ Type these in the shop search box, alone or together with words. Every filter wo
 | Type | The list or map updates as you type |
 | **Enter** or click elsewhere | Stop typing and keep the search |
 | **Esc** | Clear the search |
-| **Ctrl+F** on the map | Jump straight into the map search box |
+| **Ctrl+F**, or **right stick click** on a controller | Jump into the search box on the shop, construction or map screen (opens the on-screen keyboard on Steam Deck / Big Picture) |
 | Go back, switch tabs or close the screen (shop/construction) | The search clears |
+
+## In-game help
+
+Everything above is also in the game: pause menu → **Help** → **Searchables**.
 
 ## Installation
 
@@ -101,6 +107,7 @@ These are for when the developer console is enabled.
 |---|---|
 | `wmsFind <text>` | The map search, listed nearest first |
 | `wmsTarget <number>` | Set one of those results as your map target |
+| `wmsField <number>` | Show what the field search reads for a field (crop, growth, lime, fertilizer...) |
 | `wmsSummary` | Totals of your pallets, big bags and bales per fill type |
 | `wmsList <fillType>` | Every item of one fill type, and where it is |
 | `wmsLeftovers` | Bales and pallets lying out on fields |

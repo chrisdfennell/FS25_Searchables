@@ -584,6 +584,25 @@ function Searchables:consoleMove(whichArg, dxArg, dyArg)
 end
 
 -- ---------------------------------------------------------------------------------------------
+-- In-game help
+-- ---------------------------------------------------------------------------------------------
+
+Searchables.HELP_FILENAME = Utils.getFilename("help/helpLine.xml", g_currentModDirectory)
+
+-- Adds the "Searchables" chapter to the Help page in the pause menu, after the map's own help is loaded
+function Searchables.loadHelpLines(helpLineManager, superFunc, ...)
+    local isLoaded = superFunc(helpLineManager, ...)
+    if isLoaded then
+        helpLineManager:loadFromXML(Searchables.HELP_FILENAME)
+    end
+    return isLoaded
+end
+
+if HelpLineManager ~= nil then
+    HelpLineManager.loadMapData = Utils.overwrittenFunction(HelpLineManager.loadMapData, Searchables.loadHelpLines)
+end
+
+-- ---------------------------------------------------------------------------------------------
 -- Lifecycle
 -- ---------------------------------------------------------------------------------------------
 

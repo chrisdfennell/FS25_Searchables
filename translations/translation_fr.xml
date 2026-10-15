@@ -37,5 +37,47 @@
         <text name="searchables_bestPrice" text="meilleur prix"/>
         <text name="searchables_kind_sellPoint" text="Point de vente"/>
         <text name="input_SEARCHABLES_SEARCH" text="Rechercher"/>
+
+        <!-- in-game help -->
+        <text name="searchables_help_title" text="Searchables"/>
+        <text name="searchables_help_shop_title" text="Recherche au magasin"/>
+        <text name="searchables_help_shop_intro" text="Un champ de recherche se trouve sous SOLDE dans le magasin. Cliquez dessus (ou appuyez sur la touche Rechercher : Ctrl+F, ou le stick droit à la manette) et tapez. La liste se met à jour au fur et à mesure."/>
+        <text name="searchables_help_shop_list_title" text="Dans une catégorie ou une marque"/>
+        <text name="searchables_help_shop_list" text="La saisie filtre la liste affichée. Exemple : ouvrez Amazone et tapez 4000."/>
+        <text name="searchables_help_shop_all_title" text="Sur les pages à tuiles"/>
+        <text name="searchables_help_shop_all" text="Sur les pages des catégories, marques, packs et DLC, deux lettres ou plus cherchent dans tout le magasin. Les articles dont le nom contient vos mots apparaissent en premier."/>
+        <text name="searchables_help_shop_words_title" text="Ce qui est cherché"/>
+        <text name="searchables_help_shop_words" text="Le nom, la marque, la catégorie, le DLC, le nom et l'auteur du mod. Chaque mot doit correspondre : fendt 700, john deere faneuse."/>
+        <text name="searchables_help_filters_title" text="Filtres du magasin"/>
+        <text name="searchables_help_filters_intro" text="Tapez des filtres parmi vos mots. Chacun fonctionne avec &gt;, &lt;, &gt;=, &lt;=, une plage comme 6-9 ou un nombre exact. k signifie mille ; m après un prix signifie million."/>
+        <text name="searchables_help_filters_price_title" text="Prix"/>
+        <text name="searchables_help_filters_price" text="$&lt;50k, price&gt;100000, $100k-200k, $144,500 (€ fonctionne aussi). abordable n'affiche que ce que votre ferme peut payer maintenant."/>
+        <text name="searchables_help_filters_power_title" text="Puissance et puissance requise"/>
+        <text name="searchables_help_filters_power" text="hp&gt;200, 200-300hp, 250hp, ps&gt;200. needhp&lt;150 trouve les outils que votre tracteur peut faire fonctionner."/>
+        <text name="searchables_help_filters_size_title" text="Largeur, capacité et poids"/>
+        <text name="searchables_help_filters_size" text="Largeur de travail : width&gt;9, 6-9m. Capacité : l&gt;30000, cap 20000-40000. Poids : t&lt;10."/>
+        <text name="searchables_help_filters_speed_title" text="Vitesse"/>
+        <text name="searchables_help_filters_speed" text="kph&gt;50, mph&gt;30, 50 km/h. Les outils utilisent leur vitesse de travail."/>
+        <text name="searchables_help_filters_mix_title" text="Les combiner"/>
+        <text name="searchables_help_filters_mix" text="fendt hp&gt;300 $&lt;400k. Les résultats de tout le magasin sont triés selon le premier filtre tapé."/>
+        <text name="searchables_help_construction_title" text="Recherche en construction"/>
+        <text name="searchables_help_construction" text="Le champ de recherche se trouve à côté de la liste des bâtiments. La saisie filtre toutes les catégories et tous les onglets à la fois : silo, maison, serre. Les filtres de prix et abordable fonctionnent aussi ici."/>
+        <text name="searchables_help_map_title" text="Recherche sur la carte"/>
+        <text name="searchables_help_map_intro" text="Ouvrez la carte et tapez dans le champ en haut. Chaque résultat reçoit une flèche qui se resserre sur lui. Entrée centre la carte sur le plus proche."/>
+        <text name="searchables_help_map_find_title" text="Ce que vous pouvez trouver"/>
+        <text name="searchables_help_map_find" text="Vos véhicules (aussi par la plaque d'immatriculation), balles, palettes, big bags, bâtiments, champs et parcelles. Exemples : tracteur, laine, balle ronde, silo, possédé."/>
+        <text name="searchables_help_map_numbers_title" text="Numéros et agriculteurs"/>
+        <text name="searchables_help_map_numbers" text="Un nombre comme 178 trouve le champ ou la parcelle 178. Le nom d'un agriculteur PNJ trouve les terres qu'il possède encore."/>
+        <text name="searchables_help_fields_title" text="Champs et ventes"/>
+        <text name="searchables_help_fields_crops_title" text="Cultures et travaux"/>
+        <text name="searchables_help_fields_crops" text="Les champs affichent leur culture et ce dont ils ont besoin. Cherchez une culture ou prêt, croissance, flétri, récolté, chaux, engrais, labourer, rouler, mauvaises herbes ou pierres. Exemple : blé prêt."/>
+        <text name="searchables_help_fields_sell_title" text="Où vendre"/>
+        <text name="searchables_help_fields_sell" text="Tapez vendre et un produit : vendre blé. Chaque point de vente qui l'achète reçoit une flèche avec son prix pour 1000 l, et le meilleur prix est signalé."/>
+        <text name="searchables_help_controls_title" text="Commandes et astuces"/>
+        <text name="searchables_help_controls_intro" text="La touche Rechercher place le curseur dans le champ de recherche du magasin, de la construction et de la carte : Ctrl+F au clavier, le stick droit à la manette. Modifiable dans les commandes sous Rechercher. Sur Steam Deck et en mode Big Picture, le clavier virtuel s'ouvre."/>
+        <text name="searchables_help_controls_keys_title" text="Touches"/>
+        <text name="searchables_help_controls_keys" text="Entrée ou un clic ailleurs conserve la recherche. Échap l'efface. Au magasin et en construction, revenir en arrière ou changer d'onglet l'efface aussi."/>
+        <text name="searchables_help_controls_console_title" text="Commandes de la console"/>
+        <text name="searchables_help_controls_console" text="Avec la console de développement : wmsFind, wmsTarget, wmsSummary, wmsList, wmsLeftovers, wmsShow, wmsGoto, wmsHide, wmsField, searchablesMove, searchablesDumpUi."/>
     </texts>
 </l10n>
