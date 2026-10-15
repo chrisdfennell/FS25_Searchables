@@ -73,12 +73,13 @@ Entrée conserve la recherche, Échap l'efface.]]></fr>
     </extraSourceFiles>
 
     <actions>
-        <action name="WMS_MAP_SEARCH"/>
+        <action name="SEARCHABLES_SEARCH"/>
     </actions>
 
     <inputBinding>
-        <actionBinding action="WMS_MAP_SEARCH">
+        <actionBinding action="SEARCHABLES_SEARCH">
             <binding device="KB_MOUSE_DEFAULT" input="KEY_lctrl KEY_f"/>
+            <binding device="GAMEPAD_DEFAULT" input="BUTTON_10"/>
         </actionBinding>
     </inputBinding>
 </modDesc>

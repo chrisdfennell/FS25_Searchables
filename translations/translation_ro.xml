@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Gol"/>
         <text name="searchables_unknown" text="Necunoscut"/>
         <text name="searchables_affordable" text="accesibil"/>
-        <text name="input_WMS_MAP_SEARCH" text="Caută pe hartă"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Caută"/>
     </texts>
 </l10n>

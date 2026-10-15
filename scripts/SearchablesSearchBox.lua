@@ -138,6 +138,17 @@ function SearchablesSearchBox:captureInput(withoutDelay)
     end
 end
 
+-- Jump into the box from the Search action (Ctrl+F / right stick on a controller). Where the platform has an on-screen
+-- keyboard (Steam Deck, Big Picture) it opens too, so the search can be typed without a keyboard.
+function SearchablesSearchBox:focus()
+    if not self.root:getIsVisible() then
+        return false
+    end
+    self:captureInput()
+    self.input:openIme()
+    return true
+end
+
 function SearchablesSearchBox:setVisible(isVisible)
     if not isVisible then
         self:releaseInput()

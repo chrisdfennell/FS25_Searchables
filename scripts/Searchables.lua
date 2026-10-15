@@ -16,6 +16,23 @@ Searchables.storeItemTexts = setmetatable({}, {__mode = "k"})
 -- Matching
 -- ---------------------------------------------------------------------------------------------
 
+-- The Search action (modDesc.xml): Ctrl+F on the keyboard, right stick click on a controller
+Searchables.SEARCH_ACTION = "SEARCHABLES_SEARCH"
+
+-- Registers the Search action in the current input context; returns the event id, or nil if the action is missing.
+-- Its text is hidden: the search box itself shows where it goes.
+function Searchables.registerSearchAction(target, callback)
+    local action = InputAction[Searchables.SEARCH_ACTION]
+    if action == nil then
+        return nil
+    end
+    local _, eventId = g_inputBinding:registerActionEvent(action, target, callback, false, true, false, true)
+    if eventId ~= nil then
+        g_inputBinding:setActionEventTextVisibility(eventId, false)
+    end
+    return eventId
+end
+
 -- Text from translations/translation_<language>.xml
 function Searchables.getText(key)
     return g_i18n:getText(key)

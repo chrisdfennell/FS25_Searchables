@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Boş"/>
         <text name="searchables_unknown" text="Bilinmiyor"/>
         <text name="searchables_affordable" text="uygun"/>
-        <text name="input_WMS_MAP_SEARCH" text="Haritada ara"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Ara"/>
     </texts>
 </l10n>

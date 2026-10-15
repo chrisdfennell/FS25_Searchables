@@ -194,9 +194,26 @@ function SearchablesConstruction.onScreenUpdate(screen, dt)
     box:update()
 end
 
+-- The Search action (Ctrl+F / right stick) jumps into the box. The screen removes everything in menuEvents when it
+-- unregisters its menu actions, so the Search action goes in there.
+function SearchablesConstruction.onRegisterMenuActionEvents(screen)
+    local eventId = Searchables.registerSearchAction(SearchablesConstruction, SearchablesConstruction.onSearchAction)
+    if eventId ~= nil and screen.menuEvents ~= nil then
+        table.insert(screen.menuEvents, eventId)
+    end
+end
+
+function SearchablesConstruction:onSearchAction()
+    if SearchablesConstruction.box ~= nil then
+        SearchablesConstruction.box:focus()
+    end
+end
+
 if ConstructionScreen ~= nil then
     ConstructionScreen.rebuildData = Utils.appendedFunction(ConstructionScreen.rebuildData, SearchablesConstruction.onRebuildData)
     ConstructionScreen.update = Utils.appendedFunction(ConstructionScreen.update, SearchablesConstruction.onScreenUpdate)
+    ConstructionScreen.registerMenuActionEvents = Utils.appendedFunction(ConstructionScreen.registerMenuActionEvents,
+        SearchablesConstruction.onRegisterMenuActionEvents)
 else
     Logging.warning("[Searchables] Construction screen not found, construction search is not available")
 end

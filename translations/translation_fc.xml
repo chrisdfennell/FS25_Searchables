@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Vide"/>
         <text name="searchables_unknown" text="Inconnu"/>
         <text name="searchables_affordable" text="abordable"/>
-        <text name="input_WMS_MAP_SEARCH" text="Rechercher sur la carte"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Rechercher"/>
     </texts>
 </l10n>

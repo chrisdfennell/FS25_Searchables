@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Trống"/>
         <text name="searchables_unknown" text="Không rõ"/>
         <text name="searchables_affordable" text="affordable"/>
-        <text name="input_WMS_MAP_SEARCH" text="Tìm trên bản đồ"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Tìm kiếm"/>
     </texts>
 </l10n>

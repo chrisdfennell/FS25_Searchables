@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Üres"/>
         <text name="searchables_unknown" text="Ismeretlen"/>
         <text name="searchables_affordable" text="megfizethető"/>
-        <text name="input_WMS_MAP_SEARCH" text="Keresés a térképen"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Keresés"/>
     </texts>
 </l10n>

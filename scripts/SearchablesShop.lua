@@ -335,10 +335,31 @@ function SearchablesShop.onPopDetail(menu)
     SearchablesShop.resetSearch()
 end
 
+-- The Search action (Ctrl+F / right stick) jumps into the box. The menu registers its button actions on every page
+-- change and removes the ones in customButtonEvents before the next, so the Search action goes in there too.
+-- While typing the menu waits with its buttons (see SearchablesSearchBox), so this then waits as well.
+function SearchablesShop.onMenuButtonsAssigned(menu)
+    local box = SearchablesShop.box
+    if box == nil or SearchablesShop.menu ~= menu or box:getIsCapturing() then
+        return
+    end
+    local eventId = Searchables.registerSearchAction(SearchablesShop, SearchablesShop.onSearchAction)
+    if eventId ~= nil and menu.customButtonEvents ~= nil then
+        table.insert(menu.customButtonEvents, eventId)
+    end
+end
+
+function SearchablesShop:onSearchAction()
+    if SearchablesShop.box ~= nil then
+        SearchablesShop.box:focus()
+    end
+end
+
 if ShopMenu ~= nil and ShopItemsFrame ~= nil and ShopCategoriesFrame ~= nil then
     ShopItemsFrame.setDisplayItems = Utils.overwrittenFunction(ShopItemsFrame.setDisplayItems, SearchablesShop.setDisplayItems)
     ShopMenu.update = Utils.appendedFunction(ShopMenu.update, SearchablesShop.onMenuUpdate)
     ShopMenu.popDetail = Utils.appendedFunction(ShopMenu.popDetail, SearchablesShop.onPopDetail)
+    ShopMenu.assignMenuButtonInfo = Utils.appendedFunction(ShopMenu.assignMenuButtonInfo, SearchablesShop.onMenuButtonsAssigned)
 else
     Logging.warning("[Searchables] Shop menu not found, shop search is not available")
 end

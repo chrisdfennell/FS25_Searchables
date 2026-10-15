@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Prázdné"/>
         <text name="searchables_unknown" text="Neznámé"/>
         <text name="searchables_affordable" text="dostupné"/>
-        <text name="input_WMS_MAP_SEARCH" text="Hledat na mapě"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Hledat"/>
     </texts>
 </l10n>

@@ -233,20 +233,14 @@ end
 
 -- The map removes its action events by target when it closes, so this one goes with them
 function WheresMyStuffMapSearch.onMapRegisterActionEvents(mapElement)
-    if InputAction.WMS_MAP_SEARCH == nil then
-        return
-    end
-    local _, eventId = g_inputBinding:registerActionEvent(InputAction.WMS_MAP_SEARCH, mapElement, WheresMyStuffMapSearch.onSearchAction, false, true, false, true)
-    if eventId ~= nil then
-        g_inputBinding:setActionEventTextVisibility(eventId, false)
-    end
+    Searchables.registerSearchAction(mapElement, WheresMyStuffMapSearch.onSearchAction)
 end
 
--- Ctrl+F puts the cursor in the box
+-- The Search action (Ctrl+F / right stick) puts the cursor in the box, with the on-screen keyboard where there is one
 function WheresMyStuffMapSearch.onSearchAction(mapElement)
     local box = mapElement.target ~= nil and WheresMyStuffMapSearch.boxes[mapElement.target] or nil
     if box and not g_gui:getIsDialogVisible() then
-        box:captureInput()
+        box:focus()
     end
 end
 

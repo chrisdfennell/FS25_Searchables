@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Leeg"/>
         <text name="searchables_unknown" text="Onbekend"/>
         <text name="searchables_affordable" text="betaalbaar"/>
-        <text name="input_WMS_MAP_SEARCH" text="Zoeken op de kaart"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Zoeken"/>
     </texts>
 </l10n>

@@ -28,6 +28,6 @@
         <text name="searchables_affordable" text="affordable"/>
 
         <!-- controls -->
-        <text name="input_WMS_MAP_SEARCH" text="Search the map"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Search"/>
     </texts>
 </l10n>

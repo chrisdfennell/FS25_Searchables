@@ -28,6 +28,6 @@
         <text name="searchables_affordable" text="bezahlbar"/>
 
         <!-- Steuerung -->
-        <text name="input_WMS_MAP_SEARCH" text="Karte durchsuchen"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Suchen"/>
     </texts>
 </l10n>

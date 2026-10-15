@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Пусто"/>
         <text name="searchables_unknown" text="Неизвестно"/>
         <text name="searchables_affordable" text="доступно"/>
-        <text name="input_WMS_MAP_SEARCH" text="Поиск на карте"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Поиск"/>
     </texts>
 </l10n>

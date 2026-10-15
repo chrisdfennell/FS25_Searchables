@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Tom"/>
         <text name="searchables_unknown" text="Ukendt"/>
         <text name="searchables_affordable" text="overkommelig"/>
-        <text name="input_WMS_MAP_SEARCH" text="Søg på kortet"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Søg"/>
     </texts>
 </l10n>

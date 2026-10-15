@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="Kosong"/>
         <text name="searchables_unknown" text="Tidak diketahui"/>
         <text name="searchables_affordable" text="terjangkau"/>
-        <text name="input_WMS_MAP_SEARCH" text="Cari di peta"/>
+        <text name="input_SEARCHABLES_SEARCH" text="Cari"/>
     </texts>
 </l10n>

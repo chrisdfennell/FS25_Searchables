@@ -23,6 +23,6 @@
         <text name="searchables_empty" text="空"/>
         <text name="searchables_unknown" text="不明"/>
         <text name="searchables_affordable" text="購入可能"/>
-        <text name="input_WMS_MAP_SEARCH" text="マップを検索"/>
+        <text name="input_SEARCHABLES_SEARCH" text="検索"/>
     </texts>
 </l10n>
