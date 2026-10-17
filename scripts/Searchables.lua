@@ -866,7 +866,9 @@ function Searchables.onGuiUpdate(gui, dt)
     end
 end
 
-Gui.update = Utils.appendedFunction(Gui.update, Searchables.onGuiUpdate)
+if Gui ~= nil then
+    Gui.update = Utils.appendedFunction(Gui.update, Searchables.onGuiUpdate)
+end
 
 if HelpLineManager ~= nil then
     HelpLineManager.loadMapData = Utils.overwrittenFunction(HelpLineManager.loadMapData, Searchables.loadHelpLines)
