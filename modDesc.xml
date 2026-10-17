@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="114" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs25/modDesc.xsd">
     <author>Fennell</author>
-    <version>1.7.2.0</version>
+    <version>1.8.0.0</version>
     <title>
         <en>Searchables</en>
         <de>Searchables</de>
@@ -17,7 +17,7 @@ Shop:
 - Filters: price ($<50k, $100k-200k), horsepower (hp>200), working width (width>9, 6-9m), capacity (l>30000), weight (t<10), speed (kph>50, mph>30), power needed (needhp<150) and "affordable". Mix them with words: "fendt hp>300 $<400k".
 
 Construction:
-- Typing filters the buildings in every category and tab. Price filters and "affordable" work here too.
+- Typing filters the buildings in every category and tab, by name, description or product: "peas" finds every factory that uses or makes peas. Price filters and "affordable" work here too.
 
 Map:
 - Type in the box at the top of the map (or press Ctrl+F) to find your vehicles, bales, pallets, big bags, buildings, fields and properties. Type a number like 178 to find field or property 178, or an NPC farmer's name to find their land. Vehicles can also be found by license plate.
@@ -41,7 +41,7 @@ Shop:
 - Filter: Preis ($<50k, $100k-200k, € geht auch), PS (hp>200 oder ps>200), Arbeitsbreite (width>9, 6-9m), Fassungsvermögen (l>30000), Gewicht (t<10), Geschwindigkeit (kph>50), Leistungsbedarf (needhp<150) und "bezahlbar". Mit Wörtern kombinierbar: "fendt hp>300 $<400k".
 
 Baumenü:
-- Die Eingabe filtert die Gebäude in allen Kategorien und Reitern. Preisfilter und "bezahlbar" funktionieren auch hier.
+- Die Eingabe filtert die Gebäude in allen Kategorien und Reitern, nach Name, Beschreibung oder Produkt: "erbsen" findet jede Produktion, die Erbsen nutzt oder herstellt. Preisfilter und "bezahlbar" funktionieren auch hier.
 
 Karte:
 - Im Suchfeld oben auf der Karte tippen (oder Strg+F drücken), um eigene Fahrzeuge, Ballen, Paletten, Big Bags, Gebäude, Felder und Grundstücke zu finden. Eine Zahl wie 178 findet Feld oder Grundstück 178, der Name eines NPC-Landwirts findet sein Land. Fahrzeuge lassen sich auch über das Kennzeichen finden.

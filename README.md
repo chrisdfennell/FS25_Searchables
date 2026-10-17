@@ -55,6 +55,7 @@ Type these in the shop search box, alone or together with words. Every filter wo
 
 ### 🏗️ Construction
 - Type to filter the buildings in **every category and tab** at once: `house`, `silo`, `greenhouse`, `fence`, `cow`.
+- **Search by product:** buildings also match their description and the products they use, make, buy, sell or store. `peas` finds every factory that uses or makes peas, and the selling points that buy them.
 - Add a price: `silo $<100k`, or `affordable`.
 
 <img src="docs/images/construction.png" alt="Construction screen searching house: 61 of 930 buildings" width="360">

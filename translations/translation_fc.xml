@@ -83,7 +83,7 @@
         <text name="searchables_help_filters_mix_title" text="Les combiner"/>
         <text name="searchables_help_filters_mix" text="fendt hp&gt;300 $&lt;400k. Les résultats de tout le magasin sont triés selon le premier filtre tapé."/>
         <text name="searchables_help_construction_title" text="Recherche en construction"/>
-        <text name="searchables_help_construction" text="Le champ de recherche se trouve à côté de la liste des bâtiments. La saisie filtre toutes les catégories et tous les onglets à la fois : silo, maison, serre. Les filtres de prix et abordable fonctionnent aussi ici."/>
+        <text name="searchables_help_construction" text="Le champ de recherche se trouve à côté de la liste des bâtiments. La saisie filtre toutes les catégories et tous les onglets à la fois : silo, maison, serre. Les filtres de prix et abordable fonctionnent aussi ici. Les bâtiments correspondent aussi à leur description et à leurs produits : pois trouve chaque usine qui utilise ou produit des pois."/>
         <text name="searchables_help_map_title" text="Recherche sur la carte"/>
         <text name="searchables_help_map_intro" text="Ouvrez la carte et tapez dans le champ en haut. Chaque résultat reçoit une flèche qui se resserre sur lui. Entrée centre la carte sur le plus proche."/>
         <text name="searchables_help_map_find_title" text="Ce que vous pouvez trouver"/>

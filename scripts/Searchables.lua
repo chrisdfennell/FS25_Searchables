@@ -69,11 +69,49 @@ function Searchables.getStoreCategoryTitle(categoryName)
     return (category ~= nil and category.title) or categoryName
 end
 
--- Name, brand, shop categories, construction category and tab, DLC, and mod title and author of a store item
+-- Specs of buildings that list products, as {FILLTYPENAME = true} or lists of names or indices
+Searchables.BUILDING_FILL_TYPE_SPECS = {"prodPointInputFillTypes", "prodPointOutputFillTypes", "sellingStationFillTypes",
+    "buyingStationFillTypes", "animalFoodFillTypes", "objectStorageFillTypes"}
+
+-- Names of the products a building uses, makes, buys, sells, feeds or stores ("Peas", "Flour"), from its specs
+function Searchables.getBuildingProductNames(storeItem)
+    local names = {}
+    local specs = storeItem.specs
+    if specs == nil then
+        return names
+    end
+    local function add(fillType)
+        if fillType ~= nil and fillType.title ~= nil then
+            table.insert(names, fillType.title)
+        end
+    end
+    for _, specName in ipairs(Searchables.BUILDING_FILL_TYPE_SPECS) do
+        local value = specs[specName]
+        if type(value) == "table" then
+            for key, entry in pairs(value) do
+                if type(key) == "string" and entry == true then
+                    add(g_fillTypeManager:getFillTypeByName(key))
+                elseif type(entry) == "string" then
+                    add(g_fillTypeManager:getFillTypeByName(entry))
+                elseif type(entry) == "number" then
+                    add(g_fillTypeManager:getFillTypeByIndex(entry))
+                elseif type(entry) == "table" and entry.title ~= nil then
+                    add(entry)
+                end
+            end
+        end
+    end
+    return names
+end
+
+-- Name, brand, shop categories, construction category and tab, DLC, and mod title and author of a store item.
+-- Buildings also have their description and the products they work with ("peas" finds every factory that uses or
+-- makes peas); those products come from the building's file, read in the background, so until then the text is
+-- built again on each use.
 function Searchables.getStoreItemText(storeItem)
-    local text = Searchables.storeItemTexts[storeItem]
-    if text ~= nil then
-        return text
+    local cached = Searchables.storeItemTexts[storeItem]
+    if cached ~= nil and (cached.isComplete or storeItem.specs == nil) then
+        return cached.text
     end
 
     local parts = {storeItem.name, storeItem.brandNameRaw, storeItem.dlcTitle}
@@ -93,6 +131,16 @@ function Searchables.getStoreItemText(storeItem)
         table.insert(parts, brush.tab ~= nil and brush.tab.title or nil)
     end
 
+    local isBuilding = storeItem.species == StoreSpecies.PLACEABLE
+    if isBuilding then
+        for _, line in ipairs(storeItem.functions or {}) do
+            table.insert(parts, line)
+        end
+        for _, name in ipairs(Searchables.getBuildingProductNames(storeItem)) do
+            table.insert(parts, name)
+        end
+    end
+
     if storeItem.isMod and storeItem.customEnvironment ~= nil then
         -- "mod" finds mod items, "-mod" hides them
         table.insert(parts, "mod")
@@ -110,8 +158,8 @@ function Searchables.getStoreItemText(storeItem)
         end
     end
 
-    text = Searchables.toLower(table.concat(strings, "\n"))
-    Searchables.storeItemTexts[storeItem] = text
+    local text = Searchables.toLower(table.concat(strings, "\n"))
+    Searchables.storeItemTexts[storeItem] = {text = text, isComplete = not isBuilding or storeItem.specs ~= nil}
     return text
 end
 
@@ -551,7 +599,7 @@ function Searchables.filterEntries(list, query)
     return matches
 end
 
--- Reads the specs of one more vehicle per frame, so the first spec search does not freeze the game
+-- Reads the specs of one more vehicle or building per frame, so the first spec or product search does not freeze the game
 function Searchables.preloadSpecs()
     local items = g_storeManager:getItems()
     -- skip quickly over items that need no loading, but load at most one per frame
@@ -562,7 +610,8 @@ function Searchables.preloadSpecs()
             return
         end
         Searchables.preloadIndex = Searchables.preloadIndex + 1
-        if storeItem.species == StoreSpecies.VEHICLE and storeItem.specs == nil then
+        local hasSpecs = storeItem.species == StoreSpecies.VEHICLE or storeItem.species == StoreSpecies.PLACEABLE
+        if hasSpecs and storeItem.specs == nil then
             pcall(StoreItemUtil.loadSpecsFromXML, storeItem)
             return
         end

@@ -88,7 +88,7 @@
         <text name="searchables_help_filters_mix_title" text="Kombinieren"/>
         <text name="searchables_help_filters_mix" text="fendt hp&gt;300 $&lt;400k. Treffer aus dem ganzen Shop werden nach dem ersten getippten Filter sortiert."/>
         <text name="searchables_help_construction_title" text="Suche im Baumenü"/>
-        <text name="searchables_help_construction" text="Das Suchfeld steht neben der Gebäudeliste. Die Eingabe filtert alle Kategorien und Reiter auf einmal: silo, haus, gewächshaus. Preisfilter und bezahlbar funktionieren auch hier."/>
+        <text name="searchables_help_construction" text="Das Suchfeld steht neben der Gebäudeliste. Die Eingabe filtert alle Kategorien und Reiter auf einmal: silo, haus, gewächshaus. Preisfilter und bezahlbar funktionieren auch hier. Gebäude passen auch über Beschreibung und Produkte: erbsen findet jede Produktion, die Erbsen nutzt oder herstellt."/>
         <text name="searchables_help_map_title" text="Suche auf der Karte"/>
         <text name="searchables_help_map_intro" text="Karte öffnen und oben ins Suchfeld tippen. Jeder Treffer bekommt einen Pfeil, der auf ihn zuläuft. Enter zentriert die Karte auf den nächsten Treffer."/>
         <text name="searchables_help_map_find_title" text="Was sich finden lässt"/>
