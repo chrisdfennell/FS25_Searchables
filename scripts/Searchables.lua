@@ -693,7 +693,13 @@ end
 
 -- Prints every visible list on the open screen: where it is, what feeds it, how many rows and what the first rows say.
 -- Used to find out how a screen without game source (like the controls settings) builds its lists.
-function Searchables:consoleDumpList()
+-- "searchablesDumpList 10": wait 10 seconds first, so there is time to close the console and open the screen
+function Searchables:consoleDumpList(delayArg)
+    local delay = tonumber(delayArg)
+    if delay ~= nil and delay > 0 then
+        Searchables.dumpListTime = g_time + delay * 1000
+        return string.format("Open the screen now. The lists are printed to the log in %d seconds.", delay)
+    end
     local screen = g_gui.currentGui ~= nil and g_gui.currentGui.target or nil
     if screen == nil then
         return "No screen is open. Open the screen with the list first (the console works on top of it)."
@@ -852,6 +858,16 @@ function Searchables.loadHelpLines(helpLineManager, superFunc, ...)
     return isLoaded
 end
 
+-- The delayed searchablesDumpList runs from the GUI's update: menus may pause the game, the GUI keeps updating
+function Searchables.onGuiUpdate(gui, dt)
+    if Searchables.dumpListTime ~= nil and g_time >= Searchables.dumpListTime then
+        Searchables.dumpListTime = nil
+        print(Searchables:consoleDumpList())
+    end
+end
+
+Gui.update = Utils.appendedFunction(Gui.update, Searchables.onGuiUpdate)
+
 if HelpLineManager ~= nil then
     HelpLineManager.loadMapData = Utils.overwrittenFunction(HelpLineManager.loadMapData, Searchables.loadHelpLines)
 end
@@ -873,7 +889,7 @@ function Searchables:loadMap(name)
     addConsoleCommand("searchablesDumpUi", "Searchables: print the element tree of the open screen", "consoleDumpUi", Searchables, "[maxDepth]")
     addConsoleCommand("searchablesMove", "Searchables: nudge a search box by some pixels", "consoleMove", Searchables, "shop|construction dxPx dyPx")
     addConsoleCommand("searchablesDumpItem", "Searchables: print the first entry of the open shop list", "consoleDumpItem", Searchables)
-    addConsoleCommand("searchablesDumpList", "Searchables: print how the lists on the open screen are built", "consoleDumpList", Searchables)
+    addConsoleCommand("searchablesDumpList", "Searchables: print how the lists on the open screen are built", "consoleDumpList", Searchables, "[delaySeconds]")
     Logging.info("[Searchables] Loaded. Search boxes are on the shop and construction screens.")
 end
 
@@ -881,6 +897,7 @@ function Searchables:update(dt)
     if not Searchables.isPreloadDone then
         Searchables.preloadSpecs()
     end
+
 end
 
 function Searchables:deleteMap()
