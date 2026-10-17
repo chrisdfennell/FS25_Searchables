@@ -651,6 +651,92 @@ function Searchables:consoleDumpItem()
     return "Done."
 end
 
+-- Fields of a table in one line each: values for data, names for functions (functions found through the class too)
+local function dumpFields(label, value)
+    if type(value) ~= "table" then
+        print(string.format("  %s = %s", label, tostring(value)))
+        return
+    end
+    print(string.format("  %s:", label))
+    local functions = {}
+    for key, field in pairs(value) do
+        if type(field) == "function" then
+            table.insert(functions, tostring(key))
+        else
+            print(string.format("    %-32s %s", tostring(key), tostring(field)))
+        end
+    end
+    local class = value.class ~= nil and value:class() or nil
+    while class ~= nil do
+        for key, field in pairs(class) do
+            if type(field) == "function" then
+                table.insert(functions, tostring(key))
+            end
+        end
+        class = type(class.superClass) == "function" and class:superClass() or nil
+    end
+    table.sort(functions)
+    print(string.format("    functions: %s", table.concat(functions, ", ")))
+end
+
+-- Texts shown in a list cell, to see what each row is
+local function getCellTexts(cell, texts)
+    texts = texts or {}
+    if cell.text ~= nil and cell.text ~= "" then
+        table.insert(texts, tostring(cell.text))
+    end
+    for _, child in ipairs(cell.elements or {}) do
+        getCellTexts(child, texts)
+    end
+    return texts
+end
+
+-- Prints every visible list on the open screen: where it is, what feeds it, how many rows and what the first rows say.
+-- Used to find out how a screen without game source (like the controls settings) builds its lists.
+function Searchables:consoleDumpList()
+    local screen = g_gui.currentGui ~= nil and g_gui.currentGui.target or nil
+    if screen == nil then
+        return "No screen is open. Open the screen with the list first (the console works on top of it)."
+    end
+    local view = SearchablesSearchBox.getScreenView(screen)
+    local lists = view:getDescendants(function(element)
+        return element.dataSource ~= nil and element.reloadData ~= nil and element:getIsVisible()
+    end)
+    print(string.format("Lists on '%s' (current page: %s): %d", tostring(g_gui.currentGuiName),
+        tostring(screen.currentPage ~= nil and screen.currentPage.name or "-"), #lists))
+    for i, list in ipairs(lists) do
+        print(string.format("List %d: id=%s profile=%s class of data source=%s", i, tostring(list.id), tostring(list.profile),
+            tostring(list.dataSource.name or list.dataSource.id or "?")))
+        local ok, sections = pcall(function()
+            return list.dataSource.getNumberOfSections ~= nil and list.dataSource:getNumberOfSections(list) or 1
+        end)
+        print(string.format("  sections: %s", tostring(ok and sections or "?")))
+        if ok then
+            for section = 1, math.min(sections or 1, 4) do
+                local okItems, items = pcall(function() return list.dataSource:getNumberOfItemsInSection(list, section) end)
+                print(string.format("  section %d: %s rows", section, tostring(okItems and items or "?")))
+            end
+        end
+        dumpFields("data source", list.dataSource)
+        local shown = 0
+        for _, cell in ipairs(list.elements or {}) do
+            if shown >= 5 then
+                break
+            end
+            local texts = getCellTexts(cell)
+            if #texts > 0 then
+                print(string.format("  row: %s", table.concat(texts, " | ")))
+                shown = shown + 1
+            end
+        end
+    end
+    dumpFields("screen", screen)
+    if screen.currentPage ~= nil then
+        dumpFields("current page", screen.currentPage)
+    end
+    return "Done. Send the log (Documents/My Games/FarmingSimulator2025/log.txt)."
+end
+
 -- Nudges a search box by a number of reference pixels, so we can find the right spot in-game
 function Searchables:consoleMove(whichArg, dxArg, dyArg)
     local module = ({shop = SearchablesShop, construction = SearchablesConstruction})[tostring(whichArg):lower()]
@@ -787,6 +873,7 @@ function Searchables:loadMap(name)
     addConsoleCommand("searchablesDumpUi", "Searchables: print the element tree of the open screen", "consoleDumpUi", Searchables, "[maxDepth]")
     addConsoleCommand("searchablesMove", "Searchables: nudge a search box by some pixels", "consoleMove", Searchables, "shop|construction dxPx dyPx")
     addConsoleCommand("searchablesDumpItem", "Searchables: print the first entry of the open shop list", "consoleDumpItem", Searchables)
+    addConsoleCommand("searchablesDumpList", "Searchables: print how the lists on the open screen are built", "consoleDumpList", Searchables)
     Logging.info("[Searchables] Loaded. Search boxes are on the shop and construction screens.")
 end
 
@@ -800,6 +887,7 @@ function Searchables:deleteMap()
     removeConsoleCommand("searchablesDumpUi")
     removeConsoleCommand("searchablesMove")
     removeConsoleCommand("searchablesDumpItem")
+    removeConsoleCommand("searchablesDumpList")
     SearchablesShop.delete()
     SearchablesConstruction.delete()
 end
