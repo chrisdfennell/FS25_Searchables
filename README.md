@@ -60,7 +60,7 @@ Type these in the shop search box, alone or together with words. Every filter wo
 <img src="docs/images/construction.png" alt="Construction screen searching house: 61 of 930 buildings" width="360">
 
 ### 🎮 Controls
-- **Settings → Controls** has a search box at the left of the column headers. Type an action, a section or a key: `cruise control`, `lights`, `vehicle`, `ctrl`, `f5`.
+- **Settings → Controls** has a search box next to the CONTROLS title, at the top right. Type an action, a section or a key: `cruise control`, `lights`, `vehicle`, `ctrl`, `f5`.
 - Changing a key works as usual while the list is filtered.
 
 ### 🗺️ Map: Where's My Stuff

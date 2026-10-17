@@ -81,19 +81,6 @@ function SearchablesSearchBox.new(screen, placeholder, onChanged)
         end
     end
 
-    -- recent searches are drawn under the box and clicked there, so the root draws and takes mouse events for them
-    local rootDraw, rootMouseEvent = root.draw, root.mouseEvent
-    root.draw = function(element, ...)
-        rootDraw(element, ...)
-        self:drawRecentSearches()
-    end
-    root.mouseEvent = function(element, posX, posY, isDown, isUp, button, eventUsed)
-        if self:onRecentMouseEvent(posX, posY, isDown, isUp, button, eventUsed) then
-            return true
-        end
-        return rootMouseEvent(element, posX, posY, isDown, isUp, button, eventUsed)
-    end
-
     root:updateAbsolutePosition()
     SearchablesSearchBox.instances[self] = true
 
@@ -111,7 +98,7 @@ SearchablesSearchBox.RECENT_GAP = 6
 
 -- Shown while typing in an empty box
 function SearchablesSearchBox:getShownRecentSearches()
-    if self.recentKey == nil or not self:getIsCapturing() or self.input:getText() ~= "" then
+    if self.recentKey == nil or not self:getIsCapturing() or self.input:getText() ~= "" or not self.root:getIsVisible() then
         return nil
     end
     local list = Searchables.getRecentSearches(self.recentKey)
@@ -154,9 +141,9 @@ function SearchablesSearchBox:drawRecentSearches()
 end
 
 -- A click on a recent search types it into the box (and the box keeps the cursor)
-function SearchablesSearchBox:onRecentMouseEvent(posX, posY, isDown, isUp, button, eventUsed)
+function SearchablesSearchBox:onRecentMouseEvent(posX, posY, isDown, isUp, button)
     self.hoveredRecent = nil
-    if eventUsed or self:getShownRecentSearches() == nil then
+    if self:getShownRecentSearches() == nil then
         return false
     end
     for i, row in ipairs(self.recentRows or {}) do
@@ -306,6 +293,28 @@ function SearchablesSearchBox:update()
         end
     end
     self.wasCapturing = isCapturing
+end
+
+-- The recent searches list hangs below the box over whatever is there, so it is drawn after the whole screen and gets
+-- the mouse before the screen does
+function SearchablesSearchBox.onGuiDraw(gui)
+    for box in pairs(SearchablesSearchBox.instances) do
+        box:drawRecentSearches()
+    end
+end
+
+function SearchablesSearchBox.onGuiMouseEvent(gui, superFunc, posX, posY, isDown, isUp, button)
+    for box in pairs(SearchablesSearchBox.instances) do
+        if box:onRecentMouseEvent(posX, posY, isDown, isUp, button) then
+            return
+        end
+    end
+    return superFunc(gui, posX, posY, isDown, isUp, button)
+end
+
+if Gui ~= nil then
+    Gui.draw = Utils.appendedFunction(Gui.draw, SearchablesSearchBox.onGuiDraw)
+    Gui.mouseEvent = Utils.overwrittenFunction(Gui.mouseEvent, SearchablesSearchBox.onGuiMouseEvent)
 end
 
 -- ---------------------------------------------------------------------------------------------

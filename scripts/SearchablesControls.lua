@@ -10,7 +10,7 @@
 
 SearchablesControls = {}
 
--- The box sits above the right end of the list, moved by these reference pixels (see searchablesMove)
+-- The box sits at the right end of the page's title row (CONTROLS), moved by these reference pixels (see searchablesMove)
 SearchablesControls.OFFSET_X = 0
 SearchablesControls.OFFSET_Y = 0
 SearchablesControls.GAP = 8
@@ -202,14 +202,14 @@ function SearchablesControls.updateBoxPosition()
     local width, height = box:getSize()
     local offsetX, offsetY = getNormalizedScreenValues(SearchablesControls.OFFSET_X, SearchablesControls.OFFSET_Y)
     local _, gap = getNormalizedScreenValues(0, SearchablesControls.GAP)
-    local x = list.absPosition[1]
+    local x = list.absPosition[1] + list.absSize[1] - width
     local y = math.min(list.absPosition[2] + list.absSize[2] + gap, 1 - height - gap)
 
-    -- the column headers (KEY 1, KEY 2, MOUSE) sit above the list; the action name column on the left has none, so
-    -- the box goes there, level with the headers
-    local firstHeader = frame.headerText1
-    if firstHeader ~= nil and firstHeader.absPosition ~= nil and firstHeader.absSize ~= nil then
-        y = firstHeader.absPosition[2] + (firstHeader.absSize[2] - height) * 0.5
+    -- the rows between the title and the list are full (tabs, then ACTION / KEY 1 / KEY 2 / MOUSE), the title row has
+    -- room on the right: level with the CONTROLS title, at the right end of the list
+    local title = frame.categoryHeaderText
+    if title ~= nil and title.absPosition ~= nil and title.absSize ~= nil then
+        y = title.absPosition[2] + (title.absSize[2] - height) * 0.5
     end
     box:setPosition(x + offsetX, y + offsetY)
 end
