@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="114" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://validation.gdn.giants-software.com/xml/fs25/modDesc.xsd">
     <author>Fennell</author>
-    <version>1.6.0.0</version>
+    <version>1.7.0.0</version>
     <title>
         <en>Searchables</en>
         <de>Searchables</de>
@@ -29,6 +29,8 @@ Map:
 - Your vehicles (fuel<20, damaged, helper, leased), animal pens running low, production points (missing, full) and "stored wheat".
 
 Ctrl+F (or the right stick on a controller) jumps into the search box; while walking or driving it opens the map search. Recent searches are listed under an empty box. Start a word with - to leave matches out (-mod). Enter keeps the search, Esc clears it.
+
+Controls: Settings > Controls has a search box too: "cruise", "lights", "ctrl".
 Everything is explained in the game's Help menu under Searchables.]]></en>
         <de><![CDATA[Suchfelder direkt im Shop, im Baumenü und auf der Karte. Feld anklicken und tippen: Die Liste aktualisiert sich beim Tippen.
 
@@ -51,6 +53,8 @@ Karte:
 - Eigene Fahrzeuge (fuel<20, Schaden, Helfer, geleast), Ställe mit Mangel, Produktionen (fehlt, voll) und "gelagert weizen".
 
 Strg+F (oder der rechte Stick am Controller) springt ins Suchfeld; beim Gehen oder Fahren öffnet es die Kartensuche. Letzte Suchen stehen unter dem leeren Feld. Ein Wort mit - davor schließt Treffer aus (-mod). Enter behält die Suche, Esc löscht sie.
+
+Steuerung: Einstellungen > Steuerung hat ebenfalls ein Suchfeld: "tempomat", "licht", "strg".
 Alles wird im Hilfe-Menü des Spiels unter Searchables erklärt.]]></de>
         <fr><![CDATA[Des champs de recherche directement dans le magasin, le menu de construction et sur la carte. Cliquez dans le champ et tapez : la liste se met à jour au fur et à mesure.
 
@@ -73,6 +77,8 @@ Carte :
 - Vos véhicules (fuel<20, dégâts, ouvrier, en location), les enclos qui manquent de quelque chose, les productions (manque, plein) et « stocké blé ».
 
 Ctrl+F (ou le stick droit à la manette) place le curseur dans le champ de recherche ; à pied ou en conduisant, il ouvre la recherche sur la carte. Les recherches récentes sont listées sous le champ vide. Un mot précédé de - exclut des résultats (-mod). Entrée conserve la recherche, Échap l'efface.
+
+Commandes : Paramètres > Commandes a aussi un champ de recherche : « régulateur », « phares », « ctrl ».
 Tout est expliqué dans le menu Aide du jeu, sous Searchables.]]></fr>
     </description>
 
@@ -85,6 +91,7 @@ Tout est expliqué dans le menu Aide du jeu, sous Searchables.]]></fr>
         <sourceFile filename="scripts/SearchablesSearchBox.lua"/>
         <sourceFile filename="scripts/SearchablesShop.lua"/>
         <sourceFile filename="scripts/SearchablesConstruction.lua"/>
+        <sourceFile filename="scripts/SearchablesControls.lua"/>
         <sourceFile filename="scripts/WheresMyStuffHotspot.lua"/>
         <sourceFile filename="scripts/WheresMyStuff.lua"/>
         <sourceFile filename="scripts/WheresMyStuffMapSearch.lua"/>

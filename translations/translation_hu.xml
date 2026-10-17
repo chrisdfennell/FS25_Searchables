@@ -4,6 +4,7 @@
         <text name="searchables_placeholder" text="Keresés..."/>
         <text name="searchables_shopPlaceholder" text="Keresés a boltban..."/>
         <text name="searchables_constructionPlaceholder" text="Épületek keresése..."/>
+        <text name="searchables_controlsPlaceholder" text="Irányítás keresése..."/>
         <text name="searchables_mapPlaceholder" text="Keresés a térképen..."/>
         <text name="searchables_resultsTitle" text="Keresési eredmények"/>
         <text name="searchables_countFound" text="%d találat"/>
@@ -114,5 +115,7 @@
         <text name="searchables_help_shop_more" text="Start a word with - to leave matches out: -mod hides mod items, -trailer hides trailers. mod shows only mod items. used finds second-hand items, and price filters use their sale price."/>
         <text name="searchables_help_controls_quick_title" text="Quick find and recent searches"/>
         <text name="searchables_help_controls_quick" text="Press Ctrl+F while walking or driving to open the map with the cursor in the search box. While the box is empty, your last five searches are listed under it: click one to search it again."/>
+        <text name="searchables_help_controls_search_title" text="Searching the controls"/>
+        <text name="searchables_help_controls_search" text="Settings &gt; Controls has a search box above the list. Type an action, a section or a key: cruise control, lights, vehicle, ctrl, f5."/>
     </texts>
 </l10n>

@@ -5,6 +5,7 @@
         <text name="searchables_placeholder" text="Suchen..."/>
         <text name="searchables_shopPlaceholder" text="Im Shop suchen..."/>
         <text name="searchables_constructionPlaceholder" text="Gebäude suchen..."/>
+        <text name="searchables_controlsPlaceholder" text="Steuerung suchen..."/>
         <text name="searchables_mapPlaceholder" text="Karte durchsuchen..."/>
         <text name="searchables_resultsTitle" text="Suchergebnisse"/>
         <text name="searchables_countFound" text="%d gefunden"/>
@@ -119,5 +120,7 @@
         <text name="searchables_help_shop_more" text="Ein Wort mit - davor schließt Treffer aus: -mod blendet Mod-Artikel aus, -anhänger blendet Anhänger aus. mod zeigt nur Mod-Artikel. gebraucht findet Gebrauchtartikel; Preisfilter nutzen deren Verkaufspreis."/>
         <text name="searchables_help_controls_quick_title" text="Schnellsuche und letzte Suchen"/>
         <text name="searchables_help_controls_quick" text="Strg+F beim Gehen oder Fahren öffnet die Karte mit dem Cursor im Suchfeld. Solange das Feld leer ist, stehen die letzten fünf Suchen darunter: Klick darauf sucht erneut."/>
+        <text name="searchables_help_controls_search_title" text="Steuerung durchsuchen"/>
+        <text name="searchables_help_controls_search" text="Einstellungen &gt; Steuerung hat über der Liste ein Suchfeld. Eine Aktion, einen Bereich oder eine Taste tippen: tempomat, licht, fahrzeug, strg, f5."/>
     </texts>
 </l10n>

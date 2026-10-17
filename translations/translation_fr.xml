@@ -4,6 +4,7 @@
         <text name="searchables_placeholder" text="Rechercher..."/>
         <text name="searchables_shopPlaceholder" text="Chercher au magasin..."/>
         <text name="searchables_constructionPlaceholder" text="Chercher un bâtiment..."/>
+        <text name="searchables_controlsPlaceholder" text="Chercher une commande..."/>
         <text name="searchables_mapPlaceholder" text="Chercher sur la carte..."/>
         <text name="searchables_resultsTitle" text="Résultats de recherche"/>
         <text name="searchables_countFound" text="%d trouvé(s)"/>
@@ -114,5 +115,7 @@
         <text name="searchables_help_shop_more" text="Un mot précédé de - exclut des résultats : -mod masque les articles de mods, -remorque masque les remorques. mod n'affiche que les articles de mods. occasion trouve les articles d'occasion ; les filtres de prix utilisent leur prix de vente."/>
         <text name="searchables_help_controls_quick_title" text="Recherche rapide et recherches récentes"/>
         <text name="searchables_help_controls_quick" text="Ctrl+F à pied ou en conduisant ouvre la carte avec le curseur dans le champ de recherche. Tant que le champ est vide, vos cinq dernières recherches sont listées dessous : cliquez pour relancer."/>
+        <text name="searchables_help_controls_search_title" text="Chercher dans les commandes"/>
+        <text name="searchables_help_controls_search" text="Paramètres &gt; Commandes a un champ de recherche au-dessus de la liste. Tapez une action, une section ou une touche : régulateur, phares, véhicule, ctrl, f5."/>
     </texts>
 </l10n>

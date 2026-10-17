@@ -59,6 +59,10 @@ Type these in the shop search box, alone or together with words. Every filter wo
 
 <img src="docs/images/construction.png" alt="Construction screen searching house: 61 of 930 buildings" width="360">
 
+### 🎮 Controls
+- **Settings → Controls** has a search box above the list. Type an action, a section or a key: `cruise control`, `lights`, `vehicle`, `ctrl`, `f5`.
+- Changing a key works as usual while the list is filtered.
+
 ### 🗺️ Map: Where's My Stuff
 - Type in the box at the top of the map, or press **Ctrl+F**, to find **vehicles, bales, pallets, big bags, buildings, fields and properties**.
 - **Find vehicles by license plate.** `AB-123`, `ab 123` and `ab123` all find the same truck.
@@ -147,6 +151,14 @@ Every special word and filter in one place. Mix them with normal words, e.g. `fe
 | `l>1000` | Pallets, bales and storages holding more than 1000 l (`wool l>1000`) |
 | `ha>5` | Fields and properties bigger than 5 ha |
 
+**Settings → Controls**
+
+| Type | Shows |
+|---|---|
+| an action: `cruise`, `lights` | Controls with that name |
+| a section: `vehicle`, `player` | Every control in that section |
+| a key: `ctrl`, `f5`, `space` | Controls bound to that key |
+
 Special words also work in your game's language, e.g. `verkaufen weizen` or `vendre blé`.
 
 ## In-game help
@@ -187,7 +199,8 @@ You don't need these to use the mod; they're extras for checking things and trou
 | `wmsShow <fillType\|ALL\|LEFTOVERS\|EMPTY>` | Mark items on the map |
 | `wmsGoto <fillType\|ALL\|LEFTOVERS\|EMPTY>` | Mark items and target the nearest |
 | `wmsHide` | Remove the map markers |
-| `searchablesMove shop\|construction <dx> <dy>` | Nudge a search box by a few pixels |
+| `searchablesMove shop\|construction\|controls <dx> <dy>` | Nudge a search box by a few pixels |
+| `searchablesDumpList [seconds]` | Print how the lists on the open screen are built; with seconds, waits first so you can open the screen (for troubleshooting) |
 | `searchablesDumpUi` | Print the open screen's layout (for troubleshooting) |
 | `searchablesDumpItem` | Print the first entry of the open shop list (for troubleshooting) |
 

@@ -109,6 +109,10 @@
                 <text text="$l10n_searchables_help_controls_quick"/>
             </paragraph>
             <paragraph>
+                <title text="$l10n_searchables_help_controls_search_title"/>
+                <text text="$l10n_searchables_help_controls_search"/>
+            </paragraph>
+            <paragraph>
                 <title text="$l10n_searchables_help_controls_console_title"/>
                 <text text="$l10n_searchables_help_controls_console"/>
             </paragraph>

@@ -745,10 +745,10 @@ end
 
 -- Nudges a search box by a number of reference pixels, so we can find the right spot in-game
 function Searchables:consoleMove(whichArg, dxArg, dyArg)
-    local module = ({shop = SearchablesShop, construction = SearchablesConstruction})[tostring(whichArg):lower()]
+    local module = ({shop = SearchablesShop, construction = SearchablesConstruction, controls = SearchablesControls})[tostring(whichArg):lower()]
     local dx, dy = tonumber(dxArg), tonumber(dyArg)
     if module == nil or dx == nil or dy == nil then
-        return "Usage: searchablesMove shop|construction <dxPx> <dyPx>   (positive moves right / up)"
+        return "Usage: searchablesMove shop|construction|controls <dxPx> <dyPx>   (positive moves right / up)"
     end
     module.OFFSET_X = module.OFFSET_X + dx
     module.OFFSET_Y = module.OFFSET_Y + dy
@@ -889,7 +889,7 @@ function Searchables:loadMap(name)
     Searchables.loadRecentSearches()
 
     addConsoleCommand("searchablesDumpUi", "Searchables: print the element tree of the open screen", "consoleDumpUi", Searchables, "[maxDepth]")
-    addConsoleCommand("searchablesMove", "Searchables: nudge a search box by some pixels", "consoleMove", Searchables, "shop|construction dxPx dyPx")
+    addConsoleCommand("searchablesMove", "Searchables: nudge a search box by some pixels", "consoleMove", Searchables, "shop|construction|controls dxPx dyPx")
     addConsoleCommand("searchablesDumpItem", "Searchables: print the first entry of the open shop list", "consoleDumpItem", Searchables)
     addConsoleCommand("searchablesDumpList", "Searchables: print how the lists on the open screen are built", "consoleDumpList", Searchables, "[delaySeconds]")
     Logging.info("[Searchables] Loaded. Search boxes are on the shop and construction screens.")
@@ -909,6 +909,7 @@ function Searchables:deleteMap()
     removeConsoleCommand("searchablesDumpList")
     SearchablesShop.delete()
     SearchablesConstruction.delete()
+    SearchablesControls.delete()
 end
 
 addModEventListener(Searchables)
