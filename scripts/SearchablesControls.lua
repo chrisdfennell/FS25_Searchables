@@ -202,8 +202,15 @@ function SearchablesControls.updateBoxPosition()
     local width, height = box:getSize()
     local offsetX, offsetY = getNormalizedScreenValues(SearchablesControls.OFFSET_X, SearchablesControls.OFFSET_Y)
     local _, gap = getNormalizedScreenValues(0, SearchablesControls.GAP)
-    local x = list.absPosition[1] + list.absSize[1] - width
+    local x = list.absPosition[1]
     local y = math.min(list.absPosition[2] + list.absSize[2] + gap, 1 - height - gap)
+
+    -- the column headers (KEY 1, KEY 2, MOUSE) sit above the list; the action name column on the left has none, so
+    -- the box goes there, level with the headers
+    local firstHeader = frame.headerText1
+    if firstHeader ~= nil and firstHeader.absPosition ~= nil and firstHeader.absSize ~= nil then
+        y = firstHeader.absPosition[2] + (firstHeader.absSize[2] - height) * 0.5
+    end
     box:setPosition(x + offsetX, y + offsetY)
 end
 
